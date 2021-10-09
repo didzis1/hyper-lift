@@ -1,28 +1,36 @@
 import React from 'react';
-import { Layout, Text } from '@ui-kitten/components';
-import { globalStyles } from '../../../globalStyles';
-import Button from '../../components/Button';
-import { theme } from '../../../theme';
+import { Layout, Text, Button } from '@ui-kitten/components';
+import { AuthNavProps } from './AuthParamList';
+import { StyleSheet } from 'react-native';
 
-const StartingScreen = ({ navigation }) => {
+const StartingScreen = ({ navigation }: AuthNavProps<'StartingScreen'>) => {
   return (
-    <Layout
-      style={[globalStyles.centeredContainer, globalStyles.startingContainer]}>
-      <Layout>
-        <Button
-          onPress={() => navigation.navigate('RegisterScreen')}
-          text='REGISTER'
-        />
-        <Text>Works</Text>
-        <Button
-          customText={{ color: theme.colors.black }}
-          customButton={{ backgroundColor: theme.colors.white, marginTop: 5 }}
-          onPress={() => navigation.navigate('LoginScreen')}
-          text='LOGIN'
-        />
+    <Layout style={styles.container}>
+      <Text>hyperlift</Text>
+      <Layout style={styles.btnContainer}>
+        <Button onPress={() => navigation.navigate('RegisterScreen')}>
+          REGISTER
+        </Button>
+      </Layout>
+      <Layout style={styles.btnContainer}>
+        <Button onPress={() => navigation.navigate('LoginScreen')}>
+          SIGN IN
+        </Button>
       </Layout>
     </Layout>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  btnContainer: {
+    marginVertical: 5,
+    width: 150
+  }
+});
 
 export default StartingScreen;
