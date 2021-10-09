@@ -1,30 +1,28 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { Layout, Text } from '@ui-kitten/components';
 import { globalStyles } from '../../../globalStyles';
 import Button from '../../components/Button';
 import { theme } from '../../../theme';
-import hyperliftLogo from '../../../assets/white-hyperlift.svg';
 
-const AuthStack = () => {
+const StartingScreen = ({ navigation }) => {
   return (
-    <View
+    <Layout
       style={[globalStyles.centeredContainer, globalStyles.startingContainer]}>
-      <Image source={hyperliftLogo} style={{ width: 200, height: 200 }} />
-      <View>
+      <Layout>
         <Button
-          onPress={() => console.log('pressed register')}
+          onPress={() => navigation.navigate('RegisterScreen')}
           text='REGISTER'
         />
-
+        <Text>Works</Text>
         <Button
           customText={{ color: theme.colors.black }}
           customButton={{ backgroundColor: theme.colors.white, marginTop: 5 }}
-          onPress={() => console.log('pressed login')}
+          onPress={() => navigation.navigate('LoginScreen')}
           text='LOGIN'
         />
-      </View>
-    </View>
+      </Layout>
+    </Layout>
   );
 };
 
-export default AuthStack;
+export default StartingScreen;
