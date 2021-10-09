@@ -29,7 +29,7 @@ Exercise work for [Fullstackopen 2021 MOOC course](https://fullstackopen.com/).
 - Jest
 
 
-# Työaikakirjanpito
+# Time spent developing
 
 | Day   | Time (in hours) | Work done |
 | :----:|:-----| :-----|
