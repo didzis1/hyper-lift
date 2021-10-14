@@ -39,5 +39,6 @@ Link to the back-end can be found [here](https://github.com/didzis1/hyperlift-ba
 | 07.10 | 0,5    | Created the base for the project (Expo with TypeScript) |
 | 09.10 | 3    | Installed necessary dependencies, configured eslint, worked on authentication screens (Login page) |
 | 11.10 | 0,5    | Created the base for the backend (TypeScript/Express/apollo-server-express) |
-| 13.10 | 1h | Added MongoDB database, created GraphQL object types and mutations |
-| In total   | 5h   | | 
+| 13.10 | 1 | Added MongoDB database, created GraphQL object types and mutations |
+| 14.10 | 0,5h | Reworked the folder structure, new query for finding user |
+| In total   | 5,5h   | | 
