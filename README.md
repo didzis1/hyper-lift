@@ -43,4 +43,5 @@ Link to the back-end can be found [here](https://github.com/didzis1/hyperlift-ba
 | 14.10 | 0,5h | Reworked the folder structure, new query for finding user | Back-end |
 | 15.10 | 1h | Added new mutation for creating a routine, reworked file structure and model logic | Back-end |
 | 19.10 | 7h | Added login, register resolver. JWT token, context and refactored typing with @typegoose/typegoose. Set up a config file and installed testing dependencies. | Back-end |
-| In total   | 12,5h   | | 
+| 20.10 | 4h | Installed testing libraries, created multiple util functions for testing and created test case for user registration | Back-end |
+| In total   | 16,5h   | | 
