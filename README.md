@@ -44,4 +44,5 @@ Link to the back-end can be found [here](https://github.com/didzis1/hyperlift-ba
 | 19.10 | 7h | Added login, register resolver. JWT token, context and refactored typing with @typegoose/typegoose. Set up a config file and installed testing dependencies. | Back-end |
 | 20.10 | 4h | Installed testing libraries, created multiple util functions for testing and created test case for user registration | Back-end |
 | 21.10 | 5h | Implemented more tests for authentication and created new collection for workout history | Back-end |
+| 22.10 | 5h | Reworked routine and user models (user now has reference id's of routines), new model for creating max lifts for user exercises  | Back-end |
 | In total   | 21,5h   | | 
