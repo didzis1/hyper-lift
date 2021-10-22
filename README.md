@@ -19,13 +19,12 @@ Link to the back-end can be found [here](https://github.com/didzis1/hyperlift-ba
 # Main technologies
 *Front End*
 - React Native with TypeScript
-- UI Kitten
-- Formik
 
 *Back end*
 - Node & Express
 - Apollo & GraphQL
-- MongoDB
+- TypeGraphQL
+- MongoDB/Typegoose
 
 *Testing*
 - Cypress
