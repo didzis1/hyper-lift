@@ -46,4 +46,5 @@ Link to the back-end can be found [here](https://github.com/didzis1/hyperlift-ba
 | 21.10 | 5h | Implemented more tests for authentication and created new collection for workout history | Back-end |
 | 22.10 | 5h | Reworked routine and user models (user now has reference id's of routines), new model for creating max lifts for user exercises  | Back-end |
 | 23.10 | 3h | Created new test cases for routines, changed History to be an array of user instead of own collection | Back-end |
-| In total   | 30,5h   | | 
+| 25.10 | 5h | Reworked maxLift and history to generate random ID, fixed some types and installed uuid library | Back-end |
+| In total   | 35,5h   | | 
