@@ -48,4 +48,5 @@ Link to the back-end can be found [here](https://github.com/didzis1/hyperlift-ba
 | 23.10 | 3h | Created new test cases for routines, changed History to be an array of user instead of own collection | Back-end |
 | 25.10 | 5h | Reworked maxLift and history to generate random ID, fixed some types and installed uuid library | Back-end |
 | 26.10 | 6h | Wrote new tests, maxLifts now have full CRUD operations, resolver for editing history, a lot of testing done | Back-end |
+| 26.10 | 3h | Reworked user history data structure. Fixed AddHistory and EditHistory, tests are broken. | Back-end |
 | In total   | 41,5h   | | 
