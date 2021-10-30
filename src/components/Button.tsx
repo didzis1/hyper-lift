@@ -1,33 +1,43 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { Button as KittenButton } from '@ui-kitten/components';
+import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
 type Props = {
   onPress: () => void;
-  text: string;
-  style?: object;
+  title: string;
+  customText?: object;
+  customButton?: object;
 };
 
-const Button = ({ onPress, text, style }: Props) => {
-  const styledButton = [styles.container, style];
+const Button = ({
+  onPress,
+  title,
+  customButton,
+  customText,
+  ...props
+}: Props) => {
+  const styledButton = [styles.container, customButton];
+  const styledText = [styles.text, customText];
   return (
-    <KittenButton onPress={onPress} style={styledButton}>
-      {text}
-    </KittenButton>
+    <TouchableOpacity onPress={onPress} style={styledButton} {...props}>
+      <Text style={styledText}>{title}</Text>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    marginVertical: 10
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // paddingVertical: 8,
-    // paddingHorizontal: 10,
-    // width: 150,
-    // borderRadius: 5,
-    // borderWidth: 3,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 20,
+    paddingHorizontal: 15,
+    backgroundColor: 'white',
+    borderRadius: 5
+  },
+  text: {
+    color: 'red',
+    fontWeight: 'bold',
+    letterSpacing: 1.5
   }
 });
 
