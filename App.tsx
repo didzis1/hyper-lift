@@ -1,17 +1,19 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
-import { AuthContextProvider } from './src/contexts/AuthContext';
 import Routes from './src/Routes';
 import createApolloClient from './src/utils/createApolloClient';
+import AuthStorage from './src/utils/authStorage';
+import AuthStorageContext from './src/contexts/AuthStorageContext';
 
-const apolloClient = createApolloClient();
+const authStorage = new AuthStorage();
+const apolloClient = createApolloClient(authStorage);
 
 const App = () => {
   return (
     <ApolloProvider client={apolloClient}>
-      <AuthContextProvider>
+      <AuthStorageContext.Provider value={authStorage}>
         <Routes />
-      </AuthContextProvider>
+      </AuthStorageContext.Provider>
     </ApolloProvider>
   );
 };
