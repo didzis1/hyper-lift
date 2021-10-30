@@ -1,6 +1,10 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { Input, Layout, Text } from '@ui-kitten/components';
+import {
+  StyleSheet,
+  TextInput as NativeTextInput,
+  Text,
+  View
+} from 'react-native';
 import { useField } from 'formik';
 
 type InputProps = {
@@ -19,9 +23,9 @@ type FormikTextInputProps = {
 };
 
 export const TextInput = ({ style, ...props }: InputProps) => {
-  const styledInput = [style];
+  const styledInput = [styles.input, style];
 
-  return <Input style={styledInput} {...props} />;
+  return <NativeTextInput style={styledInput} {...props} />;
 };
 
 const FormikTextInput = ({ label, name, ...props }: FormikTextInputProps) => {
@@ -29,12 +33,8 @@ const FormikTextInput = ({ label, name, ...props }: FormikTextInputProps) => {
   const showError = meta.touched && meta.error;
 
   return (
-    <Layout>
-      {label && (
-        <Text style={styles.label} category='h6'>
-          {label}
-        </Text>
-      )}
+    <View>
+      {label && <Text style={styles.label}>{label}</Text>}
       <TextInput
         onChangeText={(value) => helpers.setValue(value)}
         onBlur={() => helpers.setTouched(true)}
@@ -42,16 +42,18 @@ const FormikTextInput = ({ label, name, ...props }: FormikTextInputProps) => {
         error={showError}
         {...props}
       />
-      {showError && (
-        <Text category='p2' status='danger'>
-          {showError}
-        </Text>
-      )}
-    </Layout>
+      {showError && <Text>{showError}</Text>}
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  input: {
+    width: '100%',
+    backgroundColor: 'white',
+    padding: 10,
+    borderRadius: 15
+  },
   label: {
     paddingVertical: 5
   }
