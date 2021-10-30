@@ -1,12 +1,12 @@
 import React from 'react';
-import { Layout, Text } from '@ui-kitten/components';
+import { Text, View } from 'react-native';
 
 const ProfileScreen = () => {
   return (
-    <Layout>
+    <View>
       <Text>Profile Screen</Text>
       <Text>Here are your routines:</Text>
-    </Layout>
+    </View>
   );
 };
 export default ProfileScreen;

@@ -1,35 +1,72 @@
 import React from 'react';
-import { Layout, Text, Button } from '@ui-kitten/components';
+import { View, Text, StyleSheet } from 'react-native';
+import Button from '../../components/Button';
 import { AuthNavProps } from './AuthParamList';
-import { StyleSheet } from 'react-native';
 
 const StartingScreen = ({ navigation }: AuthNavProps<'StartingScreen'>) => {
   return (
-    <Layout style={styles.container}>
-      <Text>hyperlift</Text>
-      <Layout style={styles.btnContainer}>
-        <Button onPress={() => navigation.navigate('RegisterScreen')}>
-          REGISTER
-        </Button>
-      </Layout>
-      <Layout style={styles.btnContainer}>
-        <Button onPress={() => navigation.navigate('LoginScreen')}>
-          SIGN IN
-        </Button>
-      </Layout>
-    </Layout>
+    <View style={styles.container}>
+      <View style={styles.content}>
+        <View>
+          <Text
+            style={{
+              color: 'black',
+              fontSize: 45,
+              fontWeight: 'bold',
+              letterSpacing: 3
+            }}>
+            hyperlift
+          </Text>
+        </View>
+
+        <View style={{ paddingBottom: 30 }}>
+          <Text
+            style={{
+              color: 'black',
+              fontSize: 16,
+              letterSpacing: 2
+            }}>
+            Your digital gym notebook
+          </Text>
+        </View>
+
+        <View style={styles.btnContainer}>
+          <Button
+            onPress={() => navigation.navigate('RegisterScreen')}
+            title='REGISTER'
+          />
+        </View>
+        <View style={styles.btnContainer}>
+          <Button
+            onPress={() => navigation.navigate('LoginScreen')}
+            title='LOG IN'
+          />
+        </View>
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    width: '100%',
+    height: '100%'
+  },
+  content: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   btnContainer: {
-    marginVertical: 5,
-    width: 150
+    width: '70%',
+    marginVertical: 5
+  },
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: '100%'
   }
 });
 

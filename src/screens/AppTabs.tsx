@@ -1,15 +1,14 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import ProfileStack from './ProfileStack';
 
-const { Navigator, Screen } = createBottomTabNavigator();
+const Stack = createBottomTabNavigator();
 
 const AppTabs = () => {
   return (
-    <Navigator>
-      <Screen name='ProfileStack' />
-      <Screen name='WorkoutStack' />
-      <Screen name='HistoryStack' />
-    </Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name='ProfileStack' component={ProfileStack} />
+    </Stack.Navigator>
   );
 };
 

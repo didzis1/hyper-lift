@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-import { StyleSheet } from 'react-native';
-import { Layout, Text } from '@ui-kitten/components';
+import { StyleSheet, View, Text } from 'react-native';
 import Button from '../../components/Button';
 import { AuthNavProps } from './AuthParamList';
 import FormikTextInput from '../../components/FormikTextInput';
@@ -12,18 +11,17 @@ type Values = {
   password: string;
 };
 
-const LoginScreen = ({ navigation }: AuthNavProps<'LoginScreen'>) => {
+const LoginScreen = ({}: AuthNavProps<'LoginScreen'>) => {
   const { login } = useContext(AuthContext);
 
   const handleFormSubmit = (credentials: Values) => {
     login(credentials);
     console.log('successfully logged in');
-    navigation.navigate('StartingScreen');
   };
 
   return (
-    <Layout style={styles.container}>
-      <Layout style={styles.form}>
+    <View style={styles.container}>
+      <View style={styles.form}>
         <Text>Sign in here</Text>
 
         <Formik
@@ -42,12 +40,12 @@ const LoginScreen = ({ navigation }: AuthNavProps<'LoginScreen'>) => {
                 name='password'
                 secureTextEntry
               />
-              <Button onPress={handleSubmit} text='Sign In' />
+              <Button onPress={handleSubmit} title='Sign In' />
             </>
           )}
         </Formik>
-      </Layout>
-    </Layout>
+      </View>
+    </View>
   );
 };
 
