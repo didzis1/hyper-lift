@@ -6,7 +6,6 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "esModuleInterop": true,
-    "typeRoots": ["./src/types"]
+    "esModuleInterop": true
   }
 }
