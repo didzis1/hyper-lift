@@ -1,25 +1,18 @@
-import React, { useContext } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import AuthStack from './src/screens/AuthStack';
+import React from 'react';
+import { ApolloProvider } from '@apollo/client';
 import { AuthContextProvider } from './src/contexts/AuthContext';
-import { ApplicationProvider } from '@ui-kitten/components';
-import { AuthContext } from './src/contexts/AuthContext';
-import AppTabs from './src/screens/AppTabs';
+import Routes from './src/Routes';
+import createApolloClient from './src/utils/createApolloClient';
 
-import * as eva from '@eva-design/eva';
-import { default as theme } from './theme.json';
+const apolloClient = createApolloClient();
 
 const App = () => {
-  const { token } = useContext(AuthContext);
-
   return (
-    <ApplicationProvider {...eva} theme={{ ...eva.dark, ...theme }}>
+    <ApolloProvider client={apolloClient}>
       <AuthContextProvider>
-        <NavigationContainer>
-          {token ? <AppTabs /> : <AuthStack />}
-        </NavigationContainer>
+        <Routes />
       </AuthContextProvider>
-    </ApplicationProvider>
+    </ApolloProvider>
   );
 };
 
