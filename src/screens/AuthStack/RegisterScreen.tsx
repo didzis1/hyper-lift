@@ -5,10 +5,10 @@ import { AuthNavProps } from './AuthParamList';
 import FormikTextInput from '../../components/FormikTextInput';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { CredentialsType } from '../../types/CredentialsType';
+import { RegisterType } from '../../types/auth/RegisterType';
 import useRegister from '../../hooks/useRegister';
 
-const initialValues: CredentialsType = {
+const initialValues: RegisterType = {
   firstName: '',
   lastName: '',
   email: '',
@@ -46,7 +46,7 @@ const RegisterScreen = ({ navigation }: AuthNavProps<'RegisterScreen'>) => {
   const { register } = useRegister();
   const [error, setError] = useState<string | null>(null);
 
-  const handleFormSubmit = async (credentials: CredentialsType) => {
+  const handleFormSubmit = async (credentials: RegisterType) => {
     try {
       console.log('hello?');
       await register(credentials);
