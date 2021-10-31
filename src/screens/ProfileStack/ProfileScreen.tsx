@@ -1,6 +1,8 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { Button, View, SafeAreaView, StyleSheet } from 'react-native';
 import useLogout from '../../hooks/useLogout';
+import globalStyles from '../../globalStyles';
+import Text from '../../components/Text';
 
 const ProfileScreen = () => {
   const { logout } = useLogout();
@@ -16,11 +18,27 @@ const ProfileScreen = () => {
   };
 
   return (
-    <View>
-      <Text>Profile Screen</Text>
-      <Text>Here are your routines:</Text>
+    <SafeAreaView style={globalStyles.androidSafeArea}>
+      <View style={styles.cardContainer}>
+        <View style={styles.cardContent}>
+          <Text color='primary' variant='body'>
+            fasfas
+          </Text>
+        </View>
+      </View>
       <Button title='Logout' onPress={() => handleLogout()} />
-    </View>
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  cardContainer: {
+    width: '90%',
+    height: 150
+  },
+  cardContent: {
+    flex: 1
+  }
+});
+
 export default ProfileScreen;
