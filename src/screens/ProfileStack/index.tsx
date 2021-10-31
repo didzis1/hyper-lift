@@ -2,13 +2,13 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ProfileScreen from './ProfileScreen';
 
-const { Navigator, Screen } = createNativeStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const ProfileStack = () => {
   return (
-    <Navigator>
-      <Screen name='ProfileScreen' component={ProfileScreen} />
-    </Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name='ProfileScreen' component={ProfileScreen} />
+    </Stack.Navigator>
   );
 };
 
