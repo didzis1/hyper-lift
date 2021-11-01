@@ -1,61 +1,27 @@
-import { TextStyle } from 'react-native';
+import {
+  DarkTheme as NavigationDarkTheme,
+  DefaultTheme as NavigationLightTheme
+} from '@react-navigation/native';
 
-type ThemeType = {
+import {
+  DarkTheme as PaperDarkTheme,
+  DefaultTheme as PaperLightTheme
+} from 'react-native-paper';
+
+export const CombinedLightTheme: ReactNativePaper.Theme = {
+  ...PaperLightTheme,
+  ...NavigationLightTheme,
   colors: {
-    background: string;
-    foreground: string;
-    primary: string;
-    success: string;
-    danger: string;
-    failure: string;
-  };
-  spacing: object;
-  textVariants: {
-    header: TextStyle;
-    body: TextStyle;
-  };
-};
-
-const palette = {
-  purple: '#5A31F4',
-  green: '#0ECD9D',
-  red: '#CD0E61',
-  black: '#0B0B0B',
-  white: '#F0F2F3'
-};
-
-export const theme: ThemeType = {
-  colors: {
-    background: palette.white,
-    foreground: palette.black,
-    primary: palette.purple,
-    success: palette.green,
-    danger: palette.red,
-    failure: palette.red
-  },
-  spacing: {
-    s: 8,
-    m: 16,
-    l: 24,
-    xl: 40
-  },
-  textVariants: {
-    header: {
-      fontFamily: 'Roboto',
-      fontSize: 36,
-      fontWeight: 'bold'
-    },
-    body: {
-      fontFamily: 'Roboto',
-      fontSize: 16
-    }
+    ...PaperLightTheme.colors,
+    ...NavigationLightTheme.colors
   }
 };
 
-export const darkTheme = {
-  ...theme,
+export const CombinedDarkTheme: ReactNativePaper.Theme = {
+  ...PaperDarkTheme,
+  ...NavigationDarkTheme,
   colors: {
-    background: palette.black,
-    foreground: palette.white
+    ...PaperDarkTheme.colors,
+    ...NavigationDarkTheme.colors
   }
 };
