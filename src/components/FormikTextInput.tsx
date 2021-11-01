@@ -52,7 +52,9 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: 'white',
     padding: 10,
-    borderRadius: 15
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#7E007B'
   },
   label: {
     paddingVertical: 5
