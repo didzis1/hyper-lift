@@ -50,4 +50,5 @@ Link to the back-end can be found [here](https://github.com/didzis1/hyperlift-ba
 | 26.10 | 6h | Wrote new tests, maxLifts now have full CRUD operations, resolver for editing history, a lot of testing done | Back-end |
 | 27.10 | 4h | Reworked user history data structure. Fixed AddHistory and EditHistory, fixed broken tests. | Back-end |
 | 30.10 | 8h | Created hooks for authentication, user can now register/log in/log out. Created secure storage for authentication. | Back-end |
-| In total   | 53,5h   | | 
+| 01.11 | 8h | Installed react-native-paper and developed a dark/light theme option for the application | Back-end |
+| In total   | 60,5h   | | 
