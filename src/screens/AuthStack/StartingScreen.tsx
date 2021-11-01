@@ -31,14 +31,12 @@ const StartingScreen = ({ navigation }: AuthNavProps<'StartingScreen'>) => {
         </View>
 
         <View style={styles.btnContainer}>
-          <Button onPress={() => navigation.navigate('RegisterScreen')}>
-            Sign in
+          <Button onPress={() => navigation.push('RegisterScreen')}>
+            Sign Up
           </Button>
         </View>
         <View style={styles.btnContainer}>
-          <Button onPress={() => navigation.navigate('LoginScreen')}>
-            Log in
-          </Button>
+          <Button onPress={() => navigation.push('LoginScreen')}>Log in</Button>
         </View>
       </View>
     </View>
