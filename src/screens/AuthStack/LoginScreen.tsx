@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { AuthNavProps } from './AuthParamList';
 import FormikTextInput from '../../components/FormikTextInput';
 import { Formik } from 'formik';
