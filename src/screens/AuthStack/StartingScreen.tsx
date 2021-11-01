@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import Button from '../../components/Button';
+import { Button } from 'react-native-paper';
 import { AuthNavProps } from './AuthParamList';
 
 const StartingScreen = ({ navigation }: AuthNavProps<'StartingScreen'>) => {
@@ -31,16 +31,14 @@ const StartingScreen = ({ navigation }: AuthNavProps<'StartingScreen'>) => {
         </View>
 
         <View style={styles.btnContainer}>
-          <Button
-            onPress={() => navigation.navigate('RegisterScreen')}
-            title='REGISTER'
-          />
+          <Button onPress={() => navigation.navigate('RegisterScreen')}>
+            Sign in
+          </Button>
         </View>
         <View style={styles.btnContainer}>
-          <Button
-            onPress={() => navigation.navigate('LoginScreen')}
-            title='LOG IN'
-          />
+          <Button onPress={() => navigation.navigate('LoginScreen')}>
+            Log in
+          </Button>
         </View>
       </View>
     </View>

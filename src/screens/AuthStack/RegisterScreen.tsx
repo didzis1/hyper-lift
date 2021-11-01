@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import Button from '../../components/Button';
 import { AuthNavProps } from './AuthParamList';
 import FormikTextInput from '../../components/FormikTextInput';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { RegisterType } from '../../types/auth/RegisterType';
 import useRegister from '../../hooks/useRegister';
+import { Button } from 'react-native-paper';
 
 const initialValues: RegisterType = {
   firstName: '',
@@ -97,7 +97,7 @@ const RegisterScreen = ({ navigation }: AuthNavProps<'RegisterScreen'>) => {
               name='passwordConfirmation'
               secureTextEntry
             />
-            <Button onPress={handleSubmit} title='Sign Up' />
+            <Button onPress={handleSubmit}>Sign Up</Button>
           </View>
         )}
       </Formik>

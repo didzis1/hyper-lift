@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import Button from '../../components/Button';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { AuthNavProps } from './AuthParamList';
 import FormikTextInput from '../../components/FormikTextInput';
 import { Formik } from 'formik';
 import { LoginType } from '../../types/auth/LoginType';
 import useLogin from '../../hooks/useLogin';
+import { Button } from 'react-native-paper';
 
 const LoginScreen = ({}: AuthNavProps<'LoginScreen'>) => {
   const [error, setError] = useState<string | null>(null);
@@ -36,13 +36,14 @@ const LoginScreen = ({}: AuthNavProps<'LoginScreen'>) => {
                 placeholder='john_doe@gmail.com'
                 name='email'
               />
+
               <FormikTextInput
                 label='Password'
                 placeholder='*******'
                 name='password'
                 secureTextEntry
               />
-              <Button onPress={handleSubmit} title='Sign In' />
+              <Button onPress={handleSubmit}>Sign In</Button>
             </>
           )}
         </Formik>
