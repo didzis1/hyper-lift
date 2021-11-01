@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import { ProfileNavProps } from './ProfileParamList';
 import useLogout from '../../hooks/useLogout';
 import globalStyles from '../../globalStyles';
-import { Button, Text } from 'react-native-paper';
+import { Button, Switch, Text } from 'react-native-paper';
+import ThemeContext from '../../contexts/ThemeContext';
 
 const ProfileScreen = ({ navigation }: ProfileNavProps<'Profile'>) => {
   const { logout } = useLogout();
-
+  const { isDarkTheme, toggleTheme } = useContext(ThemeContext);
+  console.log(toggleTheme);
+  console.log(isDarkTheme);
   const handleLogout = async () => {
     try {
       await logout();
@@ -27,14 +30,18 @@ const ProfileScreen = ({ navigation }: ProfileNavProps<'Profile'>) => {
         <Text>Bench 100</Text>
         <Text>Deadlift 150</Text>
         <Text>Squat 140</Text>
-        <Button onPress={() => navigation.navigate('MaxLifts')}>
-          Max Lifts
-        </Button>
+        <Button onPress={() => navigation.push('MaxLifts')}>Max Lifts</Button>
       </View>
 
       <View>
         <Button onPress={() => handleLogout()}>Log out</Button>
       </View>
+      <Button onPress={() => toggleTheme()}>Change theme</Button>
+      <Switch
+        color='red'
+        onValueChange={() => toggleTheme()}
+        value={isDarkTheme}
+      />
     </SafeAreaView>
   );
 };
@@ -43,7 +50,6 @@ const styles = StyleSheet.create({
   card: {
     width: '95%',
     height: 150,
-    backgroundColor: '#0099FF',
     borderRadius: 20,
     color: 'white',
     alignSelf: 'center'
