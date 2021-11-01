@@ -2,7 +2,8 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ProfileStack from './ProfileStack';
 
-import { FontAwesome } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
+import WorkoutStack from './WorkoutStack';
 
 const Stack = createBottomTabNavigator();
 
@@ -14,8 +15,30 @@ const AppTabs = () => {
         component={ProfileStack}
         options={{
           title: 'Home',
-          tabBarIcon: () => {
-            return <FontAwesome name='home' size={24} color='black' />;
+          tabBarIcon: ({ focused }) => {
+            return (
+              <Feather
+                name='home'
+                size={24}
+                color={focused ? '#0099FF' : 'grey'}
+              />
+            );
+          }
+        }}
+      />
+      <Stack.Screen
+        name='WorkoutStack'
+        component={WorkoutStack}
+        options={{
+          title: 'Workout',
+          tabBarIcon: ({ focused }) => {
+            return (
+              <Feather
+                name='zap'
+                size={24}
+                color={focused ? '#0099FF' : 'grey'}
+              />
+            );
           }
         }}
       />
