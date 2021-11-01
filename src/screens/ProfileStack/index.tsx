@@ -1,13 +1,15 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import ProfileScreen from './ProfileScreen';
+import Profile from './Profile';
+import MaxLifts from './MaxLifts';
 
 const Stack = createNativeStackNavigator();
 
 const ProfileStack = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name='ProfileScreen' component={ProfileScreen} />
+    <Stack.Navigator>
+      <Stack.Screen name='Profile' component={Profile} />
+      <Stack.Screen name='MaxLifts' component={MaxLifts} />
     </Stack.Navigator>
   );
 };
