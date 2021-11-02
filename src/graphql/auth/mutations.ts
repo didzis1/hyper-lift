@@ -18,3 +18,9 @@ export const LOGIN = gql`
     }
   }
 `;
+
+export const DELETE_ACCOUNT = gql`
+  mutation DeleteAccountMutation {
+    deleteAccount
+  }
+`;
