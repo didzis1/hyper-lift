@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { NavigationContainer, Theme } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import AuthStack from './screens/AuthStack';
 import AppTabs from './screens/AppTabs';
 import useCurrentUser from './hooks/useCurrentUser';
@@ -9,15 +9,11 @@ import ThemeContext from './contexts/ThemeContext';
 
 import { CombinedDarkTheme, CombinedDefaultTheme } from './theme';
 
-type CombinedThemes = ReactNativePaper.Theme & Theme;
-
 const Routes: React.FC = () => {
   const { currentUser, loading } = useCurrentUser();
   const { isDarkTheme } = useContext(ThemeContext);
 
-  const theme: CombinedThemes = isDarkTheme
-    ? CombinedDarkTheme
-    : CombinedDefaultTheme;
+  const theme = isDarkTheme ? CombinedDarkTheme : CombinedDefaultTheme;
 
   if (loading) {
     return <ActivityIndicator size='large' />;
