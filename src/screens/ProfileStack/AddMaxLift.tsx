@@ -5,27 +5,37 @@ import { Button, Text } from 'react-native-paper';
 import FormikTextInput from '../../components/FormikTextInput';
 import SafeView from '../../components/SafeView';
 import { ProfileNavProps } from './ProfileParamList';
+import useMaxLift from '../../hooks/useMaxLift';
+import { AddMaxLiftType } from '../../types/maxLift/AddMaxLiftType';
 
-type FormValues = {
-  exerciseName: string;
-  weight: number;
-};
+const AddMaxLift = ({ navigation }: ProfileNavProps<'AddMaxLift'>) => {
+  const { createMaxLift } = useMaxLift();
 
-const AddMaxLift = ({}: ProfileNavProps<'AddMaxLift'>) => {
-  const handleNewMaxLift = (values: FormValues) => {
-    console.log(values);
+  const handleNewMaxLift = async (values: AddMaxLiftType) => {
+    try {
+      const response = await createMaxLift(values);
+      console.log(response);
+      navigation.navigate('Profile');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <SafeView>
       <Text>Hello</Text>
       <Formik
-        initialValues={{ exerciseName: '', weight: 0 }}
-        onSubmit={(values) => handleNewMaxLift(values)}>
+        initialValues={{ exercise: '', weight: '' }}
+        onSubmit={(values) =>
+          handleNewMaxLift({
+            exercise: values.exercise,
+            weight: Number(values.weight)
+          })
+        }>
         {({ handleSubmit }) => (
           <View>
             <FormikTextInput
-              name='exerciseName'
+              name='exercise'
               label='Exercise'
               placeholder='eg. Bench Press'
             />
