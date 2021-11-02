@@ -21,6 +21,9 @@ export const CombinedDarkTheme = {
   ...NavigationDarkTheme,
   colors: {
     ...PaperDarkTheme.colors,
-    ...NavigationDarkTheme.colors
+    ...NavigationDarkTheme.colors,
+    primary: '#55286F',
+    card: '#210B2C',
+    text: '#FFFFFF'
   }
 };
