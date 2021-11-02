@@ -19,8 +19,6 @@ const MaxLiftCard = ({ maxLifts }: Props) => {
           </View>
         );
       })}
-
-      <View></View>
     </View>
   );
 };
@@ -30,7 +28,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    flexWrap: 'wrap'
   },
   exerciseContainer: {
     borderWidth: 1,
