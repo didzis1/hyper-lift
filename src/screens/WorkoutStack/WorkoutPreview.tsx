@@ -1,10 +1,11 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import { Text } from 'react-native-paper';
 
 const WorkoutPreview = ({}) => {
   return (
     <View>
-      <Text>Preview of the workout</Text>
+      <Text>Workout preview</Text>
     </View>
   );
 };
