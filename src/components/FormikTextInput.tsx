@@ -1,20 +1,21 @@
 import React from 'react';
 import { KeyboardTypeOptions, StyleSheet, Text, View } from 'react-native';
-import { TextInput, useTheme } from 'react-native-paper';
+import { TextInput } from 'react-native-paper';
 import { useField } from 'formik';
 
 type FormikTextInputProps = {
-  label: string;
+  label?: string;
   name: string;
   placeholder: string;
   secureTextEntry?: boolean;
   keyboardType?: KeyboardTypeOptions;
+  left?: JSX.Element;
+  right?: JSX.Element;
 };
 
 const FormikTextInput = ({ label, name, ...props }: FormikTextInputProps) => {
   const [field, meta, helpers] = useField(name);
   const showError = meta.touched && meta.error;
-  const theme = useTheme();
 
   return (
     <View>
@@ -25,11 +26,11 @@ const FormikTextInput = ({ label, name, ...props }: FormikTextInputProps) => {
         onBlur={() => helpers.setTouched(true)}
         value={field.value}
         dense={true}
+        underlineColor='transparent'
+        theme={{ colors: { primary: '#FE5E41' } }}
         {...props}
       />
-      {showError && (
-        <Text style={[{ color: theme.colors.error }]}>{showError}</Text>
-      )}
+      {showError && <Text style={styles.error}>{showError}</Text>}
     </View>
   );
 };
@@ -37,11 +38,17 @@ const FormikTextInput = ({ label, name, ...props }: FormikTextInputProps) => {
 const styles = StyleSheet.create({
   input: {
     width: '100%',
-    backgroundColor: 'white',
-    borderRadius: 5
+    backgroundColor: '#FFFFFF',
+    borderColor: '#00D8BE',
+    borderWidth: 1,
+    borderRadius: 4,
+    marginVertical: 5
   },
   label: {
     paddingVertical: 5
+  },
+  error: {
+    color: '#fc2c08'
   }
 });
 
