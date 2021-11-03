@@ -6,37 +6,29 @@ import { AuthNavProps } from './AuthParamList';
 const StartingScreen = ({ navigation }: AuthNavProps<'StartingScreen'>) => {
   return (
     <View style={styles.container}>
-      <View style={styles.content}>
-        <View>
-          <Text
-            style={{
-              color: 'black',
-              fontSize: 45,
-              fontWeight: 'bold',
-              letterSpacing: 3
-            }}>
-            hyperlift
-          </Text>
+      <View>
+        <View style={styles.brandLogo}>
+          <Text>hyperlift</Text>
         </View>
+      </View>
 
-        <View style={{ paddingBottom: 30 }}>
-          <Text
-            style={{
-              color: 'black',
-              fontSize: 16,
-              letterSpacing: 2
-            }}>
-            Your digital gym notebook
-          </Text>
-        </View>
-
-        <View style={styles.btnContainer}>
-          <Button onPress={() => navigation.push('RegisterScreen')}>
-            Sign Up
+      <View style={styles.buttonContainer}>
+        <View style={styles.button}>
+          <Button
+            mode='contained'
+            style={styles.register}
+            labelStyle={styles.registerText}
+            onPress={() => navigation.push('RegisterScreen')}>
+            Register
           </Button>
         </View>
-        <View style={styles.btnContainer}>
-          <Button onPress={() => navigation.push('LoginScreen')}>Log in</Button>
+        <View style={styles.button}>
+          <Button
+            mode='contained'
+            style={styles.signIn}
+            onPress={() => navigation.push('LoginScreen')}>
+            Sign In
+          </Button>
         </View>
       </View>
     </View>
@@ -45,24 +37,39 @@ const StartingScreen = ({ navigation }: AuthNavProps<'StartingScreen'>) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    height: '100%'
-  },
-  content: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#FE5E41'
   },
-  btnContainer: {
-    width: '70%',
-    marginVertical: 5
+  brandLogo: {
+    width: 150,
+    height: 150,
+    borderWidth: 1
   },
-  background: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    height: '100%'
+  buttonContainer: {
+    flexDirection: 'column'
+  },
+  button: {
+    paddingVertical: 5
+  },
+  register: {
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 15,
+    paddingVertical: 3
+  },
+  registerText: {
+    color: '#FE5E41'
+  },
+  signIn: {
+    backgroundColor: 'transparent',
+    borderWidth: 2,
+    borderColor: '#FFFFFF',
+    elevation: 0,
+    paddingHorizontal: 15,
+    paddingVertical: 3
   }
 });
 
