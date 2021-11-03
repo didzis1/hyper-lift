@@ -17,16 +17,22 @@ const AuthStack = () => {
         component={StartingScreen}
       />
       <Stack.Screen
-        options={{
-          title: 'Go Back'
-        }}
         name='LoginScreen'
         component={LoginScreen}
+        options={{
+          title: 'Login',
+          headerTitleAlign: 'center',
+          headerTitleStyle: { fontSize: 16 }
+        }}
       />
       <Stack.Screen
-        options={{ title: 'Go Back' }}
         name='RegisterScreen'
         component={RegisterScreen}
+        options={{
+          title: 'Register',
+          headerTitleAlign: 'center',
+          headerTitleStyle: { fontSize: 16 }
+        }}
       />
     </Stack.Navigator>
   );
