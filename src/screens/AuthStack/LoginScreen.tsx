@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableWithoutFeedback
+} from 'react-native';
 import { AuthNavProps } from './AuthParamList';
 import FormikTextInput from '../../components/FormikTextInput';
 import { Formik } from 'formik';
+import { loginValidation } from '../../utils/validationSchemas';
 import { LoginType } from '../../types/auth/LoginType';
 import useLogin from '../../hooks/useLogin';
-import { Button } from 'react-native-paper';
+import { Button, Caption, TextInput } from 'react-native-paper';
+import { Entypo } from '@expo/vector-icons';
+import globalStyles from '../../globalStyles';
 
-const LoginScreen = ({}: AuthNavProps<'LoginScreen'>) => {
+const LoginScreen = ({ navigation }: AuthNavProps<'LoginScreen'>) => {
   const [error, setError] = useState<string | null>(null);
   const { login } = useLogin();
 
@@ -22,44 +33,73 @@ const LoginScreen = ({}: AuthNavProps<'LoginScreen'>) => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.form}>
-        <Text>Sign in here</Text>
-        {error && <Text>{error}</Text>}
-        <Formik
-          initialValues={{ email: '', password: '' }}
-          onSubmit={(values) => handleFormSubmit(values)}>
-          {({ handleSubmit }) => (
-            <>
-              <FormikTextInput
-                label='E-mail'
-                placeholder='john_doe@gmail.com'
-                name='email'
-              />
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={{ flex: 1 }}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={globalStyles.container}>
+          <View style={globalStyles.form}>
+            {error && <Text>{error}</Text>}
+            <Formik
+              initialValues={{ email: '', password: '' }}
+              validationSchema={loginValidation}
+              validateOnChange={false}
+              onSubmit={(values) => handleFormSubmit(values)}>
+              {({ handleSubmit }) => (
+                <>
+                  <FormikTextInput
+                    placeholder='E-mail'
+                    name='email'
+                    left={
+                      <TextInput.Icon
+                        name={() => (
+                          <Entypo name='email' size={18} color='#636363' />
+                        )}
+                      />
+                    }
+                  />
 
-              <FormikTextInput
-                label='Password'
-                placeholder='*******'
-                name='password'
-                secureTextEntry
-              />
-              <Button onPress={handleSubmit}>Sign In</Button>
-            </>
-          )}
-        </Formik>
-      </View>
-    </View>
+                  <FormikTextInput
+                    placeholder='Password'
+                    name='password'
+                    secureTextEntry
+                    left={
+                      <TextInput.Icon
+                        name={() => (
+                          <Entypo name='lock' size={18} color='#636363' />
+                        )}
+                      />
+                    }
+                  />
+                  <Text style={styles.forgotPassword}>Forgot password?</Text>
+
+                  <Button
+                    mode='contained'
+                    style={globalStyles.regularButton}
+                    onPress={handleSubmit}>
+                    Sign In
+                  </Button>
+
+                  <Caption
+                    style={globalStyles.caption}
+                    onPress={() => navigation.navigate('RegisterScreen')}>
+                    Do not have an account? Register here.
+                  </Caption>
+                </>
+              )}
+            </Formik>
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  form: {
-    width: '80%'
+  forgotPassword: {
+    color: '#FE5E41',
+    fontWeight: 'bold',
+    paddingVertical: 3
   }
 });
 

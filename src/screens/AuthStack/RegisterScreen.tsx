@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Keyboard,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Platform,
+  ScrollView
+} from 'react-native';
 import { AuthNavProps } from './AuthParamList';
 import FormikTextInput from '../../components/FormikTextInput';
 import { Formik } from 'formik';
-import * as yup from 'yup';
+import { registerValidation } from '../../utils/validationSchemas';
 import { RegisterType } from '../../types/auth/RegisterType';
 import useRegister from '../../hooks/useRegister';
-import { Button } from 'react-native-paper';
+import { Button, TextInput } from 'react-native-paper';
+import globalStyles from '../../globalStyles';
+import { Entypo, FontAwesome } from '@expo/vector-icons';
 
 const initialValues: RegisterType = {
   firstName: '',
@@ -15,32 +26,6 @@ const initialValues: RegisterType = {
   password: '',
   passwordConfirmation: ''
 };
-
-const validationSchema = yup.object().shape({
-  firstName: yup
-    .string()
-    .min(1, 'First name must be longer than one character')
-    .max(255, 'First name cannot be this long')
-    .required(),
-  lastName: yup
-    .string()
-    .min(1, 'Last name must be longer than one character')
-    .max(255, 'Last name cannot be this long')
-    .required(),
-  email: yup
-    .string()
-    .email('E-mail must be in correct format')
-    .required('E-mail is required'),
-  password: yup
-    .string()
-    .min(5, 'Password length must be over five characters')
-    .max(50, 'Password length cannot be higher than 50 characters')
-    .required(),
-  passwordConfirmation: yup
-    .string()
-    .oneOf([yup.ref('password'), null], 'Passwords do not match')
-    .required('Password confirmation is required')
-});
 
 const RegisterScreen = ({ navigation }: AuthNavProps<'RegisterScreen'>) => {
   const { register } = useRegister();
@@ -59,49 +44,101 @@ const RegisterScreen = ({ navigation }: AuthNavProps<'RegisterScreen'>) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text>Sign up here</Text>
-      {error && <Text>{error}</Text>}
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={(values) => handleFormSubmit(values)}>
-        {({ handleSubmit }) => (
-          <View style={styles.formContainer}>
-            <View style={styles.dualInputs}>
-              <FormikTextInput
-                label='First name'
-                placeholder='John'
-                name='firstName'
-              />
-              <FormikTextInput
-                label='Last name'
-                placeholder='Doe'
-                name='lastName'
-              />
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={{ flex: 1 }}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <ScrollView
+          contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
+          <View style={globalStyles.container}>
+            <View style={globalStyles.form}>
+              {error && <Text>{error}</Text>}
+              <Formik
+                initialValues={initialValues}
+                validationSchema={registerValidation}
+                validateOnChange={false}
+                onSubmit={(values) => handleFormSubmit(values)}>
+                {({ handleSubmit }) => (
+                  <>
+                    <FormikTextInput
+                      placeholder='First name'
+                      name='firstName'
+                      left={
+                        <TextInput.Icon
+                          name={() => (
+                            <FontAwesome
+                              name='user'
+                              size={18}
+                              color='#636363'
+                            />
+                          )}
+                        />
+                      }
+                    />
+                    <FormikTextInput
+                      placeholder='Last name'
+                      name='lastName'
+                      left={
+                        <TextInput.Icon
+                          name={() => (
+                            <FontAwesome
+                              name='user'
+                              size={18}
+                              color='#636363'
+                            />
+                          )}
+                        />
+                      }
+                    />
+                    <FormikTextInput
+                      placeholder='E-mail'
+                      name='email'
+                      left={
+                        <TextInput.Icon
+                          name={() => (
+                            <Entypo name='email' size={18} color='#636363' />
+                          )}
+                        />
+                      }
+                    />
+                    <FormikTextInput
+                      placeholder='Password'
+                      name='password'
+                      secureTextEntry
+                      left={
+                        <TextInput.Icon
+                          name={() => (
+                            <Entypo name='lock' size={18} color='#636363' />
+                          )}
+                        />
+                      }
+                    />
+                    <FormikTextInput
+                      placeholder='Confirm password'
+                      name='passwordConfirmation'
+                      secureTextEntry
+                      left={
+                        <TextInput.Icon
+                          name={() => (
+                            <Entypo name='lock' size={18} color='#636363' />
+                          )}
+                        />
+                      }
+                    />
+                    <Button
+                      mode='contained'
+                      style={globalStyles.regularButton}
+                      onPress={handleSubmit}>
+                      Sign Up
+                    </Button>
+                  </>
+                )}
+              </Formik>
             </View>
-            <FormikTextInput
-              label='E-mail'
-              placeholder='john_doe@gmail.com'
-              name='email'
-            />
-            <FormikTextInput
-              label='Password'
-              placeholder='*******'
-              name='password'
-              secureTextEntry
-            />
-            <FormikTextInput
-              label='Password confirmation'
-              placeholder='*******'
-              name='passwordConfirmation'
-              secureTextEntry
-            />
-            <Button onPress={handleSubmit}>Sign Up</Button>
           </View>
-        )}
-      </Formik>
-    </View>
+        </ScrollView>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
 
