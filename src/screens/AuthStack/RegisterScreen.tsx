@@ -15,7 +15,7 @@ import { Formik } from 'formik';
 import { registerValidation } from '../../utils/validationSchemas';
 import { RegisterType } from '../../types/auth/RegisterType';
 import useRegister from '../../hooks/useRegister';
-import { Button, TextInput } from 'react-native-paper';
+import { Button, Caption, Paragraph, TextInput } from 'react-native-paper';
 import globalStyles from '../../globalStyles';
 import { Entypo, FontAwesome } from '@expo/vector-icons';
 
@@ -135,6 +135,10 @@ const RegisterScreen = ({ navigation }: AuthNavProps<'RegisterScreen'>) => {
                 )}
               </Formik>
             </View>
+            <Paragraph>By registering you agree to hyperlift's</Paragraph>
+            <Caption style={styles.terms}>
+              Terms and Conditions Privacy Policy
+            </Caption>
           </View>
         </ScrollView>
       </TouchableWithoutFeedback>
@@ -155,6 +159,9 @@ const styles = StyleSheet.create({
   dualInputs: {
     flexDirection: 'row',
     width: '100%'
+  },
+  terms: {
+    textDecorationLine: 'underline'
   }
 });
 
