@@ -38,11 +38,11 @@ const FormikTextInput = ({ label, name, ...props }: FormikTextInputProps) => {
 const styles = StyleSheet.create({
   input: {
     width: '100%',
-    backgroundColor: '#FFFFFF',
     borderColor: '#00D8BE',
     borderWidth: 1,
     borderRadius: 4,
-    marginVertical: 5
+    marginVertical: 5,
+    backgroundColor: '#FFFFFF'
   },
   label: {
     paddingVertical: 5
