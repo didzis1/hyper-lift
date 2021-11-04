@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Button } from 'react-native-paper';
+import { View, StyleSheet, Image } from 'react-native';
+import { Button, Text } from 'react-native-paper';
 import { AuthNavProps } from './AuthParamList';
 
 const StartingScreen = ({ navigation }: AuthNavProps<'StartingScreen'>) => {
@@ -8,7 +8,10 @@ const StartingScreen = ({ navigation }: AuthNavProps<'StartingScreen'>) => {
     <View style={styles.container}>
       <View>
         <View style={styles.brandLogo}>
-          <Text>hyperlift</Text>
+          <Image source={require('../../../assets/hyperlift.png')} />
+        </View>
+        <View>
+          <Text style={styles.slogan}>Your digital gym notebook</Text>
         </View>
       </View>
 
@@ -44,13 +47,16 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: '#FE5E41'
   },
-  brandLogo: {
-    width: 150,
-    height: 150,
-    borderWidth: 1
+  brandLogo: { width: '100%' },
+  slogan: {
+    color: '#FFFFFF',
+    textAlign: 'center',
+    fontSize: 18,
+    letterSpacing: 1
   },
   buttonContainer: {
-    flexDirection: 'column'
+    flexDirection: 'column',
+    width: '60%'
   },
   button: {
     paddingVertical: 5
