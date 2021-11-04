@@ -11,7 +11,11 @@ const globalStyles = StyleSheet.create({
     alignItems: 'center'
   },
   form: {
-    width: '80%'
+    width: '100%',
+    backgroundColor: '#fff3f1',
+    paddingVertical: 30,
+    paddingHorizontal: 15,
+    borderRadius: 15
   },
   regularButton: {
     backgroundColor: '#FE5E41',
