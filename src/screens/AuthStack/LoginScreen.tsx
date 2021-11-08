@@ -17,10 +17,11 @@ import useLogin from '../../hooks/useLogin';
 import { Button, Caption, TextInput } from 'react-native-paper';
 import { Entypo } from '@expo/vector-icons';
 import globalStyles from '../../globalStyles';
+import Loading from '../../components/Loading';
 
 const LoginScreen = ({ navigation }: AuthNavProps<'LoginScreen'>) => {
   const [error, setError] = useState<string | null>(null);
-  const { login } = useLogin();
+  const { login, result } = useLogin();
 
   const handleFormSubmit = async (credentials: LoginType) => {
     try {
@@ -31,6 +32,10 @@ const LoginScreen = ({ navigation }: AuthNavProps<'LoginScreen'>) => {
       }
     }
   };
+
+  if (result.loading) {
+    return <Loading />;
+  }
 
   return (
     <KeyboardAvoidingView
@@ -74,8 +79,9 @@ const LoginScreen = ({ navigation }: AuthNavProps<'LoginScreen'>) => {
                   <Text style={styles.forgotPassword}>Forgot password?</Text>
 
                   <Button
+                    dark={true}
+                    uppercase={false}
                     mode='contained'
-                    style={globalStyles.regularButton}
                     onPress={handleSubmit}>
                     Sign In
                   </Button>

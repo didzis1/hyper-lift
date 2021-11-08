@@ -18,6 +18,7 @@ const StartingScreen = ({ navigation }: AuthNavProps<'StartingScreen'>) => {
       <View style={styles.buttonContainer}>
         <View style={styles.button}>
           <Button
+            uppercase={false}
             mode='contained'
             style={styles.register}
             labelStyle={styles.registerText}
@@ -27,6 +28,8 @@ const StartingScreen = ({ navigation }: AuthNavProps<'StartingScreen'>) => {
         </View>
         <View style={styles.button}>
           <Button
+            dark={true}
+            uppercase={false}
             mode='contained'
             style={styles.signIn}
             onPress={() => navigation.push('LoginScreen')}>

@@ -60,36 +60,45 @@ const RegisterScreen = ({ navigation }: AuthNavProps<'RegisterScreen'>) => {
                 onSubmit={(values) => handleFormSubmit(values)}>
                 {({ handleSubmit }) => (
                   <>
-                    <FormikTextInput
-                      placeholder='First name'
-                      name='firstName'
-                      left={
-                        <TextInput.Icon
-                          name={() => (
-                            <FontAwesome
-                              name='user'
-                              size={18}
-                              color='#636363'
+                    <View
+                      style={{
+                        flexDirection: 'row'
+                      }}>
+                      <View style={{ flexGrow: 1, paddingRight: 3 }}>
+                        <FormikTextInput
+                          placeholder='First name'
+                          name='firstName'
+                          left={
+                            <TextInput.Icon
+                              name={() => (
+                                <FontAwesome
+                                  name='user'
+                                  size={18}
+                                  color='#636363'
+                                />
+                              )}
                             />
-                          )}
+                          }
                         />
-                      }
-                    />
-                    <FormikTextInput
-                      placeholder='Last name'
-                      name='lastName'
-                      left={
-                        <TextInput.Icon
-                          name={() => (
-                            <FontAwesome
-                              name='user'
-                              size={18}
-                              color='#636363'
+                      </View>
+                      <View style={{ flexGrow: 1, paddingLeft: 3 }}>
+                        <FormikTextInput
+                          placeholder='Last name'
+                          name='lastName'
+                          left={
+                            <TextInput.Icon
+                              name={() => (
+                                <FontAwesome
+                                  name='user'
+                                  size={18}
+                                  color='#636363'
+                                />
+                              )}
                             />
-                          )}
+                          }
                         />
-                      }
-                    />
+                      </View>
+                    </View>
                     <FormikTextInput
                       placeholder='E-mail'
                       name='email'
@@ -126,8 +135,9 @@ const RegisterScreen = ({ navigation }: AuthNavProps<'RegisterScreen'>) => {
                       }
                     />
                     <Button
+                      dark={true}
+                      uppercase={false}
                       mode='contained'
-                      style={globalStyles.regularButton}
                       onPress={handleSubmit}>
                       Sign Up
                     </Button>
