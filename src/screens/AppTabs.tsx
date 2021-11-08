@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ProfileStack from './ProfileStack';
+import HomeStack from './HomeStack';
 
 import { Feather } from '@expo/vector-icons';
 import WorkoutStack from './WorkoutStack';
@@ -11,8 +11,8 @@ const AppTabs = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen
-        name='ProfileStack'
-        component={ProfileStack}
+        name='HomeStack'
+        component={HomeStack}
         options={{
           title: 'Home',
           tabBarIcon: ({ focused }) => {
