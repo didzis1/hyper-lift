@@ -13,7 +13,7 @@ const MaxLiftCard = ({ maxLifts }: Props) => {
     <View style={styles.container}>
       {maxLifts.map((maxLift) => {
         return (
-          <View key={maxLift.id} style={styles.exerciseContainer}>
+          <View key={maxLift.id}>
             <Text style={styles.exerciseText}>{maxLift.exercise}</Text>
             <Text style={styles.weightText}>{maxLift.weight}kg</Text>
           </View>
