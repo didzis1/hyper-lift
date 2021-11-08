@@ -3,7 +3,8 @@ import { StyleSheet, Platform, StatusBar } from 'react-native';
 const globalStyles = StyleSheet.create({
   androidSafeArea: {
     flex: 1,
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+    backgroundColor: '#FBFBFB'
   },
   container: {
     flex: 1,
@@ -12,7 +13,7 @@ const globalStyles = StyleSheet.create({
   },
   form: {
     width: '100%',
-    backgroundColor: '#fff3f1',
+    backgroundColor: '#FFFFFF',
     paddingVertical: 30,
     paddingHorizontal: 15,
     borderRadius: 15
