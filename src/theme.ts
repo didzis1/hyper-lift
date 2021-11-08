@@ -13,7 +13,9 @@ export const CombinedDefaultTheme = {
   ...NavigationDefaultTheme,
   colors: {
     ...PaperDefaultTheme.colors,
-    ...NavigationDefaultTheme.colors
+    ...NavigationDefaultTheme.colors,
+    background: '#EAEAEA',
+    primary: '#FE5E41'
   }
 };
 export const CombinedDarkTheme = {
@@ -22,7 +24,7 @@ export const CombinedDarkTheme = {
   colors: {
     ...PaperDarkTheme.colors,
     ...NavigationDarkTheme.colors,
-    primary: '#55286F',
+    primary: '#9C3AD8',
     card: '#210B2C',
     text: '#FFFFFF'
   }
