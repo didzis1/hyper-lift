@@ -23,6 +23,10 @@ Link to the back-end can be found [here](https://github.com/didzis1/hyperlift-ba
 _Front End_
 
 - React Native with TypeScript
+- React Navigation
+- React Native Paper
+- Apollo & GraphQL
+- Formik with Yup's validation
 
 _Back end_
 
