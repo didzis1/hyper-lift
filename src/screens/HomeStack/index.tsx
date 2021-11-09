@@ -4,6 +4,8 @@ import Home from './Home';
 import MaxLifts from './MaxLifts';
 import Profile from './Profile';
 import CreateRoutine from './CreateRoutine';
+import { Avatar } from 'react-native-paper';
+import { TouchableOpacity } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,7 +15,15 @@ const HomeStack = () => {
       <Stack.Screen
         name='Home'
         component={Home}
-        options={{ title: 'Home', headerTitleAlign: 'center' }}
+        options={({ navigation }) => ({
+          title: 'Home',
+          headerTitleAlign: 'center',
+          headerRight: () => (
+            <TouchableOpacity onPress={() => navigation.push('Profile')}>
+              <Avatar.Text size={30} label='DZ' />
+            </TouchableOpacity>
+          )
+        })}
       />
 
       <Stack.Screen
