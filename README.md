@@ -58,4 +58,5 @@ _Testing_
 |  01.11   | 8h              | Installed react-native-paper and developed a dark/light theme option for the application                                                                     | Back-end  |
 |  02.11   | 4h              | Added mutation for creating a new max lift and created new screens for max lifts. Styling not implemented yet.                                               | Back-end  |
 |  08.11   | 8h              | Styled and created new screens for the front-end, new fields for user in the back-end                                               | Front-end & Back-end  |
-| In total | 72,5h           |                                                                                                                                                              |
+|  09.11   | 4h              | Worked on styling, created new design in idea in Figma for the app                                               | Front-end  |
+| In total | 76,5h           |                                                                                                                                                              |
