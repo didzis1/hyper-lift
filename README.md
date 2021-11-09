@@ -57,4 +57,5 @@ _Testing_
 |  30.10   | 8h              | Created hooks for authentication, user can now register/log in/log out. Created secure storage for authentication.                                           | Back-end  |
 |  01.11   | 8h              | Installed react-native-paper and developed a dark/light theme option for the application                                                                     | Back-end  |
 |  02.11   | 4h              | Added mutation for creating a new max lift and created new screens for max lifts. Styling not implemented yet.                                               | Back-end  |
-| In total | 64,5h           |                                                                                                                                                              |
+|  08.11   | 8h              | Styled and created new screens for the front-end, new fields for user in the back-end                                               | Front-end & Back-end  |
+| In total | 72,5h           |                                                                                                                                                              |
