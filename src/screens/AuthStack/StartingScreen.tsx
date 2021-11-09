@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     height: '100%',
-    backgroundColor: '#FE5E41'
+    backgroundColor: '#3d405b'
   },
   brandLogo: { width: '100%' },
   slogan: {
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     paddingVertical: 3
   },
   registerText: {
-    color: '#FE5E41'
+    color: '#3d405b'
   },
   signIn: {
     backgroundColor: 'transparent',
