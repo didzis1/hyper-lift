@@ -1,32 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { HomeNavProps } from './HomeParamList';
-import useLogout from '../../hooks/useLogout';
 import { Button, Title, Text, FAB, Subheading } from 'react-native-paper';
 
-import ThemeContext from '../../contexts/ThemeContext';
 import useCurrentUser from '../../hooks/useCurrentUser';
 import Loading from '../../components/Loading';
 import { Ionicons } from '@expo/vector-icons';
 const ProfileScreen = ({ navigation }: HomeNavProps<'Home'>) => {
-  const { logout } = useLogout();
   const { currentUser } = useCurrentUser();
 
   if (!currentUser) {
     return <Loading />;
   }
-
-  const { toggleTheme } = useContext(ThemeContext);
-
-  const handleLogout = async () => {
-    try {
-      await logout();
-    } catch (error) {
-      if (error instanceof Error) {
-        console.log(error.message);
-      }
-    }
-  };
 
   return (
     <ScrollView>
@@ -100,11 +85,6 @@ const ProfileScreen = ({ navigation }: HomeNavProps<'Home'>) => {
             Create a new routine
           </Button>
         </View>
-
-        <View>
-          <Button onPress={() => handleLogout()}>Log out</Button>
-        </View>
-        <Button onPress={() => toggleTheme()}>Change theme</Button>
       </View>
     </ScrollView>
   );
@@ -139,7 +119,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     borderRadius: 20,
     padding: 8,
-    backgroundColor: '#81b29a'
+    backgroundColor: '#264653'
   },
   shadowProp: {
     shadowColor: '#000000',
