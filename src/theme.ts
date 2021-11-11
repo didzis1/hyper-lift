@@ -14,8 +14,15 @@ export const CombinedDefaultTheme = {
   colors: {
     ...PaperDefaultTheme.colors,
     ...NavigationDefaultTheme.colors,
-    background: '#EAEAEA',
-    primary: '#FE5E41'
+    background: '#fffffc',
+    primary: '#2C4E5B',
+    accent: '#E9C46A',
+    error: '#E76F51',
+    text: '#201d2d',
+    success: '#2A9D8F',
+    warning: '#E9C46A',
+    danger: '#E76F51',
+    placeholder: '#201d2d'
   }
 };
 export const CombinedDarkTheme = {
@@ -24,8 +31,24 @@ export const CombinedDarkTheme = {
   colors: {
     ...PaperDarkTheme.colors,
     ...NavigationDarkTheme.colors,
-    primary: '#9C3AD8',
-    card: '#210B2C',
-    text: '#FFFFFF'
+    background: '#201d2d',
+    primary: '#D3BD60',
+    accent: '#3d405b',
+    error: '#F44336',
+    text: '#FFFFFF',
+    success: '#7b9e51',
+    warning: '#f88e19',
+    danger: '#f44336',
+    placeholder: '#201d2d'
   }
 };
+
+// background: '#fffffc',
+// primary: '#3d405b',
+// accent: '#D3BD60',
+// error: '#F44336',
+// text: '#201d2d',
+// success: '#7b9e51',
+// warning: '#f88e19',
+// danger: '#f44336',
+// placeholder: '#201d2d'
