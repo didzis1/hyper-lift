@@ -1,43 +1,48 @@
 import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import { Button, Text } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { AuthNavProps } from './AuthParamList';
 
-const StartingScreen = ({ navigation }: AuthNavProps<'StartingScreen'>) => {
+const StartingScreen: React.FC<AuthNavProps<'StartingScreen'>> = ({
+  navigation
+}) => {
   return (
-    <View style={styles.container}>
-      <View>
-        <View style={styles.brandLogo}>
-          <Image source={require('../../../assets/hyperlift.png')} />
-        </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.container}>
         <View>
-          <Text style={styles.slogan}>Your digital gym notebook</Text>
+          <View style={styles.brandLogo}>
+            <Image source={require('../../../assets/hyperlift.png')} />
+          </View>
+          <View>
+            <Text style={styles.slogan}>Your digital gym notebook</Text>
+          </View>
         </View>
-      </View>
 
-      <View style={styles.buttonContainer}>
-        <View style={styles.button}>
-          <Button
-            uppercase={false}
-            mode='contained'
-            style={styles.register}
-            labelStyle={styles.registerText}
-            onPress={() => navigation.push('RegisterScreen')}>
-            Register
-          </Button>
-        </View>
-        <View style={styles.button}>
-          <Button
-            dark={true}
-            uppercase={false}
-            mode='contained'
-            style={styles.signIn}
-            onPress={() => navigation.push('LoginScreen')}>
-            Sign In
-          </Button>
+        <View style={styles.buttonContainer}>
+          <View style={styles.button}>
+            <Button
+              uppercase={false}
+              mode='contained'
+              style={styles.register}
+              labelStyle={styles.registerText}
+              onPress={() => navigation.push('RegisterScreen')}>
+              Register
+            </Button>
+          </View>
+          <View style={styles.button}>
+            <Button
+              dark={true}
+              uppercase={false}
+              mode='contained'
+              style={styles.signIn}
+              onPress={() => navigation.push('LoginScreen')}>
+              Sign In
+            </Button>
+          </View>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
