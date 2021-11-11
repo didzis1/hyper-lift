@@ -27,7 +27,9 @@ const initialValues: RegisterType = {
   passwordConfirmation: ''
 };
 
-const RegisterScreen = ({ navigation }: AuthNavProps<'RegisterScreen'>) => {
+const RegisterScreen: React.FC<AuthNavProps<'RegisterScreen'>> = ({
+  navigation
+}) => {
   const { register } = useRegister();
   const [error, setError] = useState<string | null>(null);
 

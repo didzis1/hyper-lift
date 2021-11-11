@@ -19,7 +19,7 @@ import { Entypo } from '@expo/vector-icons';
 import globalStyles from '../../globalStyles';
 import Loading from '../../components/Loading';
 
-const LoginScreen = ({ navigation }: AuthNavProps<'LoginScreen'>) => {
+const LoginScreen: React.FC<AuthNavProps<'LoginScreen'>> = ({ navigation }) => {
   const [error, setError] = useState<string | null>(null);
   const { login, result } = useLogin();
 

@@ -6,7 +6,9 @@ import RegisterScreen from './RegisterScreen';
 
 const Stack = createNativeStackNavigator();
 
-const AuthStack = () => {
+type Props = {};
+
+const AuthStack: React.FC<Props> = ({}) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
