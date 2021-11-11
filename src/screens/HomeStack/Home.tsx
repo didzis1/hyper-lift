@@ -1,151 +1,136 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { HomeNavProps } from './HomeParamList';
-import { Button, Title, Text, FAB, Subheading } from 'react-native-paper';
 
 import useCurrentUser from '../../hooks/useCurrentUser';
 import Loading from '../../components/Loading';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Text } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
-const ProfileScreen = ({ navigation }: HomeNavProps<'Home'>) => {
+import { getCurrentDate } from '../../utils/getCurrentDate';
+
+const ProfileScreen: React.FC<HomeNavProps<'Home'>> = ({ navigation }) => {
+  const [currentDay, setCurrentDay] = React.useState<string>('');
   const { currentUser } = useCurrentUser();
 
   if (!currentUser) {
     return <Loading />;
   }
 
+  React.useEffect(() => {
+    setCurrentDay(getCurrentDate());
+  }, []);
+
   return (
-    <ScrollView>
-      <View style={{ padding: 10 }}>
-        <Title>Today</Title>
-        <Title>Tue 9 Nov</Title>
-        {/* Max lifts card */}
-        <View style={styles.cardContainer}>
-          <View style={styles.leftCardContent}>
-            <View
-              style={[
-                styles.box,
-                styles.shadowProp,
-                { marginBottom: 3, marginRight: 3 }
-              ]}>
-              <Title style={styles.cardText}>Weights lifted</Title>
-              <Subheading style={styles.cardText}>this week</Subheading>
-              <Text style={styles.cardText}>1290 kg</Text>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: '#2C4E5B'
+      }}>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: '#2C4E5B'
+        }}>
+        <View style={styles.topContainer}>
+          <View style={styles.topUpperRow}>
+            <View style={styles.dateContainer}>
+              <Text style={styles.currentDate}>{currentDay}</Text>
+              <Text style={styles.today}>Today</Text>
             </View>
-            <View
-              style={[
-                styles.box,
-                styles.shadowProp,
-                { marginTop: 3, marginRight: 3 }
-              ]}>
-              <Title style={styles.cardText}>Time spent</Title>
-              <Subheading style={styles.cardText}>in the gym</Subheading>
-              <Text style={styles.cardText}>3h 50min</Text>
+
+            <View style={styles.avatarContainer}>
+              <TouchableOpacity onPress={() => navigation.push('Profile')}>
+                <View>
+                  <Image
+                    source={require('../../../assets/avatarImage.png')}
+                    style={styles.avatar}
+                  />
+                </View>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.settingsContainer}>
+              <TouchableOpacity
+                onPress={() => console.log('Go To Settings Screen')}>
+                <View style={styles.settingsIcon}>
+                  <Ionicons
+                    name='settings-outline'
+                    size={24}
+                    color='rgba(255, 255, 255, 0.8)'
+                  />
+                </View>
+              </TouchableOpacity>
             </View>
           </View>
 
-          <View
-            style={[
-              styles.rightCardContent,
-              styles.shadowProp,
-              { marginLeft: 3 }
-            ]}>
-            <View>
-              <Title style={styles.cardText}>Max Lifts</Title>
-              {currentUser.maxLifts.map((maxLift) => (
-                <View key={maxLift.id}>
-                  <Text style={styles.cardText}>
-                    {maxLift.exercise} - {maxLift.weight} kg
-                  </Text>
-                </View>
-              ))}
-            </View>
-            <FAB
-              style={styles.fab}
-              small
-              icon='plus'
-              onPress={() => navigation.push('MaxLifts')}
-            />
+          <View style={styles.topBottomRow}>
+            <Text style={styles.welcomeText}>Welcome back to Hyperlift</Text>
+            <Text style={styles.fullName}>Didzis Zvaigzne</Text>
           </View>
         </View>
-        {/* Routines card */}
-        <View>
-          <Title>Routines</Title>
-          {currentUser.routines.length === 0 ? (
-            <Text>You currently have no routines</Text>
-          ) : (
-            <Text>Routine found</Text>
-          )}
-          <Button
-            icon={() => (
-              <Ionicons name='ios-add-circle-outline' size={24} color='white' />
-            )}
-            mode='contained'
-            uppercase={false}
-            onPress={() => navigation.push('CreateRoutine')}>
-            Create a new routine
-          </Button>
-        </View>
       </View>
-    </ScrollView>
+
+      <View style={styles.contentContainer}>
+        <Text>Under content</Text>
+      </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  cardContainer: {
+  topContainer: {
     flex: 1,
-    padding: 10,
-    height: 250,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row'
-  },
-  leftCardContent: {
     flexDirection: 'column',
-    width: '50%'
+    justifyContent: 'center',
+    alignItems: 'stretch'
   },
-  cardText: {
+  topUpperRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  topBottomRow: {
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  welcomeText: {
+    fontSize: 14,
     color: '#FFFFFF'
   },
-  rightCardContent: {
-    flexDirection: 'row',
-    borderRadius: 20,
-    height: '100%',
-    width: '50%',
-    flexGrow: 1,
-    padding: 8,
-    backgroundColor: '#D3BD60'
+  fullName: {
+    fontSize: 18,
+    color: '#FFFFFF'
   },
-  box: {
-    flexGrow: 1,
-    borderRadius: 20,
-    padding: 8,
-    backgroundColor: '#264653'
+  dateContainer: { flex: 1, marginLeft: 10 },
+  currentDate: {
+    color: '#FFFFFF',
+    fontSize: 16
   },
-  shadowProp: {
-    shadowColor: '#000000',
-    shadowOffset: { width: -2, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-    elevation: 5
+  today: {
+    color: '#E9C46A',
+    fontSize: 18
   },
-  fab: {
-    position: 'absolute',
-    right: 0,
-    bottom: 0,
-    margin: 10,
-    backgroundColor: '#F6F9F8'
+  avatarContainer: { flex: 1, alignItems: 'center' },
+  avatar: {
+    width: 100,
+    height: 100
   },
-  profileCard: {
-    backgroundColor: '#D3BD60',
-    borderRadius: 15,
-    width: '90%',
-    flexDirection: 'row',
-    alignSelf: 'center',
+  settingsContainer: {
+    flex: 1,
+    alignItems: 'flex-end'
+  },
+  settingsIcon: {
+    backgroundColor: 'rgba(18, 52, 65, 0.8)',
+    padding: 10,
+    borderRadius: 35,
+    marginRight: 10
+  },
+  contentContainer: {
+    flex: 2,
+    backgroundColor: '#F0F0F0',
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
     padding: 15
-  },
-  profileTop: {
-    flexDirection: 'row',
-    alignItems: 'baseline'
   }
 });
 
