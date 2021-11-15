@@ -42,13 +42,3 @@ export const CombinedDarkTheme = {
     placeholder: '#201d2d'
   }
 };
-
-// background: '#fffffc',
-// primary: '#3d405b',
-// accent: '#D3BD60',
-// error: '#F44336',
-// text: '#201d2d',
-// success: '#7b9e51',
-// warning: '#f88e19',
-// danger: '#f44336',
-// placeholder: '#201d2d'
