@@ -1,12 +1,13 @@
 import { gql } from '@apollo/client';
 
 export const ME = gql`
-  query GetCurrentUser {
+  query Query {
     me {
       id
       firstName
       lastName
       email
+      age
       routines {
         id
         description
@@ -14,12 +15,15 @@ export const ME = gql`
           name
           exercises {
             exerciseName
-            reps
-            sets
-            weight
+            setsData {
+              reps
+              set
+              weight
+            }
           }
         }
       }
+      liftingType
       maxLifts {
         id
         exercise
@@ -31,12 +35,13 @@ export const ME = gql`
         splitName
         exercises {
           exerciseName
-          setsData {
+          historySets {
             set
             reps
             weight
           }
         }
+        notes
         createdAt
       }
     }
