@@ -7,15 +7,14 @@ type QueryResult = {
 };
 
 const useCurrentUser = () => {
-  const { loading, error, data } = useQuery<QueryResult>(ME, {
+  const { data, ...rest } = useQuery<QueryResult>(ME, {
     fetchPolicy: 'cache-and-network'
   });
 
-  console.log('DATAAA', data);
+  console.log('DATA', data);
   return {
     currentUser: data?.me,
-    loading,
-    error
+    ...rest
   };
 };
 
