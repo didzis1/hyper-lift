@@ -1,5 +1,11 @@
 import React from 'react';
-import { Image, StyleSheet, View, TouchableOpacity } from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  ScrollView
+} from 'react-native';
 import { HomeNavProps } from './HomeParamList';
 
 import useCurrentUser from '../../hooks/useCurrentUser';
@@ -8,6 +14,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
 import { getCurrentDate } from '../../utils/getCurrentDate';
+import MaxLiftCard from '../../components/MaxLiftCard';
+import { Feather } from '@expo/vector-icons';
 
 const ProfileScreen: React.FC<HomeNavProps<'Home'>> = ({ navigation }) => {
   const [currentDay, setCurrentDay] = React.useState<string>('');
@@ -65,13 +73,36 @@ const ProfileScreen: React.FC<HomeNavProps<'Home'>> = ({ navigation }) => {
 
           <View style={styles.topBottomRow}>
             <Text style={styles.welcomeText}>Welcome back to Hyperlift</Text>
-            <Text style={styles.fullName}>Didzis Zvaigzne</Text>
+            <Text style={styles.fullName}>
+              {currentUser.firstName} {currentUser.lastName}
+            </Text>
           </View>
         </View>
       </View>
 
       <View style={styles.contentContainer}>
-        <Text>Under content</Text>
+        <ScrollView>
+          <View style={styles.headerContainer}>
+            <Text style={styles.header}>Maximum lifts</Text>
+          </View>
+
+          <MaxLiftCard
+            maxLifts={currentUser.maxLifts}
+            navigation={navigation}
+          />
+
+          <View style={styles.headerContainer}>
+            <View style={styles.headerFlex}>
+              <Text style={styles.header}>Routines</Text>
+              <Feather
+                name='plus'
+                size={24}
+                color='black'
+                style={{ marginRight: 20 }}
+              />
+            </View>
+          </View>
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -131,6 +162,19 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     padding: 15
+  },
+  headerContainer: {
+    paddingLeft: 20
+  },
+  headerFlex: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  header: {
+    fontSize: 18,
+    fontWeight: 'bold'
   }
 });
 
