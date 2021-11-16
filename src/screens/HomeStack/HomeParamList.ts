@@ -5,7 +5,10 @@ export type HomeParamList = {
   Home: undefined;
   MaxLifts: undefined;
   Profile: undefined;
+  Settings: undefined;
   CreateRoutine: undefined;
+  ChangeTheme: undefined;
+  Measurements: undefined;
 };
 
 export type HomeNavProps<T extends keyof HomeParamList> = {
