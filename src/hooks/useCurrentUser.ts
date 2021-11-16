@@ -11,7 +11,6 @@ const useCurrentUser = () => {
     fetchPolicy: 'cache-and-network'
   });
 
-  console.log('DATA', data);
   return {
     currentUser: data?.me,
     ...rest
