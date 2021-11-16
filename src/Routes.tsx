@@ -5,13 +5,13 @@ import AppTabs from './screens/AppTabs';
 import useCurrentUser from './hooks/useCurrentUser';
 import { ActivityIndicator } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
-import ThemeContext from './contexts/ThemeContext';
+import PreferenceContext from './contexts/PreferenceContext';
 
 import { CombinedDarkTheme, CombinedDefaultTheme } from './theme';
 
 const Routes: React.FC = () => {
   const { currentUser, loading } = useCurrentUser();
-  const { isDarkTheme } = useContext(ThemeContext);
+  const { isDarkTheme } = useContext(PreferenceContext);
 
   const theme = isDarkTheme ? CombinedDarkTheme : CombinedDefaultTheme;
 
