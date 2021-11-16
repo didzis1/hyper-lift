@@ -48,7 +48,7 @@ const ProfileScreen: React.FC<HomeNavProps<'Home'>> = ({ navigation }) => {
             </View>
 
             <View style={styles.avatarContainer}>
-              <TouchableOpacity onPress={() => navigation.push('Profile')}>
+              <TouchableOpacity>
                 <View>
                   <Image
                     source={require('../../../assets/avatarImage.png')}
@@ -58,8 +58,7 @@ const ProfileScreen: React.FC<HomeNavProps<'Home'>> = ({ navigation }) => {
               </TouchableOpacity>
             </View>
             <View style={styles.settingsContainer}>
-              <TouchableOpacity
-                onPress={() => console.log('Go To Settings Screen')}>
+              <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
                 <View style={styles.settingsIcon}>
                   <Ionicons
                     name='settings-outline'
