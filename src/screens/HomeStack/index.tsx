@@ -4,6 +4,7 @@ import Home from './Home';
 import MaxLifts from './MaxLifts';
 import Profile from './Profile';
 import CreateRoutine from './CreateRoutine';
+import ChangeTheme from './ChangeTheme';
 
 const Stack = createNativeStackNavigator();
 
@@ -36,6 +37,12 @@ const HomeStack: React.FC<Props> = ({}) => {
         name='CreateRoutine'
         component={CreateRoutine}
         options={{ title: 'Create Routine', headerTitleAlign: 'center' }}
+      />
+
+      <Stack.Screen
+        name='ChangeTheme'
+        component={ChangeTheme}
+        options={{ title: 'Preferences', headerTitleAlign: 'center' }}
       />
     </Stack.Navigator>
   );
