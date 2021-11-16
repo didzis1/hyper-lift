@@ -4,7 +4,7 @@ import Routes from './src/Routes';
 import createApolloClient from './src/utils/createApolloClient';
 import AuthStorage from './src/utils/authStorage';
 import AuthStorageContext from './src/contexts/AuthStorageContext';
-import { ThemeContextProvider } from './src/contexts/ThemeContext';
+import { PreferenceProvider } from './src/contexts/PreferenceContext';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const authStorage = new AuthStorage();
@@ -14,11 +14,11 @@ const App = () => {
   return (
     <ApolloProvider client={apolloClient}>
       <AuthStorageContext.Provider value={authStorage}>
-        <ThemeContextProvider>
+        <PreferenceProvider>
           <SafeAreaProvider>
             <Routes />
           </SafeAreaProvider>
-        </ThemeContextProvider>
+        </PreferenceProvider>
       </AuthStorageContext.Provider>
     </ApolloProvider>
   );
