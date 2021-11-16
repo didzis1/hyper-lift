@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Button, Text } from 'react-native-paper';
+import { Button, Surface, Text } from 'react-native-paper';
 import { MaxLiftType } from '../types/MaxLiftType';
 import { Feather, MaterialIcons } from '@expo/vector-icons';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -13,7 +13,7 @@ type Props = {
 
 const MaxLiftCard: React.FC<Props> = ({ maxLifts, navigation }) => {
   return (
-    <View style={styles.maxLiftContainer}>
+    <Surface style={[styles.maxLiftContainer, styles.shadowProp]}>
       {maxLifts.length > 0 ? (
         <>
           <View style={styles.addIconContainer}>
@@ -59,7 +59,7 @@ const MaxLiftCard: React.FC<Props> = ({ maxLifts, navigation }) => {
           </View>
         </>
       )}
-    </View>
+    </Surface>
   );
 };
 
@@ -70,15 +70,10 @@ const styles = StyleSheet.create({
     padding: 15,
     flex: 1,
     flexDirection: 'column',
-    margin: 15,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-    elevation: 5
+    margin: 15
+  },
+  shadowProp: {
+    elevation: 4
   },
   maxLiftRow: {
     flexDirection: 'row',
