@@ -5,6 +5,7 @@ import { MaxLiftType } from '../types/MaxLiftType';
 import { Feather, MaterialIcons } from '@expo/vector-icons';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { HomeParamList } from '../screens/HomeStack/HomeParamList';
+import { AntDesign } from '@expo/vector-icons';
 
 type Props = {
   maxLifts: MaxLiftType[];
@@ -13,8 +14,8 @@ type Props = {
 
 const MaxLiftCard: React.FC<Props> = ({ maxLifts, navigation }) => {
   return (
-    <Surface style={[styles.maxLiftContainer, styles.shadowProp]}>
-      {maxLifts.length > 0 ? (
+    <Surface style={[styles.container, styles.shadowProp]}>
+      {maxLifts.length < 0 ? (
         <>
           <View style={styles.addIconContainer}>
             <TouchableOpacity onPress={() => navigation.navigate('MaxLifts')}>
@@ -43,13 +44,16 @@ const MaxLiftCard: React.FC<Props> = ({ maxLifts, navigation }) => {
       ) : (
         <>
           <View style={styles.contentContainer}>
-            <View style={styles.noLiftsContainer}>
+            <View style={styles.innerCardContainer}>
               <Text style={styles.noLiftsText}>
                 You currently have no maximum lifts
               </Text>
               <Button
                 mode='contained'
                 uppercase={false}
+                icon={() => (
+                  <AntDesign name='rocket1' size={24} color='#2C4E5B' />
+                )}
                 style={styles.button}
                 labelStyle={styles.buttonText}
                 onPress={() => navigation.navigate('MaxLifts')}>
@@ -64,10 +68,10 @@ const MaxLiftCard: React.FC<Props> = ({ maxLifts, navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  maxLiftContainer: {
+  container: {
     backgroundColor: '#2C4E5B',
     borderRadius: 15,
-    padding: 15,
+    padding: 10,
     flex: 1,
     flexDirection: 'column',
     margin: 15
@@ -89,12 +93,12 @@ const styles = StyleSheet.create({
   contentContainer: {
     marginVertical: 16
   },
-  noLiftsContainer: {
+  innerCardContainer: {
     width: '70%',
     alignSelf: 'center'
   },
   noLiftsText: {
-    fontSize: 20,
+    fontSize: 18,
     color: '#FFFFFF',
     textAlign: 'center'
   },
@@ -103,7 +107,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#E9C46A'
   },
   buttonText: {
-    fontSize: 16
+    fontSize: 16,
+    color: '#000000'
   },
   exerciseContainer: {
     flexDirection: 'row',
