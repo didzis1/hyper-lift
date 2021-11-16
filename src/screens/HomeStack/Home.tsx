@@ -6,21 +6,20 @@ import {
   TouchableOpacity,
   ScrollView
 } from 'react-native';
+import { Text, useTheme } from 'react-native-paper';
 import { HomeNavProps } from './HomeParamList';
-
 import useCurrentUser from '../../hooks/useCurrentUser';
 import Loading from '../../components/Loading';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Text } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
 import { getCurrentDate } from '../../utils/getCurrentDate';
 import MaxLiftCard from '../../components/MaxLiftCard';
-import { Feather } from '@expo/vector-icons';
+import RoutineCards from '../../components/RoutineCards';
 
 const ProfileScreen: React.FC<HomeNavProps<'Home'>> = ({ navigation }) => {
   const [currentDay, setCurrentDay] = React.useState<string>('');
   const { currentUser } = useCurrentUser();
-
+  const { colors } = useTheme();
   if (!currentUser) {
     return <Loading />;
   }
@@ -79,7 +78,11 @@ const ProfileScreen: React.FC<HomeNavProps<'Home'>> = ({ navigation }) => {
         </View>
       </View>
 
-      <View style={styles.contentContainer}>
+      <View
+        style={[
+          styles.contentContainer,
+          { backgroundColor: colors.background }
+        ]}>
         <ScrollView>
           <View style={styles.headerContainer}>
             <Text style={styles.header}>Maximum lifts</Text>
@@ -91,16 +94,13 @@ const ProfileScreen: React.FC<HomeNavProps<'Home'>> = ({ navigation }) => {
           />
 
           <View style={styles.headerContainer}>
-            <View style={styles.headerFlex}>
-              <Text style={styles.header}>Routines</Text>
-              <Feather
-                name='plus'
-                size={24}
-                color='black'
-                style={{ marginRight: 20 }}
-              />
-            </View>
+            <Text style={styles.header}>Routines</Text>
           </View>
+
+          <RoutineCards
+            routines={currentUser.routines}
+            navigation={navigation}
+          />
         </ScrollView>
       </View>
     </SafeAreaView>
@@ -142,8 +142,8 @@ const styles = StyleSheet.create({
   },
   avatarContainer: { flex: 1, alignItems: 'center' },
   avatar: {
-    width: 100,
-    height: 100
+    width: 75,
+    height: 75
   },
   settingsContainer: {
     flex: 1,
@@ -156,8 +156,8 @@ const styles = StyleSheet.create({
     marginRight: 10
   },
   contentContainer: {
-    flex: 2,
-    backgroundColor: '#F0F0F0',
+    flex: 3,
+
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     padding: 15
@@ -165,11 +165,14 @@ const styles = StyleSheet.create({
   headerContainer: {
     paddingLeft: 20
   },
-  headerFlex: {
+  routineFlex: {
     flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between'
+  },
+  routineHeader: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
+    justifyContent: 'space-between'
   },
   header: {
     fontSize: 18,
