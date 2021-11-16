@@ -8,30 +8,38 @@ const Settings: React.FC<HomeNavProps<'Settings'>> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <List.Section>
-        <List.Subheader>Account settings</List.Subheader>
+        <List.Subheader style={styles.listSubheader}>
+          Account settings
+        </List.Subheader>
         <List.Item
+          style={styles.listSection}
           title='Profile'
           onPress={() => navigation.navigate('Profile')}
-          left={() => <List.Icon icon='account' />}
+          left={() => <List.Icon icon='account' color='#2C4E5B' />}
         />
         <List.Item
+          style={styles.listSection}
           title='Account'
           onPress={() => console.log('Account')}
-          left={() => <List.Icon icon='lock' />}
+          left={() => <List.Icon icon='lock' color='#2C4E5B' />}
         />
       </List.Section>
 
       <List.Section>
-        <List.Subheader>Preferences</List.Subheader>
+        <List.Subheader style={styles.listSubheader}>
+          Preferences
+        </List.Subheader>
         <List.Item
+          style={styles.listSection}
           title='Measurements'
           onPress={() => navigation.navigate('Measurements')}
-          left={() => <List.Icon icon='weight' />}
+          left={() => <List.Icon icon='weight' color='#2C4E5B' />}
         />
         <List.Item
+          style={styles.listSection}
           title='Theme'
           onPress={() => navigation.navigate('ChangeTheme')}
-          left={() => <List.Icon icon='brightness-4' />}
+          left={() => <List.Icon icon='brightness-4' color='#2C4E5B' />}
         />
       </List.Section>
     </View>
@@ -48,30 +56,23 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: '70%'
   },
-  option: {
-    width: '100%',
-    height: '10%',
-    backgroundColor: '#FFFFFF',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderRadius: 5,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-    elevation: 5,
-    marginVertical: 8
-  },
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'center'
   },
   icon: {
     paddingHorizontal: 8
+  },
+  listSubheader: {
+    color: '#2C4E5B'
+  },
+  listSection: {
+    backgroundColor: '#FFFFFF',
+    marginHorizontal: 15,
+    marginVertical: 3,
+    borderRadius: 15,
+    elevation: 3,
+    paddingVertical: 0
   }
 });
 
