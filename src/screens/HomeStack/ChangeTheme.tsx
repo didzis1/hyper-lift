@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { View } from 'react-native';
 import { Switch, List } from 'react-native-paper';
-import ThemeContext from '../../contexts/ThemeContext';
+import PreferenceContext from '../../contexts/PreferenceContext';
 import { HomeNavProps } from './HomeParamList';
 
 const ChangeTheme: React.FC<HomeNavProps<'ChangeTheme'>> = () => {
-  const { toggleTheme, isDarkTheme } = useContext(ThemeContext);
+  const { toggleTheme, isDarkTheme } = useContext(PreferenceContext);
   return (
     <View>
       <List.Section>
