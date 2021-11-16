@@ -32,12 +32,12 @@ export const PreferenceProvider: React.FC = ({ children }) => {
   const toggleTheme = async () => {
     const newTheme = !isDarkTheme;
     console.log('New theme', newTheme);
+    setIsDarkTheme(() => newTheme);
     try {
-      await AsyncStorage.setItem('isDarkTheme', newTheme.toString());
+      return await AsyncStorage.setItem('isDarkTheme', newTheme.toString());
     } catch (error) {
       console.log('error', error);
     }
-    return setIsDarkTheme(() => newTheme);
   };
 
   const values = {
