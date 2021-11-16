@@ -2,9 +2,11 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './Home';
 import MaxLifts from './MaxLifts';
-import Profile from './Profile';
+import Settings from './Settings';
 import CreateRoutine from './CreateRoutine';
 import ChangeTheme from './ChangeTheme';
+import Measurements from './Measurements';
+import Profile from './Profile';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +21,12 @@ const HomeStack: React.FC<Props> = ({}) => {
         options={{
           headerShown: false
         }}
+      />
+
+      <Stack.Screen
+        name='Settings'
+        component={Settings}
+        options={{ title: 'Settings', headerTitleAlign: 'center' }}
       />
 
       <Stack.Screen
@@ -42,6 +50,12 @@ const HomeStack: React.FC<Props> = ({}) => {
       <Stack.Screen
         name='ChangeTheme'
         component={ChangeTheme}
+        options={{ title: 'Preferences', headerTitleAlign: 'center' }}
+      />
+
+      <Stack.Screen
+        name='Measurements'
+        component={Measurements}
         options={{ title: 'Preferences', headerTitleAlign: 'center' }}
       />
     </Stack.Navigator>
