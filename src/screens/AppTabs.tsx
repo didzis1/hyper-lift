@@ -13,7 +13,9 @@ const Stack = createBottomTabNavigator();
 const AppTabs = () => {
   const theme = useTheme();
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      screenOptions={{ headerShown: false }}
+      initialRouteName='HomeStack'>
       <Stack.Screen
         name='HomeStack'
         component={HomeStack}
@@ -30,6 +32,7 @@ const AppTabs = () => {
           }
         }}
       />
+
       <Stack.Screen
         name='WorkoutStack'
         component={WorkoutStack}
