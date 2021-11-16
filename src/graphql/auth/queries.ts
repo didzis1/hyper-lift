@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 
+// Me query doesn't fetch history
 export const ME = gql`
   query Query {
     me {
@@ -28,21 +29,6 @@ export const ME = gql`
         id
         exercise
         weight
-      }
-      history {
-        id
-        routineId
-        splitName
-        exercises {
-          exerciseName
-          historySets {
-            set
-            reps
-            weight
-          }
-        }
-        notes
-        createdAt
       }
     }
   }
