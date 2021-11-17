@@ -7,7 +7,8 @@ import {
   KeyboardAvoidingView,
   Platform,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+  TouchableOpacity
 } from 'react-native';
 import {
   Button,
@@ -105,26 +106,37 @@ const MaxLifts = ({ navigation }: HomeNavProps<'MaxLifts'>) => {
           </Portal>
           {/* Modal */}
 
-          <View style={styles.table}>
-            <DataTable style={{ backgroundColor: '#FFFFFF' }}>
-              <DataTable.Header style={styles.listHeader}>
-                <DataTable.Title>
-                  <Text style={styles.headerText}>Exercise</Text>
-                </DataTable.Title>
-                <DataTable.Title>
-                  <Text style={styles.headerText}>Max weight</Text>
-                </DataTable.Title>
-              </DataTable.Header>
-              {currentUser.maxLifts.map((maxLift) => (
-                <DataTable.Row key={maxLift.id}>
-                  <DataTable.Cell>{maxLift.exercise}</DataTable.Cell>
-                  <DataTable.Cell numeric>{maxLift.weight} kgs</DataTable.Cell>
-                  <DataTable.Cell numeric onPress={() => setModalOpen(true)}>
-                    <AntDesign name='edit' size={22} color='#3a443a' />
-                  </DataTable.Cell>
-                </DataTable.Row>
-              ))}
-            </DataTable>
+          <View style={styles.infoContainer}>
+            <Text
+              style={[styles.text, { textAlign: 'center', color: '#E9C46A' }]}>
+              Maximum lift is your one-rep max that you can lift for a single
+              repetition for a given exercise (1 RM = 1 Rep Max)
+            </Text>
+          </View>
+
+          <View style={styles.container}>
+            <View style={styles.headerContainer}>
+              <View style={{ flex: 2 }}>
+                <Text style={styles.headerText}>Exercise</Text>
+              </View>
+              <View style={{ flex: 1 }}>
+                <Text style={styles.headerText}>Weight</Text>
+              </View>
+            </View>
+            {currentUser.maxLifts.map((maxLift) => (
+              <TouchableOpacity
+                key={maxLift.id}
+                style={styles.singleItem}
+                onPress={() => navigation.navigate('EditMaxLift', { maxLift })}>
+                <View style={{ flex: 2 }}>
+                  <Text style={styles.text}>{maxLift.exercise}</Text>
+                </View>
+
+                <View style={{ flex: 1 }}>
+                  <Text style={styles.text}>{maxLift.weight} kg</Text>
+                </View>
+              </TouchableOpacity>
+            ))}
           </View>
           <Button
             dark={true}
@@ -135,7 +147,7 @@ const MaxLifts = ({ navigation }: HomeNavProps<'MaxLifts'>) => {
             mode='contained'
             style={styles.addButton}
             onPress={() => setModalOpen(true)}>
-            Add
+            Add Max Lift
           </Button>
         </ScrollView>
       </TouchableWithoutFeedback>
@@ -144,17 +156,50 @@ const MaxLifts = ({ navigation }: HomeNavProps<'MaxLifts'>) => {
 };
 
 const styles = StyleSheet.create({
-  listHeader: {
-    backgroundColor: '#E0e0aa'
+  infoContainer: {
+    backgroundColor: '#2C4E5B',
+    padding: 35
   },
-  headerText: {},
-  table: {
-    marginBottom: 35
+  container: {
+    marginVertical: 35,
+    flex: 1,
+    flexDirection: 'column',
+    elevation: 10,
+    padding: 10
+  },
+  headerContainer: {
+    width: '80%',
+    alignSelf: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingLeft: 20
+  },
+  headerText: {
+    fontSize: 16,
+    fontWeight: 'bold'
+  },
+  singleItem: {
+    backgroundColor: '#2C4E5B',
+    flexDirection: 'row',
+    width: '80%',
+    alignSelf: 'center',
+    justifyContent: 'space-around',
+    paddingVertical: 15,
+    paddingLeft: 20,
+    marginVertical: 5,
+    elevation: 8,
+    borderRadius: 5
+  },
+  text: {
+    color: '#E9C46A',
+    fontSize: 16
   },
   addButton: {
-    alignSelf: 'flex-end',
+    alignSelf: 'center',
     textAlign: 'center',
-    marginRight: 16
+    backgroundColor: '#E9C46A',
+    margin: 5,
+    elevation: 4
   },
   modal: {
     backgroundColor: 'white'
