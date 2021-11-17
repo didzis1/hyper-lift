@@ -64,4 +64,5 @@ _Testing_
 |  08.11   | 8h              | Styled and created new screens for the front-end, new fields for user in the back-end                                               | Front-end & Back-end  |
 |  09.11   | 4h              | Worked on styling, created new design in idea in Figma for the app                                               | Front-end  |
 |  11.11   | 5h              | Worked on Home Page styling, updated some dependencies, created helper functions, updated theme colors                                             | Front-end  |
-| In total | 81,5h           |                                                                                                                                                              |
+|  16.11   | 8h              | Worked on Settings screen, created new cards for home screen, changed ThemeContext to Preference (will contain measurements later on)                                             | Front-end  |
+| In total | 89,5h           |                                                                                                                                                              |
