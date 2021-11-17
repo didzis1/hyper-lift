@@ -4,11 +4,12 @@ import HomeStack from './HomeStack';
 import WorkoutStack from './WorkoutStack';
 import HistoryStack from './HistoryStack';
 import ProgressStack from './ProgressStack';
+import { AppParamList } from './AppParamList';
 
 import { Feather, AntDesign } from '@expo/vector-icons';
 import { useTheme } from 'react-native-paper';
 
-const Stack = createBottomTabNavigator();
+const Stack = createBottomTabNavigator<AppParamList>();
 
 const AppTabs = () => {
   const theme = useTheme();
