@@ -3,8 +3,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import StartingScreen from './StartingScreen';
 import LoginScreen from './LoginScreen';
 import RegisterScreen from './RegisterScreen';
+import { AuthParamList } from './AuthParamList';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<AuthParamList>();
 
 type Props = {};
 
