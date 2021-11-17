@@ -65,4 +65,5 @@ _Testing_
 |  09.11   | 4h              | Worked on styling, created new design in idea in Figma for the app                                               | Front-end  |
 |  11.11   | 5h              | Worked on Home Page styling, updated some dependencies, created helper functions, updated theme colors                                             | Front-end  |
 |  16.11   | 8h              | Worked on Settings screen, created new cards for home screen, changed ThemeContext to Preference (will contain measurements later on)                                             | Front-end  |
-| In total | 89,5h           |                                                                                                                                                              |
+|  17.11   | 4h              | Reworked home screen, added TypeScript typing for various navigators, fixed some bugs                                             | Front-end  |
+| In total | 93,5h           |                                                                                                                                                              |
