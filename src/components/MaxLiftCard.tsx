@@ -15,7 +15,7 @@ type Props = {
 const MaxLiftCard: React.FC<Props> = ({ maxLifts, navigation }) => {
   return (
     <Surface style={[styles.container, styles.shadowProp]}>
-      {maxLifts.length < 0 ? (
+      {maxLifts.length > 0 ? (
         <>
           <View style={styles.addIconContainer}>
             <TouchableOpacity onPress={() => navigation.navigate('MaxLifts')}>
