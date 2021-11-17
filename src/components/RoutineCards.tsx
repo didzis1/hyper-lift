@@ -31,7 +31,7 @@ const RoutineCards: React.FC<Props> = ({ routines, navigation }) => {
               )}
               style={styles.button}
               labelStyle={styles.buttonText}
-              onPress={() => navigation.navigate('MaxLifts')}>
+              onPress={() => navigation.navigate('CreateRoutine')}>
               Create a routine
             </Button>
           </View>
