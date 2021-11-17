@@ -15,6 +15,7 @@ export type HomeParamList = {
     maxLift: MaxLiftType;
   };
   AddMaxLift: undefined;
+  AddExercise: undefined;
 };
 
 export type HomeNavProps<T extends keyof HomeParamList> = {
