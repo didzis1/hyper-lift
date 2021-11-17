@@ -1,6 +1,8 @@
 import { RouteProp } from '@react-navigation/core';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
+import { MaxLiftType } from '../../types/MaxLiftType';
+
 export type HomeParamList = {
   Home: undefined;
   MaxLifts: undefined;
@@ -9,6 +11,10 @@ export type HomeParamList = {
   CreateRoutine: undefined;
   ChangeTheme: undefined;
   Measurements: undefined;
+  EditMaxLift: {
+    maxLift: MaxLiftType;
+  };
+  AddMaxLift: undefined;
 };
 
 export type HomeNavProps<T extends keyof HomeParamList> = {
