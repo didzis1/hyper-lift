@@ -66,10 +66,17 @@ const HomeStack: React.FC<Props> = ({}) => {
           options={{ title: 'Preferences', headerTitleAlign: 'center' }}
         />
       </Stack.Group>
-      <Stack.Group>
+      <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name='AddExercise' component={AddExercise} />
         {/* <Stack.Screen name='AddMaxLift' component={AddMaxLift} /> */}
-        <Stack.Screen name='EditMaxLift' component={EditMaxLift} />
+        <Stack.Screen
+          name='EditMaxLift'
+          component={EditMaxLift}
+          options={({ route }) => ({
+            headerTitleAlign: 'center',
+            title: route.params.maxLift.exercise
+          })}
+        />
       </Stack.Group>
     </Stack.Navigator>
   );
