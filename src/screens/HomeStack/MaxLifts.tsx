@@ -10,35 +10,28 @@ import {
   Keyboard,
   TouchableOpacity
 } from 'react-native';
-import {
-  Button,
-  DataTable,
-  Modal,
-  Portal,
-  Text,
-  Title
-} from 'react-native-paper';
+import { Button, Modal, Portal, Text, Title } from 'react-native-paper';
 import FormikTextInput from '../../components/FormikTextInput';
 import { HomeNavProps } from './HomeParamList';
-import useMaxLift from '../../hooks/useMaxLift';
+import useCreateMaxLift from '../../hooks/useCreateMaxLift';
+import useGetMaxLift from '../../hooks/useGetMaxLift';
 import { AddMaxLiftType } from '../../types/maxLift/AddMaxLiftType';
-import useCurrentUser from '../../hooks/useCurrentUser';
 import Loading from '../../components/Loading';
-import { AntDesign, Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import globalStyles from '../../globalStyles';
 
 const MaxLifts = ({ navigation }: HomeNavProps<'MaxLifts'>) => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const { currentUser } = useCurrentUser();
-  const { createMaxLift } = useMaxLift();
+  const { createMaxLift } = useCreateMaxLift();
+  const { maxLifts, ...rest } = useGetMaxLift();
 
-  if (!currentUser) return <Loading />;
+  if (rest.loading) return <Loading />;
 
   const handleNewMaxLift = async (values: AddMaxLiftType) => {
     try {
       const response = await createMaxLift(values);
       console.log(response);
-      navigation.navigate('Home');
+      setModalOpen(false);
     } catch (error) {
       console.log(error);
     }
@@ -123,7 +116,7 @@ const MaxLifts = ({ navigation }: HomeNavProps<'MaxLifts'>) => {
                 <Text style={styles.headerText}>Weight</Text>
               </View>
             </View>
-            {currentUser.maxLifts.map((maxLift) => (
+            {maxLifts?.map((maxLift) => (
               <TouchableOpacity
                 key={maxLift.id}
                 style={styles.singleItem}
