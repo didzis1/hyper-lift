@@ -6,11 +6,12 @@ import { useField } from 'formik';
 type FormikTextInputProps = {
   label?: string;
   name: string;
-  placeholder: string;
+  placeholder?: string;
   secureTextEntry?: boolean;
   keyboardType?: KeyboardTypeOptions;
   left?: JSX.Element;
   right?: JSX.Element;
+  disabled?: boolean;
 };
 
 const FormikTextInput = ({ label, name, ...props }: FormikTextInputProps) => {
