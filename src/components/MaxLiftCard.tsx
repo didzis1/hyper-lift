@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Button, Surface, Text } from 'react-native-paper';
 import { MaxLiftType } from '../types/MaxLiftType';
-import { Feather, MaterialIcons } from '@expo/vector-icons';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { HomeParamList } from '../screens/HomeStack/HomeParamList';
 import { AntDesign } from '@expo/vector-icons';
@@ -15,54 +14,57 @@ type Props = {
 const MaxLiftCard: React.FC<Props> = ({ maxLifts, navigation }) => {
   return (
     <Surface style={[styles.container, styles.shadowProp]}>
-      {maxLifts.length > 0 ? (
-        <>
-          <View style={styles.addIconContainer}>
-            <TouchableOpacity onPress={() => navigation.navigate('MaxLifts')}>
-              <Feather name='plus' size={24} color='#e9c46a' />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.contentContainer}>
-            {maxLifts.map((maxLift) => (
-              <View key={maxLift.id} style={styles.maxLiftRow}>
-                <View style={styles.exerciseContainer}>
-                  <MaterialIcons
-                    name='fitness-center'
-                    size={20}
-                    color='#e9c46a'
-                  />
-                  <Text style={styles.exerciseText}>{maxLift.exercise}</Text>
-                </View>
+      <TouchableOpacity onPress={() => navigation.navigate('MaxLifts')}>
+        {maxLifts.length > 0 ? (
+          <>
+            <View style={styles.contentContainer}>
+              {maxLifts.slice(0, 3).map((maxLift) => (
+                <View key={maxLift.id} style={styles.maxLiftRow}>
+                  <View style={styles.textContainer}>
+                    <Text style={styles.exerciseText}>{maxLift.exercise}</Text>
+                  </View>
 
-                <View style={styles.weightContainer}>
-                  <Text style={styles.weightText}>{maxLift.weight} kg</Text>
+                  <View style={styles.textContainer}>
+                    <Text style={styles.weightText}>{maxLift.weight} kg</Text>
+                  </View>
                 </View>
-              </View>
-            ))}
-          </View>
-        </>
-      ) : (
-        <>
-          <View style={styles.contentContainer}>
-            <View style={styles.innerCardContainer}>
-              <Text style={styles.noLiftsText}>
-                You currently have no maximum lifts
-              </Text>
-              <Button
-                mode='contained'
-                uppercase={false}
-                icon={() => (
-                  <AntDesign name='rocket1' size={24} color='#2C4E5B' />
-                )}
-                style={styles.button}
-                labelStyle={styles.buttonText}
-                onPress={() => navigation.navigate('MaxLifts')}>
-                Add max lift
-              </Button>
+              ))}
+              {maxLifts.length > 3 ? (
+                <View style={styles.maxLiftRow}>
+                  <View style={styles.textContainer}>
+                    <Text style={styles.weightText}>...</Text>
+                  </View>
+
+                  <View style={styles.textContainer}>
+                    <Text style={styles.weightText}>...</Text>
+                  </View>
+                </View>
+              ) : null}
             </View>
-          </View>
-        </>
-      )}
+          </>
+        ) : (
+          <>
+            <View style={styles.contentContainer}>
+              <View style={styles.innerCardContainer}>
+                <Text style={styles.noLiftsText}>
+                  You currently have no maximum lifts
+                </Text>
+                <Button
+                  mode='contained'
+                  uppercase={false}
+                  icon={() => (
+                    <AntDesign name='rocket1' size={24} color='#2C4E5B' />
+                  )}
+                  style={styles.button}
+                  labelStyle={styles.buttonText}
+                  onPress={() => navigation.navigate('MaxLifts')}>
+                  Add max lift
+                </Button>
+              </View>
+            </View>
+          </>
+        )}
+      </TouchableOpacity>
     </Surface>
   );
 };
@@ -80,18 +82,10 @@ const styles = StyleSheet.create({
     elevation: 4
   },
   maxLiftRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center'
-  },
-  addIconContainer: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    margin: 12
+    flexDirection: 'row'
   },
   contentContainer: {
-    marginVertical: 16
+    marginVertical: 5
   },
   innerCardContainer: {
     width: '70%',
@@ -110,21 +104,22 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#000000'
   },
-  exerciseContainer: {
-    flexDirection: 'row',
+  textContainer: {
+    flex: 1,
     alignItems: 'center'
   },
   exerciseText: {
     fontSize: 20,
     color: '#E9C46A',
-    fontWeight: 'normal',
-    marginLeft: 5
+    fontWeight: 'normal'
   },
-  weightContainer: {},
   weightText: {
     fontSize: 20,
     color: '#E9C46A',
     fontWeight: 'bold'
+  },
+  extraContainer: {
+    flex: 1
   }
 });
 
