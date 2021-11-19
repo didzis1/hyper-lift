@@ -9,6 +9,7 @@ import {
 import { Text, useTheme } from 'react-native-paper';
 import { HomeNavProps } from './HomeParamList';
 import useCurrentUser from '../../hooks/useCurrentUser';
+import useGetMaxLift from '../../hooks/useGetMaxLift';
 import Loading from '../../components/Loading';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -19,8 +20,10 @@ import RoutineCards from '../../components/RoutineCards';
 const ProfileScreen: React.FC<HomeNavProps<'Home'>> = ({ navigation }) => {
   const [currentDay, setCurrentDay] = React.useState<string>('');
   const { currentUser } = useCurrentUser();
+  const { maxLifts } = useGetMaxLift();
+
   const { colors } = useTheme();
-  if (!currentUser) {
+  if (!currentUser || !maxLifts) {
     return <Loading />;
   }
 
@@ -32,12 +35,12 @@ const ProfileScreen: React.FC<HomeNavProps<'Home'>> = ({ navigation }) => {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: '#2C4E5B'
+        backgroundColor: colors.primary
       }}>
       <View
         style={{
           flex: 1,
-          backgroundColor: '#2C4E5B'
+          backgroundColor: colors.primary
         }}>
         <View style={styles.topContainer}>
           <View style={styles.topUpperRow}>
@@ -88,10 +91,7 @@ const ProfileScreen: React.FC<HomeNavProps<'Home'>> = ({ navigation }) => {
             <Text style={styles.header}>Maximum lifts</Text>
           </View>
 
-          <MaxLiftCard
-            maxLifts={currentUser.maxLifts}
-            navigation={navigation}
-          />
+          <MaxLiftCard maxLifts={maxLifts} navigation={navigation} />
 
           <View style={styles.headerContainer}>
             <Text style={styles.header}>Routines</Text>
