@@ -1,20 +1,118 @@
+import { Formik } from 'formik';
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Text } from 'react-native-paper';
+import {
+  View,
+  StyleSheet,
+  Platform,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback
+} from 'react-native';
+import { Button, Text } from 'react-native-paper';
+import FormikTextInput from '../../components/FormikTextInput';
 import { HomeNavProps } from './HomeParamList';
+import { MaxLiftType } from '../../types/MaxLiftType';
+import useEditMaxLift from '../../hooks/useEditMaxLift';
+import useDeleteMaxLift from '../../hooks/useDeleteMaxLift';
 
-const EditMaxLift: React.FC<HomeNavProps<'EditMaxLift'>> = ({ route }) => {
-  console.log('route', route.params.maxLift.weight);
+const EditMaxLift: React.FC<HomeNavProps<'EditMaxLift'>> = ({
+  route,
+  navigation
+}) => {
+  const { editMaxLift } = useEditMaxLift();
+  const { deleteMaxLift } = useDeleteMaxLift();
+
+  const handleUpdateMaxLift = async (values: MaxLiftType) => {
+    try {
+      await editMaxLift({
+        id: route.params.maxLift.id,
+        exercise: values.exercise,
+        weight: values.weight
+      });
+      navigation.navigate('MaxLifts', {
+        snackBarError: false,
+        snackBarMessage: 'Max lift updated successfully'
+      });
+    } catch (error) {
+      if (error instanceof Error) {
+        navigation.navigate('MaxLifts', {
+          snackBarError: true,
+          snackBarMessage: 'Max lift could not be updated successfully'
+        });
+      }
+    }
+  };
+
+  const handleDeleteMaxLift = async () => {
+    try {
+      await deleteMaxLift(route.params.maxLift.id);
+      navigation.navigate('MaxLifts', {
+        snackBarError: false,
+        snackBarMessage: 'Max lift deleted successfully'
+      });
+    } catch (error) {
+      navigation.navigate('MaxLifts', {
+        snackBarError: true,
+        snackBarMessage: 'An error occured while trying to delete max lift'
+      });
+    }
+  };
+
   return (
-    <View>
-      <Text>Edit max lift</Text>
-      <View>
-        <Text>{route.params.maxLift.exercise}</Text>
-      </View>
-    </View>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={{ flex: 1 }}>
+      <TouchableWithoutFeedback>
+        <View style={styles.container}>
+          <Text>Edit max lift</Text>
+          <View>
+            <Formik
+              initialValues={{
+                exercise: route.params.maxLift.exercise,
+                weight: route.params.maxLift.weight.toString()
+              }}
+              onSubmit={(values) =>
+                handleUpdateMaxLift({
+                  id: route.params.maxLift.id,
+                  exercise: values.exercise,
+                  weight: Number(values.weight)
+                })
+              }>
+              {({ handleSubmit }) => (
+                <View>
+                  <FormikTextInput name='exercise' label='Exercise' disabled />
+                  <FormikTextInput
+                    name='weight'
+                    label='Max weight (RM)'
+                    keyboardType='number-pad'
+                  />
+
+                  <Button mode='contained' onPress={handleSubmit}>
+                    Update your max lift
+                  </Button>
+                </View>
+              )}
+            </Formik>
+            <Button
+              mode='contained'
+              style={styles.removeButton}
+              onPress={() => handleDeleteMaxLift()}>
+              Delete max lift
+            </Button>
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20
+  },
+  removeButton: {
+    backgroundColor: '#E76F51'
+  }
+});
 
 export default EditMaxLift;
