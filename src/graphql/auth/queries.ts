@@ -9,6 +9,7 @@ export const ME = gql`
       lastName
       email
       age
+      liftingType
       routines {
         id
         description
@@ -23,12 +24,6 @@ export const ME = gql`
             }
           }
         }
-      }
-      liftingType
-      maxLifts {
-        id
-        exercise
-        weight
       }
     }
   }
