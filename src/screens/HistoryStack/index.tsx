@@ -10,7 +10,7 @@ const HistoryStack = () => {
       <Stack.Screen
         name='History'
         component={History}
-        options={{ title: 'History', headerTitleAlign: 'center' }}
+        options={{ title: 'Workout History', headerTitleAlign: 'center' }}
       />
     </Stack.Navigator>
   );
