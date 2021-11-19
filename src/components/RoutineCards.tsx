@@ -6,12 +6,15 @@ import { HomeParamList } from '../screens/HomeStack/HomeParamList';
 import { RoutineType } from '../types/RoutineType';
 import { AntDesign } from '@expo/vector-icons';
 
-type Props = {
+type RoutineCardsProps = {
   routines: RoutineType[];
   navigation: NativeStackNavigationProp<HomeParamList, 'Home'>;
 };
 
-const RoutineCards: React.FC<Props> = ({ routines, navigation }) => {
+const RoutineCards: React.FC<RoutineCardsProps> = ({
+  routines,
+  navigation
+}) => {
   console.log(routines);
   return (
     <View style={styles.container}>
@@ -48,7 +51,7 @@ const styles = StyleSheet.create({
     padding: 15,
     flex: 1,
     flexDirection: 'column',
-    margin: 15
+    marginVertical: 10
   },
   shadowProp: {
     elevation: 4
