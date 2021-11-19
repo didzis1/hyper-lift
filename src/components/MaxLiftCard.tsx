@@ -6,15 +6,15 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { HomeParamList } from '../screens/HomeStack/HomeParamList';
 import { AntDesign } from '@expo/vector-icons';
 
-type Props = {
+type MaxLiftCardProps = {
   maxLifts: MaxLiftType[];
   navigation: NativeStackNavigationProp<HomeParamList, 'Home'>;
 };
 
-const MaxLiftCard: React.FC<Props> = ({ maxLifts, navigation }) => {
+const MaxLiftCard: React.FC<MaxLiftCardProps> = ({ maxLifts, navigation }) => {
   return (
     <Surface style={[styles.container, styles.shadowProp]}>
-      <TouchableOpacity onPress={() => navigation.navigate('MaxLifts')}>
+      <TouchableOpacity onPress={() => navigation.navigate('MaxLifts', {})}>
         {maxLifts.length > 0 ? (
           <>
             <View style={styles.contentContainer}>
@@ -57,7 +57,7 @@ const MaxLiftCard: React.FC<Props> = ({ maxLifts, navigation }) => {
                   )}
                   style={styles.button}
                   labelStyle={styles.buttonText}
-                  onPress={() => navigation.navigate('MaxLifts')}>
+                  onPress={() => navigation.navigate('MaxLifts', {})}>
                   Add max lift
                 </Button>
               </View>
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     padding: 10,
     flex: 1,
     flexDirection: 'column',
-    margin: 15
+    marginVertical: 10
   },
   shadowProp: {
     elevation: 4
@@ -111,7 +111,8 @@ const styles = StyleSheet.create({
   exerciseText: {
     fontSize: 20,
     color: '#E9C46A',
-    fontWeight: 'normal'
+    fontWeight: 'normal',
+    alignSelf: 'flex-start'
   },
   weightText: {
     fontSize: 20,
