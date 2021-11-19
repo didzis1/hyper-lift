@@ -52,32 +52,38 @@ const MaxLifts = ({ navigation, route }: HomeNavProps<'MaxLifts'>) => {
                 <Text style={styles.headerText}>Weight</Text>
               </View>
             </View>
-            {maxLifts?.map((maxLift) => (
-              <TouchableOpacity
-                key={maxLift.id}
-                style={styles.singleItem}
-                onPress={() => navigation.navigate('EditMaxLift', { maxLift })}>
-                <View style={{ flex: 2 }}>
-                  <Text style={styles.text}>{maxLift.exercise}</Text>
-                </View>
 
-                <View style={{ flex: 1 }}>
-                  <Text style={styles.text}>{maxLift.weight} kg</Text>
-                </View>
-              </TouchableOpacity>
-            ))}
+            <View>
+              {maxLifts?.map((maxLift) => (
+                <TouchableOpacity
+                  key={maxLift.id}
+                  style={styles.singleItem}
+                  onPress={() =>
+                    navigation.navigate('EditMaxLift', { maxLift })
+                  }>
+                  <View style={{ flex: 2 }}>
+                    <Text style={styles.text}>{maxLift.exercise}</Text>
+                  </View>
+
+                  <View style={{ flex: 1 }}>
+                    <Text style={styles.text}>{maxLift.weight} kg</Text>
+                  </View>
+                </TouchableOpacity>
+              ))}
+
+              <Button
+                dark={true}
+                icon={() => (
+                  <Ionicons name='add-circle-outline' size={24} color='white' />
+                )}
+                uppercase={false}
+                mode='contained'
+                style={styles.addButton}
+                onPress={() => navigation.navigate('CreateMaxLift')}>
+                Add new exercise
+              </Button>
+            </View>
           </View>
-          <Button
-            dark={true}
-            icon={() => (
-              <Ionicons name='add-circle-outline' size={24} color='white' />
-            )}
-            uppercase={false}
-            mode='contained'
-            style={styles.addButton}
-            onPress={() => navigation.navigate('CreateMaxLift')}>
-            Add Max Lift
-          </Button>
         </ScrollView>
       </TouchableWithoutFeedback>
       <Snackbar
@@ -102,14 +108,11 @@ const styles = StyleSheet.create({
     padding: 35
   },
   container: {
-    marginVertical: 35,
     flex: 1,
     flexDirection: 'column',
-    elevation: 10,
-    padding: 10
+    padding: 20
   },
   headerContainer: {
-    width: '80%',
     alignSelf: 'center',
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -122,7 +125,6 @@ const styles = StyleSheet.create({
   singleItem: {
     backgroundColor: '#2C4E5B',
     flexDirection: 'row',
-    width: '80%',
     alignSelf: 'center',
     justifyContent: 'space-around',
     paddingVertical: 15,
@@ -136,10 +138,8 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   addButton: {
-    alignSelf: 'center',
-    textAlign: 'center',
     backgroundColor: '#E9C46A',
-    margin: 5,
+    margin: 10,
     elevation: 4
   },
   modal: {
