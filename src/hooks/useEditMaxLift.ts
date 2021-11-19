@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client';
 import { EDIT_MAX_LIFT } from '../graphql/maxLift/mutations';
-import { MaxLiftType } from '../types/MaxLiftType';
 import { GET_MAX_LIFTS } from '../graphql/maxLift/queries';
+import { MaxLiftType } from '../types/MaxLiftType';
 
 const useEditMaxLift = () => {
   const [mutate, result] = useMutation(EDIT_MAX_LIFT, {
@@ -18,6 +18,7 @@ const useEditMaxLift = () => {
         }
       }
     });
+
     return data;
   };
 
