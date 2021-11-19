@@ -157,10 +157,9 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 3,
-
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
-    padding: 15
+    padding: 20
   },
   headerContainer: {
     paddingLeft: 20
