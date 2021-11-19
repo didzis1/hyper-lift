@@ -6,8 +6,8 @@ import { MaxLiftType } from '../../types/MaxLiftType';
 export type HomeParamList = {
   Home: undefined;
   MaxLifts: {
-    snackBarMessage: string | null;
-    snackBarError: boolean | null;
+    snackBarMessage?: string | null;
+    snackBarError?: boolean | null;
   };
   CreateMaxLift: undefined;
   EditMaxLift: {
