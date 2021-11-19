@@ -5,16 +5,19 @@ import { MaxLiftType } from '../../types/MaxLiftType';
 
 export type HomeParamList = {
   Home: undefined;
-  MaxLifts: undefined;
+  MaxLifts: {
+    snackBarMessage: string | null;
+    snackBarError: boolean | null;
+  };
+  CreateMaxLift: undefined;
+  EditMaxLift: {
+    maxLift: MaxLiftType;
+  };
   Profile: undefined;
   Settings: undefined;
   CreateRoutine: undefined;
   ChangeTheme: undefined;
   Measurements: undefined;
-  EditMaxLift: {
-    maxLift: MaxLiftType;
-  };
-  AddMaxLift: undefined;
   AddExercise: undefined;
 };
 
