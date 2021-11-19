@@ -5,7 +5,10 @@ import { Text } from 'react-native-paper';
 const History = () => {
   return (
     <View>
-      <Text>History screen</Text>
+      <Text>Browse your previously completed workouts</Text>
+      <View>
+        <Text>Calendar here</Text>
+      </View>
     </View>
   );
 };
