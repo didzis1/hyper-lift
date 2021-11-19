@@ -1,5 +1,4 @@
-import { Formik } from 'formik';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -10,32 +9,25 @@ import {
   Keyboard,
   TouchableOpacity
 } from 'react-native';
-import { Button, Modal, Portal, Text, Title } from 'react-native-paper';
-import FormikTextInput from '../../components/FormikTextInput';
+import { Button, Snackbar, Text } from 'react-native-paper';
 import { HomeNavProps } from './HomeParamList';
-import useCreateMaxLift from '../../hooks/useCreateMaxLift';
 import useGetMaxLift from '../../hooks/useGetMaxLift';
-import { AddMaxLiftType } from '../../types/maxLift/AddMaxLiftType';
 import Loading from '../../components/Loading';
 import { Ionicons } from '@expo/vector-icons';
-import globalStyles from '../../globalStyles';
 
-const MaxLifts = ({ navigation }: HomeNavProps<'MaxLifts'>) => {
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const { createMaxLift } = useCreateMaxLift();
+const MaxLifts = ({ navigation, route }: HomeNavProps<'MaxLifts'>) => {
+  const [snackBarVisible, setSnackBarVisible] = useState<boolean>(false);
   const { maxLifts, ...rest } = useGetMaxLift();
 
-  if (rest.loading) return <Loading />;
-
-  const handleNewMaxLift = async (values: AddMaxLiftType) => {
-    try {
-      const response = await createMaxLift(values);
-      console.log(response);
-      setModalOpen(false);
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    if (route.params?.snackBarMessage) {
+      setSnackBarVisible(true);
+    } else {
+      setSnackBarVisible(false);
     }
-  };
+  }, [route.params?.snackBarMessage]);
+
+  if (rest.loading) return <Loading />;
 
   return (
     <KeyboardAvoidingView
@@ -43,62 +35,6 @@ const MaxLifts = ({ navigation }: HomeNavProps<'MaxLifts'>) => {
       style={{ flex: 1 }}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ScrollView>
-          {/* Modal */}
-          <Portal>
-            <Modal
-              visible={modalOpen}
-              dismissable
-              onDismiss={() => setModalOpen(false)}
-              contentContainerStyle={styles.modal}>
-              <Formik
-                initialValues={{ exercise: '', weight: '' }}
-                onSubmit={(values) =>
-                  handleNewMaxLift({
-                    exercise: values.exercise,
-                    weight: Number(values.weight)
-                  })
-                }>
-                {({ handleSubmit }) => (
-                  <View style={globalStyles.form}>
-                    <Ionicons
-                      style={{
-                        alignSelf: 'flex-end',
-                        marginTop: 5,
-                        marginRight: 5
-                      }}
-                      onPress={() => setModalOpen(false)}
-                      name='close-sharp'
-                      size={24}
-                      color='black'
-                    />
-                    <Title>Add new max lift</Title>
-                    <FormikTextInput
-                      name='exercise'
-                      label='Exercise'
-                      placeholder='eg. Bench Press'
-                    />
-
-                    <FormikTextInput
-                      name='weight'
-                      label='Max weight (RM)'
-                      placeholder='100'
-                      keyboardType='number-pad'
-                    />
-
-                    <Button
-                      mode='contained'
-                      dark={true}
-                      uppercase={false}
-                      onPress={handleSubmit}>
-                      Save
-                    </Button>
-                  </View>
-                )}
-              </Formik>
-            </Modal>
-          </Portal>
-          {/* Modal */}
-
           <View style={styles.infoContainer}>
             <Text
               style={[styles.text, { textAlign: 'center', color: '#E9C46A' }]}>
@@ -139,11 +75,23 @@ const MaxLifts = ({ navigation }: HomeNavProps<'MaxLifts'>) => {
             uppercase={false}
             mode='contained'
             style={styles.addButton}
-            onPress={() => setModalOpen(true)}>
+            onPress={() => navigation.navigate('CreateMaxLift')}>
             Add Max Lift
           </Button>
         </ScrollView>
       </TouchableWithoutFeedback>
+      <Snackbar
+        onDismiss={() => navigation.setParams({ snackBarMessage: '' })}
+        style={{
+          backgroundColor: route.params?.snackBarError ? '#E76F51' : '#2A9D8F'
+        }}
+        action={{
+          label: 'Dismiss',
+          onPress: () => setSnackBarVisible(false)
+        }}
+        visible={snackBarVisible}>
+        {route.params?.snackBarMessage}
+      </Snackbar>
     </KeyboardAvoidingView>
   );
 };
@@ -196,6 +144,9 @@ const styles = StyleSheet.create({
   },
   modal: {
     backgroundColor: 'white'
+  },
+  snackbar: {
+    backgroundColor: '#2A9D8F'
   }
 });
 
