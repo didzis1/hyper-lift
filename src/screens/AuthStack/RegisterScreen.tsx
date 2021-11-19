@@ -13,7 +13,7 @@ import { AuthNavProps } from './AuthParamList';
 import FormikTextInput from '../../components/FormikTextInput';
 import { Formik } from 'formik';
 import { registerValidation } from '../../utils/validationSchemas';
-import { RegisterType } from '../../types/auth/RegisterType';
+import { RegisterType } from '../../types/UserType';
 import useRegister from '../../hooks/useRegister';
 import { Button, Caption, Paragraph, TextInput } from 'react-native-paper';
 import globalStyles from '../../globalStyles';
