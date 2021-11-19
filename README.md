@@ -66,4 +66,5 @@ _Testing_
 |  11.11   | 5h              | Worked on Home Page styling, updated some dependencies, created helper functions, updated theme colors                                             | Front-end  |
 |  16.11   | 8h              | Worked on Settings screen, created new cards for home screen, changed ThemeContext to Preference (will contain measurements later on)                                             | Front-end  |
 |  17.11   | 4h              | Reworked home screen, added TypeScript typing for various navigators, fixed some bugs                                             | Front-end  |
-| In total | 93,5h           |                                                                                                                                                              |
+|  19.11   | 8h              | Added a snackbar to maxlift screen (shows success/error message), changed weight to be a Float type instead of Int, CRUD functionality for max lifts works, styling yet to be finished | Front-end & Back-end  |
+| In total | 101,5h           |                                                                                                                                                              |
