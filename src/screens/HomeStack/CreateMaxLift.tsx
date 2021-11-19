@@ -10,7 +10,7 @@ import {
 import { Button } from 'react-native-paper';
 import FormikTextInput from '../../components/FormikTextInput';
 import useCreateMaxLift from '../../hooks/useCreateMaxLift';
-import { AddMaxLiftType } from '../../types/maxLift/AddMaxLiftType';
+import { AddMaxLiftInput } from '../../types/MaxLiftType';
 import { HomeNavProps } from './HomeParamList';
 
 const CreateMaxLift: React.FC<HomeNavProps<'CreateMaxLift'>> = ({
@@ -18,7 +18,7 @@ const CreateMaxLift: React.FC<HomeNavProps<'CreateMaxLift'>> = ({
 }) => {
   const { createMaxLift } = useCreateMaxLift();
 
-  const handleNewMaxLift = async (values: AddMaxLiftType) => {
+  const handleNewMaxLift = async (values: AddMaxLiftInput) => {
     try {
       await createMaxLift(values);
       navigation.navigate('MaxLifts', {
