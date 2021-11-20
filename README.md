@@ -22,7 +22,8 @@ Link to the back-end can be found [here](https://github.com/didzis1/hyperlift-ba
 
 _Front End_
 
-- React Native with TypeScript
+- TypeScript
+- React Native
 - React Navigation
 - React Native Paper
 - Apollo & GraphQL
@@ -30,10 +31,11 @@ _Front End_
 
 _Back end_
 
+- TypeScript
 - Node & Express
 - Apollo & GraphQL
 - TypeGraphQL
-- MongoDB/Typegoose
+- MongoDB / Typegoose
 
 _Testing_
 
