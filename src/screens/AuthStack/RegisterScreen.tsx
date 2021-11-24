@@ -13,7 +13,7 @@ import { AuthNavProps } from './AuthParamList';
 import FormikTextInput from '../../components/FormikTextInput';
 import { Formik } from 'formik';
 import { registerValidation } from '../../utils/validationSchemas';
-import { RegisterType } from '../../types/UserType';
+import { RegisterType } from '../../types/AuthTypes';
 import useRegister from '../../hooks/useRegister';
 import { Button, Caption, Paragraph, TextInput } from 'react-native-paper';
 import globalStyles from '../../globalStyles';
@@ -40,6 +40,7 @@ const RegisterScreen: React.FC<AuthNavProps<'RegisterScreen'>> = ({
       navigation.navigate('LoginScreen');
     } catch (error) {
       if (error instanceof Error) {
+        console.log(error);
         setError(error.message);
       }
     }

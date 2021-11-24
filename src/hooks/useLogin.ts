@@ -2,7 +2,7 @@ import { useMutation } from '@apollo/client';
 import { useContext } from 'react';
 import AuthStorageContext from '../contexts/AuthStorageContext';
 import { LOGIN } from '../graphql/auth/mutations';
-import { LoginType } from '../types/auth/LoginType';
+import { LoginType } from '../types/AuthTypes';
 import { useApolloClient } from '@apollo/client';
 
 const useLogin = () => {

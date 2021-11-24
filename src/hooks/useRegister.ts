@@ -1,14 +1,16 @@
-import { useMutation } from '@apollo/client';
+import { useApolloClient, useMutation } from '@apollo/client';
 import { REGISTER } from '../graphql/auth/mutations';
-import { RegisterType } from '../types/auth/RegisterType';
+import { RegisterType } from '../types/AuthTypes';
 
 const useRegister = () => {
   const [mutate, result] = useMutation(REGISTER);
+  const apolloClient = useApolloClient();
 
   const register = async (
     credentials: Omit<RegisterType, 'passwordConfirmation'>
-  ): Promise<any> => {
+  ) => {
     console.log('Register gets called');
+    console.log(credentials);
     const { data } = await mutate({
       variables: {
         registerInput: {
@@ -19,6 +21,7 @@ const useRegister = () => {
         }
       }
     });
+    apolloClient.resetStore();
     console.log('DATA', data);
     return data;
   };

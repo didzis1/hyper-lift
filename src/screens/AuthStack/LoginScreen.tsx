@@ -12,7 +12,7 @@ import { AuthNavProps } from './AuthParamList';
 import FormikTextInput from '../../components/FormikTextInput';
 import { Formik } from 'formik';
 import { loginValidation } from '../../utils/validationSchemas';
-import { LoginType } from '../../types/UserType';
+import { LoginType } from '../../types/AuthTypes';
 import useLogin from '../../hooks/useLogin';
 import { Button, Caption, TextInput } from 'react-native-paper';
 import { Entypo } from '@expo/vector-icons';
