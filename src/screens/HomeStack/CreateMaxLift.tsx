@@ -61,8 +61,11 @@ const CreateMaxLift: React.FC<HomeNavProps<'CreateMaxLift'>> = ({
                     keyboardType='number-pad'
                   />
 
-                  <Button mode='contained' onPress={() => handleSubmit()}>
-                    Send
+                  <Button
+                    mode='contained'
+                    uppercase={false}
+                    onPress={() => handleSubmit()}>
+                    Save
                   </Button>
                 </View>
               )}
