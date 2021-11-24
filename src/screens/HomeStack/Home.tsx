@@ -17,20 +17,20 @@ import { getCurrentDate } from '../../utils/getCurrentDate';
 import MaxLiftCard from '../../components/MaxLiftCard';
 import RoutineCards from '../../components/RoutineCards';
 
-const ProfileScreen: React.FC<HomeNavProps<'Home'>> = ({ navigation }) => {
+const Home: React.FC<HomeNavProps<'Home'>> = ({ navigation }) => {
   const [currentDay, setCurrentDay] = React.useState<string>('');
   const { currentUser } = useCurrentUser();
   const { maxLifts } = useGetMaxLift();
 
   const { colors } = useTheme();
-  if (!currentUser || !maxLifts) {
-    return <Loading />;
-  }
 
   React.useEffect(() => {
     setCurrentDay(getCurrentDate());
   }, []);
 
+  if (!currentUser || !maxLifts) {
+    return <Loading />;
+  }
   return (
     <SafeAreaView
       style={{
@@ -179,4 +179,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ProfileScreen;
+export default Home;
