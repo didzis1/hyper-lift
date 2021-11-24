@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   exerciseText: {
-    fontSize: 20,
+    fontSize: 18,
     color: '#E9C46A',
     fontWeight: 'normal',
     alignSelf: 'flex-start'
