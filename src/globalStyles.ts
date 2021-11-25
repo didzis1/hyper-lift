@@ -28,6 +28,20 @@ const globalStyles = StyleSheet.create({
   },
   caption: {
     textAlign: 'center'
+  },
+  cancelText: {
+    color: '#c43535'
+  },
+  saveText: {
+    color: '#2f6bd4'
+  },
+  input: {
+    width: '100%',
+    borderColor: '#00D8BE',
+    borderWidth: 1,
+    borderRadius: 4,
+    marginVertical: 5,
+    backgroundColor: '#FFFFFF'
   }
 });
 
