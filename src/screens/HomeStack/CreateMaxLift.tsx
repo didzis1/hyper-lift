@@ -5,9 +5,10 @@ import {
   Platform,
   TouchableWithoutFeedback,
   View,
-  StyleSheet
+  StyleSheet,
+  TouchableOpacity
 } from 'react-native';
-import { Button } from 'react-native-paper';
+import { Button, Text } from 'react-native-paper';
 import FormikTextInput from '../../components/FormikTextInput';
 import useCreateMaxLift from '../../hooks/useCreateMaxLift';
 import { AddMaxLiftInput } from '../../types/MaxLiftType';
@@ -55,6 +56,11 @@ const CreateMaxLift: React.FC<HomeNavProps<'CreateMaxLift'>> = ({
               {({ handleSubmit }) => (
                 <View>
                   <FormikTextInput name='exercise' label='Exercise' />
+
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('SearchExercise')}>
+                    <Text>Search Exercise</Text>
+                  </TouchableOpacity>
                   <FormikTextInput
                     name='weight'
                     label='Max weight (RM)'
