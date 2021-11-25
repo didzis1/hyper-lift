@@ -18,7 +18,7 @@ export type HomeParamList = {
   CreateRoutine: undefined;
   ChangeTheme: undefined;
   Measurements: undefined;
-  AddExercise: undefined;
+  SearchExercise: undefined;
 };
 
 export type HomeNavProps<T extends keyof HomeParamList> = {
