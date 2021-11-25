@@ -2,6 +2,7 @@ import React from 'react';
 import { KeyboardTypeOptions, StyleSheet, Text, View } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { useField } from 'formik';
+import globalStyles from '../globalStyles';
 
 type FormikTextInputProps = {
   label?: string;
@@ -22,7 +23,7 @@ const FormikTextInput = ({ label, name, ...props }: FormikTextInputProps) => {
     <View>
       {label && <Text style={styles.label}>{label}</Text>}
       <TextInput
-        style={styles.input}
+        style={globalStyles.input}
         onChangeText={(value) => helpers.setValue(value)}
         onBlur={() => helpers.setTouched(true)}
         value={field.value}
@@ -37,14 +38,6 @@ const FormikTextInput = ({ label, name, ...props }: FormikTextInputProps) => {
 };
 
 const styles = StyleSheet.create({
-  input: {
-    width: '100%',
-    borderColor: '#00D8BE',
-    borderWidth: 1,
-    borderRadius: 4,
-    marginVertical: 5,
-    backgroundColor: '#FFFFFF'
-  },
   label: {
     paddingVertical: 5
   },
