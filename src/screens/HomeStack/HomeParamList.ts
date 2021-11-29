@@ -18,6 +18,7 @@ export type HomeParamList = {
   };
   Profile: undefined;
   Settings: undefined;
+  Routines: undefined;
   CreateRoutine: undefined;
   ChangeTheme: undefined;
   Measurements: undefined;
