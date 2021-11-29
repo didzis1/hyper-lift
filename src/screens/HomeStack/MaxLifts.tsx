@@ -79,7 +79,7 @@ const MaxLifts = ({ navigation, route }: HomeNavProps<'MaxLifts'>) => {
                 uppercase={false}
                 mode='contained'
                 style={styles.addButton}
-                onPress={() => navigation.navigate('CreateMaxLift')}>
+                onPress={() => navigation.navigate('CreateMaxLift', {})}>
                 Add new exercise
               </Button>
             </View>
