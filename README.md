@@ -69,4 +69,5 @@ _Testing_
 |  16.11   | 8h              | Worked on Settings screen, created new cards for home screen, changed ThemeContext to Preference (will contain measurements later on)                                             | Front-end  |
 |  17.11   | 4h              | Reworked home screen, added TypeScript typing for various navigators, fixed some bugs                                             | Front-end  |
 |  19.11   | 8h              | Added a snackbar to maxlift screen (shows success/error message), changed weight to be a Float type instead of Int, CRUD functionality for max lifts works, styling yet to be finished | Front-end & Back-end  |
-| In total | 101,5h           |                                                                                                                                                              |
+|  29.11   | 8h              | Exercises can be searched through in max lifts (will be reusable in routines), updating max lifts now adds previous max lifts to the history (added new field called weightHistory to maxLift) | Front-end & Back-end  |
+| In total | 109,5h           |                                                                                                                                                              |
