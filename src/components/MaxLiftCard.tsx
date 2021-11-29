@@ -57,7 +57,7 @@ const MaxLiftCard: React.FC<MaxLiftCardProps> = ({ maxLifts, navigation }) => {
                   )}
                   style={styles.button}
                   labelStyle={styles.buttonText}
-                  onPress={() => navigation.navigate('MaxLifts', {})}>
+                  onPress={() => navigation.navigate('CreateMaxLift', {})}>
                   Add max lift
                 </Button>
               </View>
