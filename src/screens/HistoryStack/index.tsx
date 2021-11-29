@@ -1,6 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import History from './History';
+import CalendarHistory from './CalendarHistory';
 
 const Stack = createNativeStackNavigator();
 
@@ -8,8 +8,8 @@ const HistoryStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name='History'
-        component={History}
+        name='CalendarHistory'
+        component={CalendarHistory}
         options={{ title: 'Workout History', headerTitleAlign: 'center' }}
       />
     </Stack.Navigator>
