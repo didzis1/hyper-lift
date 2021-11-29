@@ -7,7 +7,7 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback
 } from 'react-native';
-import { Button, Text } from 'react-native-paper';
+import { Button, Title } from 'react-native-paper';
 import FormikTextInput from '../../components/FormikTextInput';
 import { HomeNavProps } from './HomeParamList';
 import { MaxLiftType } from '../../types/MaxLiftType';
@@ -63,7 +63,7 @@ const EditMaxLift: React.FC<HomeNavProps<'EditMaxLift'>> = ({
       style={{ flex: 1 }}>
       <TouchableWithoutFeedback>
         <View style={styles.container}>
-          <Text>Edit max lift</Text>
+          <Title>Update the weight</Title>
           <View>
             <Formik
               initialValues={{
@@ -86,17 +86,23 @@ const EditMaxLift: React.FC<HomeNavProps<'EditMaxLift'>> = ({
                     keyboardType='number-pad'
                   />
 
-                  <Button mode='contained' onPress={handleSubmit}>
-                    Update your max lift
+                  <Button
+                    mode='contained'
+                    uppercase={false}
+                    onPress={handleSubmit}>
+                    Update
                   </Button>
                 </View>
               )}
             </Formik>
+          </View>
+          <View style={styles.removeButtonContainer}>
             <Button
               mode='contained'
+              uppercase={false}
               style={styles.removeButton}
               onPress={() => handleDeleteMaxLift()}>
-              Delete max lift
+              Delete
             </Button>
           </View>
         </View>
@@ -109,6 +115,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20
+  },
+  removeButtonContainer: {
+    flex: 1,
+    justifyContent: 'flex-end'
   },
   removeButton: {
     backgroundColor: '#E76F51'
