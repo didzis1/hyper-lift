@@ -92,7 +92,7 @@ const HomeStack: React.FC<Props> = ({}) => {
         <Stack.Screen
           name='SearchExercise'
           component={SearchExercise}
-          options={({ navigation }) => ({
+          options={({ navigation, route }) => ({
             title: 'Select Exercise',
             headerTitleAlign: 'center',
             headerLeft: () => (
@@ -101,7 +101,7 @@ const HomeStack: React.FC<Props> = ({}) => {
               </TouchableOpacity>
             ),
             headerRight: () => (
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => route.params.submit?.current()}>
                 <Text style={globalStyles.saveText}>Save</Text>
               </TouchableOpacity>
             )
