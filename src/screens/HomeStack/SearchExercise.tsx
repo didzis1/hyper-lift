@@ -1,55 +1,74 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import {
+  StyleSheet,
+  View,
+  FlatList,
+  TouchableOpacity,
+  Alert
+} from 'react-native';
 import { Divider, Text, TextInput } from 'react-native-paper';
 import { HomeNavProps } from './HomeParamList';
+import { ExerciseDataType } from '../../types/ExerciseDataType';
+import ExerciseCard from '../../components/ExerciseCard';
 
 import exerciseList from '../../data/exercises.json';
 import globalStyles from '../../globalStyles';
 
-type ExerciseDataType = {
-  name: string;
-  force: string | null;
-  level: string;
-  mechanic: string | null;
-  equipment: string | null;
-  primaryMuscles: string[];
-  secondaryMuscles: string[];
-  instructions: string[];
-  category: string;
-};
-
-const ExerciseCard = ({ item }: { item: ExerciseDataType }) => {
+const Exercise = ({
+  item,
+  setSelectedExercise
+}: {
+  item: ExerciseDataType;
+  setSelectedExercise: React.Dispatch<
+    React.SetStateAction<ExerciseDataType | null>
+  >;
+}) => {
   return (
-    <View style={styles.exerciseCard}>
-      <View>
-        <Text style={styles.cardText}>{item.name}</Text>
-      </View>
-
-      <View>
-        <Text style={styles.cardText}>Level: {item.level}</Text>
-      </View>
-
-      <View>
-        <Text style={styles.cardText}>Type: {item.mechanic}</Text>
-      </View>
-    </View>
+    <TouchableOpacity onPress={() => setSelectedExercise(item)}>
+      <ExerciseCard item={item} />
+    </TouchableOpacity>
   );
 };
 
-const SearchExercise: React.FC<HomeNavProps<'SearchExercise'>> = ({}) => {
+const SearchExercise: React.FC<HomeNavProps<'SearchExercise'>> = ({
+  navigation
+}) => {
+  const submit = useRef(() => {});
+
   const [exercises, setExercises] = useState<[] | ExerciseDataType[]>([]);
   const [searchValue, setSearchValue] = useState<string>('');
+  const [selectedExercise, setSelectedExercise] =
+    useState<ExerciseDataType | null>(null);
+
+  submit.current = () => {
+    if (!selectedExercise) {
+      Alert.alert('Exercise missing', 'You must select an exercise to add it', [
+        {
+          text: 'Okay',
+          onPress: () => console.log('Cancel pressed'),
+          style: 'cancel'
+        }
+      ]);
+      return null;
+    }
+    navigation.navigate('CreateMaxLift', {
+      exercise: selectedExercise
+    });
+    return selectedExercise;
+  };
 
   useEffect(() => {
+    navigation.setParams({ submit });
     setExercises(exerciseList.exercises);
   }, []);
 
   const renderItem = (item: ExerciseDataType) => {
-    return <ExerciseCard item={item} />;
+    return <Exercise item={item} setSelectedExercise={setSelectedExercise} />;
   };
 
   return (
     <View style={styles.container}>
+      <Text>Search for an exercise that you would like to add.</Text>
       <View>
         <TextInput
           dense={true}
@@ -57,10 +76,13 @@ const SearchExercise: React.FC<HomeNavProps<'SearchExercise'>> = ({}) => {
           placeholder='Search'
           onChangeText={(value) => setSearchValue(value)}
         />
-        <Text>{searchValue}</Text>
+        <Text>{selectedExercise?.name}</Text>
       </View>
       <FlatList
-        data={exercises}
+        // Filter exercises by name with search bar
+        data={exercises.filter((exercise) =>
+          exercise.name.toLowerCase().includes(searchValue.toLowerCase())
+        )}
         keyExtractor={(item) => item.name}
         ItemSeparatorComponent={() => <Divider style={styles.separator} />}
         renderItem={({ item }) => renderItem(item)}
