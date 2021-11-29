@@ -2,6 +2,7 @@ import { RouteProp } from '@react-navigation/core';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { MaxLiftType } from '../../types/MaxLiftType';
+import { ExerciseDataType } from '../../types/ExerciseDataType';
 
 export type HomeParamList = {
   Home: undefined;
@@ -9,7 +10,9 @@ export type HomeParamList = {
     snackBarMessage?: string | null;
     snackBarError?: boolean | null;
   };
-  CreateMaxLift: undefined;
+  CreateMaxLift: {
+    exercise?: ExerciseDataType | null;
+  };
   EditMaxLift: {
     maxLift: MaxLiftType;
   };
@@ -18,7 +21,9 @@ export type HomeParamList = {
   CreateRoutine: undefined;
   ChangeTheme: undefined;
   Measurements: undefined;
-  SearchExercise: undefined;
+  SearchExercise: {
+    submit?: React.MutableRefObject<() => void>;
+  };
 };
 
 export type HomeNavProps<T extends keyof HomeParamList> = {
