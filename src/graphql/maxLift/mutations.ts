@@ -11,11 +11,15 @@ export const ADD_MAX_LIFT = gql`
 `;
 
 export const EDIT_MAX_LIFT = gql`
-  mutation EditMaxLiftMutation($maxLiftData: EditMaxLiftInput!) {
+  mutation Mutation($maxLiftData: EditMaxLiftInput!) {
     editMaxLift(maxLiftData: $maxLiftData) {
       id
       exercise
       weight
+      weightHistory {
+        weight
+        date
+      }
     }
   }
 `;
