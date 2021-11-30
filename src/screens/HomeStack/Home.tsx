@@ -13,7 +13,7 @@ import useGetMaxLift from '../../hooks/useGetMaxLift';
 import Loading from '../../components/Loading';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { getCurrentDate } from '../../utils/getCurrentDate';
+import { getCurrentDate } from '../../utils/dateFormat';
 import MaxLiftCard from '../../components/MaxLiftCard';
 import RoutineCards from '../../components/RoutineCards';
 
