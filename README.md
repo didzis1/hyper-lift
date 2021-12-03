@@ -71,4 +71,5 @@ _Testing_
 |  19.11   | 8h              | Added a snackbar to maxlift screen (shows success/error message), changed weight to be a Float type instead of Int, CRUD functionality for max lifts works, styling yet to be finished | Front-end & Back-end  |
 |  29.11   | 8h              | Exercises can be searched through in max lifts (will be reusable in routines), updating max lifts now adds previous max lifts to the history (added new field called weightHistory to maxLift) | Front-end & Back-end  |
 |  30.11   | 4h              | Updated max lifts typing and created a list of history max lifts under each exercise | Front-end |
+|  03.12   | 4h              | Select exercise model now highlights the exercise that is selected. Fixed typing in HomeParamList | Front-end |
 | In total | 113,5h           |                                                                                                                                                              |
