@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Image,
   StyleSheet,
@@ -8,29 +8,35 @@ import {
 } from 'react-native';
 import { Text, useTheme } from 'react-native-paper';
 import { HomeNavProps } from './HomeParamList';
-import useCurrentUser from '../../hooks/useCurrentUser';
-import useGetMaxLift from '../../hooks/useGetMaxLift';
-import Loading from '../../components/Loading';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { getCurrentDate } from '../../utils/dateFormat';
+
+import useCurrentUser from '../../hooks/useCurrentUser';
+import useGetMaxLift from '../../hooks/useGetMaxLift';
+import useGetRoutines from '../../hooks/useGetRoutines';
+
+import Loading from '../../components/Loading';
 import MaxLiftCard from '../../components/MaxLiftCard';
 import RoutineCards from '../../components/RoutineCards';
 
 const Home: React.FC<HomeNavProps<'Home'>> = ({ navigation }) => {
-  const [currentDay, setCurrentDay] = React.useState<string>('');
   const { currentUser } = useCurrentUser();
   const { maxLifts } = useGetMaxLift();
+  const { routines } = useGetRoutines();
+
+  const [currentDay, setCurrentDay] = React.useState<string>('');
 
   const { colors } = useTheme();
 
-  React.useEffect(() => {
+  useEffect(() => {
     setCurrentDay(getCurrentDate());
   }, []);
 
   if (!currentUser || !maxLifts) {
     return <Loading />;
   }
+
   return (
     <SafeAreaView
       style={{
@@ -98,7 +104,7 @@ const Home: React.FC<HomeNavProps<'Home'>> = ({ navigation }) => {
           </View>
 
           <RoutineCards
-            routines={currentUser.routines}
+            routines={routines ? routines : []}
             navigation={navigation}
           />
         </ScrollView>
