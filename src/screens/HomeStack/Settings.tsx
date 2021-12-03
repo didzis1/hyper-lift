@@ -1,10 +1,12 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { List } from 'react-native-paper';
+import { List, useTheme } from 'react-native-paper';
 
 import { HomeNavProps } from './HomeParamList';
 
 const Settings: React.FC<HomeNavProps<'Settings'>> = ({ navigation }) => {
+  const { colors } = useTheme();
+
   return (
     <View style={styles.container}>
       <List.Section>
@@ -15,13 +17,13 @@ const Settings: React.FC<HomeNavProps<'Settings'>> = ({ navigation }) => {
           style={styles.listSection}
           title='Profile'
           onPress={() => navigation.navigate('Profile')}
-          left={() => <List.Icon icon='account' color='#2C4E5B' />}
+          left={() => <List.Icon icon='account' color={colors.primary} />}
         />
         <List.Item
           style={styles.listSection}
           title='Account'
           onPress={() => console.log('Account')}
-          left={() => <List.Icon icon='lock' color='#2C4E5B' />}
+          left={() => <List.Icon icon='lock' color={colors.primary} />}
         />
       </List.Section>
 
@@ -33,13 +35,13 @@ const Settings: React.FC<HomeNavProps<'Settings'>> = ({ navigation }) => {
           style={styles.listSection}
           title='Measurements'
           onPress={() => navigation.navigate('Measurements')}
-          left={() => <List.Icon icon='weight' color='#2C4E5B' />}
+          left={() => <List.Icon icon='weight' color={colors.primary} />}
         />
         <List.Item
           style={styles.listSection}
           title='Theme'
           onPress={() => navigation.navigate('ChangeTheme')}
-          left={() => <List.Icon icon='brightness-4' color='#2C4E5B' />}
+          left={() => <List.Icon icon='brightness-4' color={colors.primary} />}
         />
       </List.Section>
     </View>
