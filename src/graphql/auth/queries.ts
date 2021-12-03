@@ -10,21 +10,6 @@ export const ME = gql`
       email
       age
       liftingType
-      routines {
-        id
-        description
-        workouts {
-          name
-          exercises {
-            exerciseName
-            setsData {
-              reps
-              set
-              weight
-            }
-          }
-        }
-      }
     }
   }
 `;
