@@ -1,11 +1,15 @@
+import React, { useState } from 'react';
 import { FieldArray, Formik } from 'formik';
-import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { Button } from 'react-native-paper';
-import FormikTextInput from '../../components/FormikTextInput';
 import globalStyles from '../../globalStyles';
+import SegmentedControl from '@react-native-segmented-control/segmented-control';
+
+import FormikTextInput from '../../components/FormikTextInput';
 
 const CreateRoutine = () => {
+  const [splitPage, setSplitPage] = useState<number>(0);
+
   return (
     <ScrollView>
       <View style={globalStyles.container}>
@@ -63,6 +67,22 @@ const CreateRoutine = () => {
               <Button uppercase={false} mode='contained' onPress={handleSubmit}>
                 Create routine
               </Button>
+
+              <SegmentedControl
+                values={[
+                  'Day 1',
+                  'Day 2',
+                  'Day 3',
+                  'Day 4',
+                  'Day 5',
+                  'Day 6',
+                  'Day 7'
+                ]}
+                selectedIndex={splitPage}
+                onChange={(event) =>
+                  setSplitPage(event.nativeEvent.selectedSegmentIndex)
+                }
+              />
             </View>
           )}
         </Formik>
