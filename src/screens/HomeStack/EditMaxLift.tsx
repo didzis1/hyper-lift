@@ -112,22 +112,24 @@ const EditMaxLift: React.FC<HomeNavProps<'EditMaxLift'>> = ({
                 <Subheading>Weight</Subheading>
                 <Subheading>Date</Subheading>
               </View>
-              {route.params.maxLift.weightHistory.map((weightHistory) => {
-                return (
-                  <View style={styles.historyDataContainer}>
-                    <View style={styles.historyTextContainer}>
-                      <Text style={styles.historyDataText}>
-                        {weightHistory.weight} kg
-                      </Text>
+              {route.params.maxLift.weightHistory.map(
+                (weightHistory, index) => {
+                  return (
+                    <View key={index} style={styles.historyDataContainer}>
+                      <View style={styles.historyTextContainer}>
+                        <Text style={styles.historyDataText}>
+                          {weightHistory.weight} kg
+                        </Text>
+                      </View>
+                      <View style={styles.historyTextContainer}>
+                        <Text style={styles.historyDataText}>
+                          {formatStringDate(weightHistory.date)}
+                        </Text>
+                      </View>
                     </View>
-                    <View style={styles.historyTextContainer}>
-                      <Text style={styles.historyDataText}>
-                        {formatStringDate(weightHistory.date)}
-                      </Text>
-                    </View>
-                  </View>
-                );
-              })}
+                  );
+                }
+              )}
             </View>
 
             <View style={styles.removeButtonContainer}>
