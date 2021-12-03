@@ -65,7 +65,9 @@ const CreateMaxLift: React.FC<HomeNavProps<'CreateMaxLift'>> = ({
 
                       <TouchableOpacity
                         onPress={() =>
-                          navigation.navigate('SearchExercise', {})
+                          navigation.navigate('SearchExercise', {
+                            isSelected: route.params.exercise
+                          })
                         }>
                         <ExerciseCard item={route.params.exercise} />
                       </TouchableOpacity>
