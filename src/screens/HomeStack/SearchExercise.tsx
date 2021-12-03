@@ -3,8 +3,8 @@ import {
   StyleSheet,
   View,
   FlatList,
-  TouchableOpacity,
-  Alert
+  Alert,
+  TouchableOpacity
 } from 'react-native';
 import { Divider, Text, TextInput } from 'react-native-paper';
 import { HomeNavProps } from './HomeParamList';
@@ -14,31 +14,18 @@ import ExerciseCard from '../../components/ExerciseCard';
 import exerciseList from '../../data/exercises.json';
 import globalStyles from '../../globalStyles';
 
-const Exercise = ({
-  item,
-  setSelectedExercise
-}: {
-  item: ExerciseDataType;
-  setSelectedExercise: React.Dispatch<
-    React.SetStateAction<ExerciseDataType | null>
-  >;
-}) => {
-  return (
-    <TouchableOpacity onPress={() => setSelectedExercise(item)}>
-      <ExerciseCard item={item} />
-    </TouchableOpacity>
-  );
-};
-
 const SearchExercise: React.FC<HomeNavProps<'SearchExercise'>> = ({
-  navigation
+  navigation,
+  route
 }) => {
   const submit = useRef(() => {});
 
   const [exercises, setExercises] = useState<[] | ExerciseDataType[]>([]);
   const [searchValue, setSearchValue] = useState<string>('');
   const [selectedExercise, setSelectedExercise] =
-    useState<ExerciseDataType | null>(null);
+    useState<ExerciseDataType | null>(
+      route.params.isSelected ? route.params.isSelected : null
+    );
 
   submit.current = () => {
     if (!selectedExercise) {
@@ -63,7 +50,17 @@ const SearchExercise: React.FC<HomeNavProps<'SearchExercise'>> = ({
   }, []);
 
   const renderItem = (item: ExerciseDataType) => {
-    return <Exercise item={item} setSelectedExercise={setSelectedExercise} />;
+    // If the item is selected, change it's background color
+    const isSelected = selectedExercise === item;
+
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          setSelectedExercise(item);
+        }}>
+        <ExerciseCard isSelected={isSelected} item={item} />
+      </TouchableOpacity>
+    );
   };
 
   return (
@@ -76,7 +73,6 @@ const SearchExercise: React.FC<HomeNavProps<'SearchExercise'>> = ({
           placeholder='Search'
           onChangeText={(value) => setSearchValue(value)}
         />
-        <Text>{selectedExercise?.name}</Text>
       </View>
       <FlatList
         // Filter exercises by name with search bar
@@ -106,6 +102,9 @@ const styles = StyleSheet.create({
   },
   cardText: {
     color: '#FFFFFF'
+  },
+  selectedCard: {
+    backgroundColor: '#E9C46A'
   }
 });
 
