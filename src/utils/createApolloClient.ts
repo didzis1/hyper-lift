@@ -2,6 +2,7 @@ import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import Constants from 'expo-constants';
 import { AuthStorageType } from './authStorage';
+
 const httpLink = createHttpLink({
   uri: `http://${Constants?.manifest?.extra?.local_ip}:4000/graphql`
 });
