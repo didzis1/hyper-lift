@@ -3,11 +3,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import AuthStack from './screens/AuthStack';
 import AppTabs from './screens/AppTabs';
 import useCurrentUser from './hooks/useCurrentUser';
-import { ActivityIndicator } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import PreferenceContext from './contexts/PreferenceContext';
 
 import { CombinedDarkTheme, CombinedDefaultTheme } from './theme';
+import Loading from './components/Loading';
 
 const Routes: React.FC = () => {
   const { currentUser, loading } = useCurrentUser();
@@ -16,10 +16,9 @@ const Routes: React.FC = () => {
   const theme = isDarkTheme ? CombinedDarkTheme : CombinedDefaultTheme;
 
   if (loading) {
-    return <ActivityIndicator size='large' />;
+    return <Loading />;
   }
 
-  console.log(currentUser);
   return (
     <PaperProvider theme={theme}>
       <NavigationContainer theme={theme}>
