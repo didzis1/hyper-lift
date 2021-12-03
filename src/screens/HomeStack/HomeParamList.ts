@@ -24,6 +24,7 @@ export type HomeParamList = {
   Measurements: undefined;
   SearchExercise: {
     submit?: React.MutableRefObject<() => void>;
+    isSelected: ExerciseDataType | null | undefined;
   };
 };
 
