@@ -72,4 +72,5 @@ _Testing_
 |  29.11   | 8h              | Exercises can be searched through in max lifts (will be reusable in routines), updating max lifts now adds previous max lifts to the history (added new field called weightHistory to maxLift) | Front-end & Back-end  |
 |  30.11   | 4h              | Updated max lifts typing and created a list of history max lifts under each exercise | Front-end |
 |  03.12   | 4h              | Select exercise model now highlights the exercise that is selected. Fixed typing in HomeParamList | Front-end |
-| In total | 117,5h           |                                                                                                                                                              |
+|  04.12   | 4h              | Corrected error messages on back-end, duplicate max lifts cannot be added, wrote new tests for max lifts. | Back-end |
+| In total | 121,5h           |                                                                                                                                                              |
