@@ -19,12 +19,17 @@ export type HomeParamList = {
   Profile: undefined;
   Settings: undefined;
   Routines: undefined;
-  CreateRoutine: undefined;
+  CreateRoutine: {
+    exercise?: ExerciseDataType | null;
+    split?: number | null;
+  };
   ChangeTheme: undefined;
   Measurements: undefined;
   SearchExercise: {
     submit?: React.MutableRefObject<() => void>;
     isSelected: ExerciseDataType | null | undefined;
+    returnTo: keyof HomeParamList;
+    split?: number | null;
   };
 };
 
