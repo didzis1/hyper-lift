@@ -72,7 +72,22 @@ const HomeStack: React.FC<Props> = ({}) => {
         <Stack.Screen
           name='CreateRoutine'
           component={CreateRoutine}
-          options={{ title: 'Create Routine', headerTitleAlign: 'center' }}
+          options={() => ({
+            title: 'Create Routine',
+            headerTitleAlign: 'center'
+            // Is info button necessary? How does the user benefit from it?
+            // headerRight: () => (
+            //   <TouchableOpacity
+            // 		onPress={() => }
+            // 	>
+            //     <Ionicons
+            //       name='ios-information-circle-outline'
+            //       size={28}
+            //       color='#2A9D8F'
+            //     />
+            //   </TouchableOpacity>
+            // )
+          })}
         />
 
         <Stack.Screen

@@ -38,8 +38,9 @@ const SearchExercise: React.FC<HomeNavProps<'SearchExercise'>> = ({
       ]);
       return null;
     }
-    navigation.navigate('CreateMaxLift', {
-      exercise: selectedExercise
+    navigation.navigate(route.params.returnTo, {
+      exercise: selectedExercise,
+      split: route.params.split ?? null
     });
     return selectedExercise;
   };

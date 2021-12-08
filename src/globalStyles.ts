@@ -26,6 +26,14 @@ const globalStyles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 3
   },
+  removeButton: {
+    backgroundColor: '#FE5E41',
+    marginVertical: 5
+  },
+  searchButton: {
+    backgroundColor: '#E9C46A',
+    marginVertical: 5
+  },
   caption: {
     textAlign: 'center'
   },
