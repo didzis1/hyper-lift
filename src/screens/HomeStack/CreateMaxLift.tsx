@@ -14,6 +14,7 @@ import useCreateMaxLift from '../../hooks/useCreateMaxLift';
 import { AddMaxLiftInput } from '../../types/MaxLiftType';
 import { HomeNavProps } from './HomeParamList';
 import ExerciseCard from '../../components/ExerciseCard';
+import globalStyles from '../../globalStyles';
 
 const CreateMaxLift: React.FC<HomeNavProps<'CreateMaxLift'>> = ({
   navigation,
@@ -66,7 +67,8 @@ const CreateMaxLift: React.FC<HomeNavProps<'CreateMaxLift'>> = ({
                       <TouchableOpacity
                         onPress={() =>
                           navigation.navigate('SearchExercise', {
-                            isSelected: route.params.exercise
+                            isSelected: route.params.exercise,
+                            returnTo: 'CreateMaxLift'
                           })
                         }>
                         <ExerciseCard item={route.params.exercise} />
@@ -99,8 +101,13 @@ const CreateMaxLift: React.FC<HomeNavProps<'CreateMaxLift'>> = ({
       <Button
         mode='contained'
         uppercase={false}
-        onPress={() => navigation.navigate('SearchExercise', {})}
-        style={styles.searchButton}>
+        onPress={() =>
+          navigation.navigate('SearchExercise', {
+            isSelected: null,
+            returnTo: 'CreateMaxLift'
+          })
+        }
+        style={globalStyles.searchButton}>
         Search for an exercise
       </Button>
     </View>
@@ -114,10 +121,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  formContainer: {},
-  searchButton: {
-    backgroundColor: '#E9C46A'
-  }
+  formContainer: {}
 });
 
 export default CreateMaxLift;
