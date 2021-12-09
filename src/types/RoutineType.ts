@@ -1,6 +1,6 @@
 export type RoutineType = {
   id: string;
-  description?: string;
+  description: string;
   workouts: WorkoutSplitType[];
 };
 
@@ -13,5 +13,14 @@ export type ExerciseType = {
   exerciseName: string;
   reps: number;
   sets: number;
-  weight?: number;
+};
+
+export type RoutineInputType = Omit<RoutineType, 'id'>;
+
+export type RoutineInitialValuesType = {
+  description: string;
+  workouts: {
+    name: string;
+    exercises: ExerciseType[] | [];
+  }[];
 };
