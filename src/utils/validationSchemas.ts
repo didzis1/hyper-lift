@@ -37,3 +37,22 @@ export const loginValidation = yup.object().shape({
     .max(50, 'Password length cannot be higher than 50 characters')
     .required('Password is required')
 });
+
+export const routineValidation = yup.object().shape({
+  description: yup.string().required('Routine title is required'),
+  workouts: yup.array().of(
+    yup.object().shape({
+      name: yup.string().required('Workout name is required'),
+      exercises: yup
+        .array()
+        .min(1, 'At least one exercise is required')
+        .of(
+          yup.object().shape({
+            exerciseName: yup.string(),
+            reps: yup.string().required('Reps are required'),
+            sets: yup.string().required('Sets are required')
+          })
+        )
+    })
+  )
+});
