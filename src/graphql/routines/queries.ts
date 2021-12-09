@@ -9,11 +9,8 @@ export const GET_ROUTINES = gql`
         name
         exercises {
           exerciseName
-          setsData {
-            reps
-            set
-            weight
-          }
+          reps
+          sets
         }
       }
     }

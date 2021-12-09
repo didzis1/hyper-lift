@@ -9,11 +9,8 @@ export const CREATE_ROUTINE = gql`
         name
         exercises {
           exerciseName
-          setsData {
-            reps
-            set
-            weight
-          }
+          reps
+          sets
         }
       }
     }
