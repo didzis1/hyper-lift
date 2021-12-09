@@ -19,7 +19,18 @@ const RoutineCards: React.FC<RoutineCardsProps> = ({
   return (
     <View style={styles.container}>
       {routines.length > 0 ? (
-        <Text>Length is over one</Text>
+        <>
+          <Text>Length is over one</Text>
+          <Button
+            mode='contained'
+            uppercase={false}
+            icon={() => <AntDesign name='retweet' size={24} color='#2C4E5B' />}
+            style={styles.button}
+            labelStyle={styles.buttonText}
+            onPress={() => navigation.navigate('CreateRoutine', {})}>
+            Create a routine
+          </Button>
+        </>
       ) : (
         <View style={styles.contentContainer}>
           <View style={styles.innerCardContainer}>
@@ -34,7 +45,7 @@ const RoutineCards: React.FC<RoutineCardsProps> = ({
               )}
               style={styles.button}
               labelStyle={styles.buttonText}
-              onPress={() => navigation.navigate('CreateRoutine')}>
+              onPress={() => navigation.navigate('CreateRoutine', {})}>
               Create a routine
             </Button>
           </View>

@@ -1,58 +1,42 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { FieldArray, Formik } from 'formik';
 import { Alert, ScrollView, StyleSheet, View } from 'react-native';
-import { Button, Divider, Text, Title } from 'react-native-paper';
-import globalStyles from '../../globalStyles';
+import { Button, Modal, Portal, Text, Title } from 'react-native-paper';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import globalStyles from '../../globalStyles';
 
 import FormikTextInput from '../../components/FormikTextInput';
 import { HomeNavProps } from './HomeParamList';
-import { ExerciseDataType } from '../../types/ExerciseDataType';
-
-type FormSplit = {
-  split: number;
-  exercises: ExerciseDataType[];
-};
+import SearchModal from '../../components/SearchModal';
+import { ModalDataType } from '../../types/ModalType';
+import {
+  RoutineInitialValuesType,
+  RoutineInputType
+} from '../../types/RoutineType';
+import { routineValidation } from '../../utils/validationSchemas';
+import useCreateRoutine from '../../hooks/useCreateRoutine';
 
 const CreateRoutine: React.FC<HomeNavProps<'CreateRoutine'>> = ({
-  navigation,
-  route
+  navigation
 }) => {
-  const [formSplits, setFormSplits] = useState<FormSplit[]>([]);
+  const [modalData, setModalData] = useState<ModalDataType>({
+    visible: false,
+    workoutIndex: null,
+    workoutExercises: null
+  });
 
-  // Add exercise to form state when new exercise is selected
-  useEffect(() => {
-    if (route.params?.exercise != null && route.params?.split != null) {
-      const splitExists = formSplits.find(
-        (formSplit) => formSplit.split === route.params.split
-      );
-      // If the split exists (has at least one exercise in it), add exercise to that split
-      if (splitExists) {
-        const updatedSplits = formSplits.map((stateSplit) => {
-          if (stateSplit.split === splitExists.split) {
-            return {
-              split: stateSplit.split,
-              exercises: [...stateSplit.exercises, route.params.exercise!]
-            };
-          } else {
-            return stateSplit;
-          }
-        });
-        setFormSplits(() => updatedSplits);
-      } else {
-        // Split doesn't exist in the state (has no exercises), add split and exercise to state
-        const newSplit = {
-          split: route.params.split,
-          exercises: [route.params.exercise]
-        };
-        setFormSplits(() => formSplits.concat(newSplit));
+  const { createRoutine } = useCreateRoutine();
+
+  const handleCreateRoutine = async (values: RoutineInputType) => {
+    console.log(values);
+    try {
+      await createRoutine(values);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
       }
     }
-
-    // Remove exercise and split from parameters so that re-render doesn't add the exercise twice
-    navigation.setParams({ exercise: null, split: null });
-    return;
-  }, [route.params?.exercise]);
+  };
 
   const dismiss = useRef(() => {});
 
@@ -75,9 +59,14 @@ const CreateRoutine: React.FC<HomeNavProps<'CreateRoutine'>> = ({
     );
   };
 
-  const handleSubmitRoutine = (values: any) => {
-    console.log(values);
-    console.log('exercises', formSplits);
+  const initialValues: RoutineInitialValuesType = {
+    description: '',
+    workouts: [
+      {
+        name: '',
+        exercises: []
+      }
+    ]
   };
 
   return (
@@ -85,48 +74,86 @@ const CreateRoutine: React.FC<HomeNavProps<'CreateRoutine'>> = ({
       <View style={styles.container}>
         <Formik
           enableReinitialize
-          initialValues={{
-            description: '',
-            workouts: formSplits.map((formSplit) => ({
-              name: '',
-              exercises: formSplit.exercises.map((exercise) => ({
-                exerciseName: exercise.name,
-                reps: '',
-                sets: ''
+          initialValues={initialValues}
+          validateOnChange={false}
+          validationSchema={routineValidation}
+          onSubmit={(values) =>
+            // Loop over values and parse sets/reps to number
+            handleCreateRoutine({
+              description: values.description,
+              workouts: values.workouts.map((workout) => ({
+                name: workout.name,
+                exercises: workout.exercises.map((exercise) => ({
+                  exerciseName: exercise.exerciseName,
+                  reps: Number(exercise.reps),
+                  sets: Number(exercise.sets)
+                }))
               }))
-            }))
-          }}
-          onSubmit={(values) => handleSubmitRoutine(values)}>
-          {({ handleSubmit, values }) => (
+            })
+          }>
+          {({ handleSubmit, values, setFieldValue, errors }) => (
             <View style={styles.form}>
               <FormikTextInput
-                label='Give a name to your routine'
+                label='Routine Title'
                 placeholder='eg. Push Pull Legs'
                 name='description'
               />
               <FieldArray name='workouts'>
                 {({ push, remove }) => (
                   <>
-                    {values.workouts.map((workout, workoutIndex) => (
-                      <View key={workoutIndex} style={styles.splitBox}>
-                        <Title>{`Day ${workoutIndex + 1}`}</Title>
-                        <FormikTextInput
-                          label='Name your split'
-                          name={`workouts[${workoutIndex}.name]`}
-                          placeholder='eg. Push A'
-                        />
-                        {workout.exercises.map((exercise, exerciseIndex) => {
-                          return (
-                            <View key={exercise.exerciseName}>
+                    {values.workouts.map((workout, workoutIndex) => {
+                      console.log('Errors', errors);
+                      return (
+                        <View key={workoutIndex} style={styles.splitBox}>
+                          <Title>{`Day ${workoutIndex + 1}`}</Title>
+                          <FormikTextInput
+                            label='Name your split'
+                            name={`workouts[${workoutIndex}.name]`}
+                            placeholder='eg. Push A'
+                          />
+                          <View>
+                            <View style={styles.exerciseContainer}>
+                              <View style={styles.exerciseNameContainer}>
+                                <Text>Exercise name</Text>
+                              </View>
+                              <View style={styles.repSetContainer}>
+                                <Text>Sets</Text>
+                              </View>
+
+                              <View style={styles.repSetContainer}>
+                                <Text>Reps</Text>
+                              </View>
+                            </View>
+                          </View>
+                          <Portal>
+                            <Modal
+                              visible={modalData.visible}
+                              onDismiss={() =>
+                                setModalData({
+                                  visible: false,
+                                  workoutIndex: null,
+                                  workoutExercises: null
+                                })
+                              }
+                              contentContainerStyle={styles.modal}>
+                              <SearchModal
+                                setFieldValue={setFieldValue}
+                                modalData={modalData}
+                                setModalData={setModalData}
+                              />
+                            </Modal>
+                          </Portal>
+
+                          {workout.exercises.map((exercise, exerciseIndex) => (
+                            <View
+                              key={`${exercise.exerciseName}-${exerciseIndex}`}>
                               <View style={styles.exerciseContainer}>
                                 <View style={styles.exerciseNameContainer}>
-                                  <Text style={styles.exerciseName}>
-                                    {exercise.exerciseName}
-                                  </Text>
+                                  <Text>{exercise.exerciseName}</Text>
                                 </View>
                                 <View style={styles.repSetContainer}>
                                   <FormikTextInput
-                                    placeholder='5'
+                                    placeholder='3'
                                     name={`workouts[${workoutIndex}].exercises[${exerciseIndex}].sets`}
                                     keyboardType='number-pad'
                                   />
@@ -134,59 +161,59 @@ const CreateRoutine: React.FC<HomeNavProps<'CreateRoutine'>> = ({
 
                                 <View style={styles.repSetContainer}>
                                   <FormikTextInput
-                                    placeholder='10'
+                                    placeholder='8'
                                     name={`workouts[${workoutIndex}].exercises[${exerciseIndex}].reps`}
                                     keyboardType='number-pad'
                                   />
                                 </View>
                               </View>
-                              <Divider />
                             </View>
-                          );
-                        })}
+                          ))}
 
-                        <View style={styles.splitButtonContainer}>
-                          <Button
-                            style={globalStyles.searchButton}
-                            mode='contained'
-                            uppercase={false}
-                            onPress={() =>
-                              navigation.navigate('SearchExercise', {
-                                isSelected: null,
-                                returnTo: 'CreateRoutine',
-                                split: workoutIndex
-                              })
-                            }
-                            icon={() => (
-                              <Ionicons
-                                name='add-outline'
-                                size={24}
-                                color='white'
-                              />
-                            )}>
-                            Exercise
-                          </Button>
+                          <View style={styles.splitButtonContainer}>
+                            <Button
+                              style={globalStyles.searchButton}
+                              mode='contained'
+                              uppercase={false}
+                              onPress={() =>
+                                setModalData({
+                                  visible: true,
+                                  workoutIndex: workoutIndex,
+                                  workoutExercises: workout.exercises.length
+                                })
+                              }
+                              icon={() => (
+                                <Ionicons
+                                  name='add-outline'
+                                  size={24}
+                                  color='white'
+                                />
+                              )}>
+                              Exercise
+                            </Button>
 
-                          <Button
-                            uppercase={false}
-                            style={globalStyles.removeButton}
-                            mode='contained'
-                            onPress={() => remove(index)}
-                            icon={() => (
-                              <MaterialCommunityIcons
-                                name='text-box-remove-outline'
-                                size={24}
-                                color='white'
-                              />
-                            )}>
-                            Delete
-                          </Button>
+                            <Button
+                              uppercase={false}
+                              style={globalStyles.removeButton}
+                              mode='contained'
+                              onPress={() => remove(workoutIndex)}
+                              icon={() => (
+                                <MaterialCommunityIcons
+                                  name='text-box-remove-outline'
+                                  size={24}
+                                  color='white'
+                                />
+                              )}>
+                              Delete
+                            </Button>
+                          </View>
                         </View>
-                      </View>
-                    ))}
+                      );
+                    })}
                     <Button
                       uppercase={false}
                       mode='contained'
+                      // Generate a new split box
                       onPress={() => push({ name: '', exercises: [] })}>
                       Add Split
                     </Button>
@@ -237,9 +264,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   exerciseNameContainer: {
-    flex: 1,
+    flex: 3,
     justifyContent: 'center',
-    alignItems: 'flex-start',
     marginHorizontal: 3
   },
   exerciseName: {
@@ -251,8 +277,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 3
   },
   createContainer: {
+    flex: 1
+  },
+  modal: {
     flex: 1,
-    justifyContent: 'flex-end'
+    backgroundColor: '#FFFFFF'
   }
 });
 
