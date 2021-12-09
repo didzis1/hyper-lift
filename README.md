@@ -74,4 +74,5 @@ _Testing_
 |  03.12   | 4h              | Select exercise model now highlights the exercise that is selected. Fixed typing in HomeParamList | Front-end |
 |  04.12   | 4h              | Corrected error messages on back-end, duplicate max lifts cannot be added, wrote new tests for max lifts. | Back-end |
 |  08.12   | 7h              | Started working on the form for creating a routine. Simplified sets/reps saving in the back-end. | Front-end & Back-end |
-| In total | 128,5h           |                                                                                                                                                              |
+|  09.12   | 7,5h              | Create routine form now has a modal for searching exercises. This was necessary to implement to keep the form state intact. (Form state was reset if navigated to SearchExercise screen). Routine can now be created (validation, small fixes still in progress) | Front-end & Back-end |
+| In total | 140h           |                                                                                                                                                              |
