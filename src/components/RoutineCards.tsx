@@ -1,39 +1,108 @@
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Button, Text } from 'react-native-paper';
+import { StyleSheet, View, FlatList, TouchableOpacity } from 'react-native';
+import { Button, Text, Title, Surface, useTheme } from 'react-native-paper';
 import { HomeParamList } from '../screens/HomeStack/HomeParamList';
 import { RoutineType } from '../types/RoutineType';
 import { AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 type RoutineCardsProps = {
   routines: RoutineType[];
   navigation: NativeStackNavigationProp<HomeParamList, 'Home'>;
 };
 
+type RoutineCardProps = {
+  routine: RoutineType;
+  navigation: NativeStackNavigationProp<HomeParamList, 'Home'>;
+};
+
+const RoutineCard: React.FC<RoutineCardProps> = ({ routine, navigation }) => {
+  const { colors } = useTheme();
+
+  return (
+    <Surface key={routine._id} style={styles.routineCard}>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('Routine', {
+            routine
+          })
+        }>
+        <View>
+          <Title style={styles.routineTitle}>{routine.description}</Title>
+        </View>
+        <View style={styles.routineDataContainer}>
+          <View style={styles.dataRow}>
+            <View>
+              <Ionicons name='sync-outline' size={24} color={colors.accent} />
+            </View>
+            <View style={styles.textRow}>
+              <Text style={styles.dataText}>
+                {routine.totalSplits} day split
+              </Text>
+            </View>
+          </View>
+
+          <View style={styles.dataRow}>
+            <View>
+              <Ionicons name='layers' size={24} color={colors.accent} />
+            </View>
+            <View style={styles.textRow}>
+              <Text style={styles.dataText}>
+                {routine.totalSets} total sets
+              </Text>
+            </View>
+          </View>
+
+          <View style={styles.dataRow}>
+            <View>
+              <Ionicons name='flame-sharp' size={24} color={colors.accent} />
+            </View>
+            <View style={styles.textRow}>
+              <Text style={styles.dataText}>
+                {routine.totalReps} total reps
+              </Text>
+            </View>
+          </View>
+        </View>
+      </TouchableOpacity>
+    </Surface>
+  );
+};
+
 const RoutineCards: React.FC<RoutineCardsProps> = ({
   routines,
   navigation
 }) => {
-  console.log(routines);
+  const renderItem = ({ item }: { item: RoutineType }) => {
+    return <RoutineCard navigation={navigation} routine={item} />;
+  };
+
   return (
     <View style={styles.container}>
       {routines.length > 0 ? (
-        <>
-          <Text>Length is over one</Text>
-          <Button
-            mode='contained'
-            uppercase={false}
-            icon={() => <AntDesign name='retweet' size={24} color='#2C4E5B' />}
-            style={styles.button}
-            labelStyle={styles.buttonText}
-            onPress={() => navigation.navigate('CreateRoutine', {})}>
-            Create a routine
-          </Button>
-        </>
+        <View>
+          <FlatList
+            data={routines}
+            renderItem={renderItem}
+            horizontal
+            keyExtractor={(routine) => routine._id}
+          />
+          <View style={styles.carouselLeftArrow}>
+            <Ionicons name='arrow-back' size={24} color='rgba(0, 0, 0, 0.3)' />
+          </View>
+          <View style={styles.carouselRightArrow}>
+            <Ionicons
+              name='arrow-forward'
+              size={24}
+              color='rgba(0, 0, 0, 0.3)'
+            />
+          </View>
+        </View>
       ) : (
-        <View style={styles.contentContainer}>
-          <View style={styles.innerCardContainer}>
+        <View style={styles.noRoutineContainer}>
+          <View style={styles.noRoutineInnerCardContainer}>
             <Text style={styles.noLiftsText}>
               You currently have no routines
             </Text>
@@ -57,31 +126,51 @@ const RoutineCards: React.FC<RoutineCardsProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#2C4E5B',
-    borderRadius: 15,
-    padding: 15,
     flex: 1,
     flexDirection: 'column',
     marginVertical: 10
   },
-  shadowProp: {
-    elevation: 4
-  },
-  maxLiftRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
+  routineCard: {
+    backgroundColor: '#2C4E5B',
+    width: 225,
+    margin: 15,
+    paddingVertical: 10,
+    borderRadius: 15,
+    flex: 1,
+    elevation: 5,
+    flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center'
   },
-  addIconContainer: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    margin: 12
+  routineDataContainer: {
+    paddingTop: 10
   },
-  contentContainer: {
+  dataRow: {
+    flexDirection: 'row',
+    marginVertical: 3
+  },
+  textRow: {
+    marginLeft: 8
+  },
+  routineTitle: {
+    color: '#E9C46A',
+    textAlign: 'center'
+  },
+  dataText: {
+    color: '#FFFFFF',
+    fontSize: 17
+  },
+  routineIcon: {
+    width: 25,
+    height: 25
+  },
+  noRoutineContainer: {
+    backgroundColor: '#2C4E5B',
+    borderRadius: 15,
+    padding: 15,
     marginVertical: 16
   },
-  innerCardContainer: {
+  noRoutineInnerCardContainer: {
     width: '70%',
     alignSelf: 'center'
   },
@@ -97,6 +186,16 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     color: '#000000'
+  },
+  carouselLeftArrow: {
+    position: 'absolute',
+    left: 15,
+    top: '45%'
+  },
+  carouselRightArrow: {
+    position: 'absolute',
+    right: 15,
+    top: '45%'
   }
 });
 
