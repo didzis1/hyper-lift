@@ -2,7 +2,7 @@ import { MaxLiftType } from './MaxLiftType';
 import { RoutineType } from './RoutineType';
 
 export type UserType = {
-  id: string;
+  _id: string;
   firstName: string;
   lastName: string;
   email: string;

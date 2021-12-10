@@ -12,7 +12,7 @@ import Loading from './components/Loading';
 const Routes: React.FC = () => {
   const { currentUser, loading } = useCurrentUser();
   const { isDarkTheme } = useContext(PreferenceContext);
-
+  console.log('Currentuser', currentUser);
   const theme = isDarkTheme ? CombinedDarkTheme : CombinedDefaultTheme;
 
   if (loading) {

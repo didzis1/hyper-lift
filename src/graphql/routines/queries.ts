@@ -3,7 +3,7 @@ import { gql } from '@apollo/client';
 export const GET_ROUTINES = gql`
   query GetRoutines {
     getRoutines {
-      id
+      _id
       description
       workouts {
         name
@@ -13,6 +13,9 @@ export const GET_ROUTINES = gql`
           sets
         }
       }
+      totalSplits
+      totalSets
+      totalReps
     }
   }
 `;

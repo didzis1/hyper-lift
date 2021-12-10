@@ -1,14 +1,14 @@
 import { gql } from '@apollo/client';
 
-// Me query doesn't fetch history
+// Me query only fetches user main data (excludes history, maxLifts and routines)
 export const ME = gql`
   query Query {
     me {
-      id
+      _id
       firstName
       lastName
-      email
       age
+      email
       liftingType
     }
   }

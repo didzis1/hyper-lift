@@ -30,7 +30,11 @@ const CreateRoutine: React.FC<HomeNavProps<'CreateRoutine'>> = ({
   const handleCreateRoutine = async (values: RoutineInputType) => {
     console.log(values);
     try {
-      await createRoutine(values);
+      const newRoutine = await createRoutine(values);
+      navigation.navigate('Routine', {
+        routine: newRoutine.createRoutine,
+        snackBarMessage: 'Routine created successfully'
+      });
     } catch (error) {
       if (error instanceof Error) {
         console.log(error.message);

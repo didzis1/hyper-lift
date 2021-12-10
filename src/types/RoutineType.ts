@@ -1,7 +1,10 @@
 export type RoutineType = {
-  id: string;
+  _id: string;
   description: string;
   workouts: WorkoutSplitType[];
+  totalSplits: number;
+  totalSets: number;
+  totalReps: number;
 };
 
 export type WorkoutSplitType = {
@@ -15,7 +18,10 @@ export type ExerciseType = {
   sets: number;
 };
 
-export type RoutineInputType = Omit<RoutineType, 'id'>;
+export type RoutineInputType = Omit<
+  RoutineType,
+  '_id' | 'totalSplits' | 'totalReps' | 'totalSets'
+>;
 
 export type RoutineInitialValuesType = {
   description: string;

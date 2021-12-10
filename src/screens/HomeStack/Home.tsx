@@ -1,12 +1,7 @@
 import React, { useEffect } from 'react';
-import {
-  Image,
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  ScrollView
-} from 'react-native';
+import { Image, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Text, useTheme } from 'react-native-paper';
+import { AntDesign } from '@expo/vector-icons';
 import { HomeNavProps } from './HomeParamList';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -52,7 +47,14 @@ const Home: React.FC<HomeNavProps<'Home'>> = ({ navigation }) => {
           <View style={styles.topUpperRow}>
             <View style={styles.dateContainer}>
               <Text style={styles.currentDate}>{currentDay}</Text>
-              <Text style={styles.today}>Today</Text>
+              <View style={{ flexDirection: 'row' }}>
+                <View style={{ alignSelf: 'center' }}>
+                  <Ionicons name='today' size={20} color={colors.accent} />
+                </View>
+                <View style={{ paddingLeft: 5 }}>
+                  <Text style={styles.today}>Today</Text>
+                </View>
+              </View>
             </View>
 
             <View style={styles.avatarContainer}>
@@ -89,10 +91,10 @@ const Home: React.FC<HomeNavProps<'Home'>> = ({ navigation }) => {
 
       <View
         style={[
-          styles.contentContainer,
+          styles.bottomContainer,
           { backgroundColor: colors.background }
         ]}>
-        <ScrollView>
+        <View style={styles.contentContainer}>
           <View style={styles.headerContainer}>
             <Text style={styles.header}>Maximum lifts</Text>
           </View>
@@ -101,13 +103,19 @@ const Home: React.FC<HomeNavProps<'Home'>> = ({ navigation }) => {
 
           <View style={styles.headerContainer}>
             <Text style={styles.header}>Routines</Text>
+            <View style={styles.addButton}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('CreateRoutine', {})}>
+                <Ionicons name='add' size={24} color='grey' />
+              </TouchableOpacity>
+            </View>
           </View>
 
           <RoutineCards
             routines={routines ? routines : []}
             navigation={navigation}
           />
-        </ScrollView>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -161,14 +169,18 @@ const styles = StyleSheet.create({
     borderRadius: 35,
     marginRight: 10
   },
-  contentContainer: {
+  bottomContainer: {
     flex: 3,
     borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
-    padding: 20
+    borderTopRightRadius: 25
+  },
+  contentContainer: {
+    padding: 20,
+    flex: 1
   },
   headerContainer: {
-    paddingLeft: 20
+    paddingLeft: 20,
+    paddingTop: 15
   },
   routineFlex: {
     flex: 1,
@@ -182,6 +194,11 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 18,
     fontWeight: 'bold'
+  },
+  addButton: {
+    position: 'absolute',
+    right: 15,
+    top: 15
   }
 });
 
