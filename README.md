@@ -75,4 +75,5 @@ _Testing_
 |  04.12   | 4h              | Corrected error messages on back-end, duplicate max lifts cannot be added, wrote new tests for max lifts. | Back-end |
 |  08.12   | 7h              | Started working on the form for creating a routine. Simplified sets/reps saving in the back-end. | Front-end & Back-end |
 |  09.12   | 7,5h              | Create routine form now has a modal for searching exercises. This was necessary to implement to keep the form state intact. (Form state was reset if navigated to SearchExercise screen). Routine can now be created (validation, small fixes still in progress) | Front-end & Back-end |
-| In total | 140h           |                                                                                                                                                              |
+|  10.12   | 7h              | Back-end: changed Routine and User to use mongo's _id instead of generated id field. Front-end: Implemented a routine carousel on Home page which can redirect to specific routine to Routine screen. Snackbar created as a custom component for reusability. Typing changes and bug fixes. | Front-end & Back-end |
+| In total | 147h           |                                                                                                                                                              |
