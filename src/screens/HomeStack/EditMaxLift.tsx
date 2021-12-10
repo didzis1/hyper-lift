@@ -23,7 +23,6 @@ const EditMaxLift: React.FC<HomeNavProps<'EditMaxLift'>> = ({
   const { editMaxLift } = useEditMaxLift();
   const { deleteMaxLift } = useDeleteMaxLift();
 
-  console.log(new Date(route.params.maxLift.weightHistory[0].date));
   const handleUpdateMaxLift = async (values: EditMaxLiftInput) => {
     try {
       await editMaxLift({
