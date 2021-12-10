@@ -14,6 +14,7 @@ import SearchExercise from './SearchExercise';
 import { Text } from 'react-native-paper';
 import { TouchableOpacity } from 'react-native';
 import globalStyles from '../../globalStyles';
+import Routine from './Routine';
 
 const Stack = createNativeStackNavigator<HomeParamList>();
 
@@ -69,6 +70,16 @@ const HomeStack: React.FC<Props> = ({}) => {
             title: route.params.maxLift.exercise
           })}
         />
+
+        <Stack.Screen
+          name='Routine'
+          component={Routine}
+          options={({ route }) => ({
+            title: route.params.routine.description,
+            headerTitleAlign: 'center'
+          })}
+        />
+
         <Stack.Screen
           name='CreateRoutine'
           component={CreateRoutine}
