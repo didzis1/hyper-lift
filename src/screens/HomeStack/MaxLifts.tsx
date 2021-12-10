@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   View,
   StyleSheet,
@@ -9,23 +9,15 @@ import {
   Keyboard,
   TouchableOpacity
 } from 'react-native';
-import { Button, Snackbar, Text } from 'react-native-paper';
+import { Button, Text } from 'react-native-paper';
 import { HomeNavProps } from './HomeParamList';
 import useGetMaxLift from '../../hooks/useGetMaxLift';
 import Loading from '../../components/Loading';
 import { Ionicons } from '@expo/vector-icons';
+import SnackBar from '../../components/SnackBar';
 
 const MaxLifts = ({ navigation, route }: HomeNavProps<'MaxLifts'>) => {
-  const [snackBarVisible, setSnackBarVisible] = useState<boolean>(false);
   const { maxLifts, ...rest } = useGetMaxLift();
-
-  useEffect(() => {
-    if (route.params?.snackBarMessage) {
-      setSnackBarVisible(true);
-    } else {
-      setSnackBarVisible(false);
-    }
-  }, [route.params?.snackBarMessage]);
 
   if (rest.loading) return <Loading />;
 
@@ -86,18 +78,7 @@ const MaxLifts = ({ navigation, route }: HomeNavProps<'MaxLifts'>) => {
           </View>
         </ScrollView>
       </TouchableWithoutFeedback>
-      <Snackbar
-        onDismiss={() => navigation.setParams({ snackBarMessage: '' })}
-        style={{
-          backgroundColor: route.params?.snackBarError ? '#E76F51' : '#2A9D8F'
-        }}
-        action={{
-          label: 'Dismiss',
-          onPress: () => setSnackBarVisible(false)
-        }}
-        visible={snackBarVisible}>
-        {route.params?.snackBarMessage}
-      </Snackbar>
+      <SnackBar navigation={navigation} route={route} />
     </KeyboardAvoidingView>
   );
 };
