@@ -6,13 +6,12 @@ import {
   TouchableOpacity,
   Alert
 } from 'react-native';
-import { Divider, Text, TextInput } from 'react-native-paper';
+import { Divider, Searchbar, Text } from 'react-native-paper';
 import { ExerciseDataType } from '../types/ExerciseDataType';
 import ExerciseCard from './ExerciseCard';
 import { ModalDataType } from '../types/ModalType';
 
 import exerciseList from '../data/exercises.json';
-import globalStyles from '../globalStyles';
 
 type SearchModalProps = {
   modalData: ModalDataType;
@@ -102,12 +101,12 @@ const SearchModal = ({
       </View>
       <View style={styles.container}>
         <Text>Search for an exercise that you would like to add.</Text>
-        <View>
-          <TextInput
-            dense={true}
-            style={globalStyles.input}
+        <View style={styles.searchBarContainer}>
+          <Searchbar
+            style={styles.inputStyle}
             placeholder='Search'
             onChangeText={(value) => setSearchValue(value)}
+            value={searchValue}
           />
         </View>
         <FlatList
@@ -128,6 +127,12 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 20
+  },
+  searchBarContainer: {
+    marginVertical: 10
+  },
+  inputStyle: {
+    height: 40
   },
   navigation: {
     justifyContent: 'space-between',
