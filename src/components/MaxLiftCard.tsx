@@ -13,7 +13,7 @@ type MaxLiftCardProps = {
 
 const MaxLiftCard: React.FC<MaxLiftCardProps> = ({ maxLifts, navigation }) => {
   return (
-    <Surface style={[styles.container, styles.shadowProp]}>
+    <Surface style={styles.container}>
       <TouchableOpacity onPress={() => navigation.navigate('MaxLifts', {})}>
         {maxLifts.length > 0 ? (
           <>
@@ -74,12 +74,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#2C4E5B',
     borderRadius: 15,
     padding: 10,
-    flex: 1,
+    elevation: 5,
     flexDirection: 'column',
     marginVertical: 10
-  },
-  shadowProp: {
-    elevation: 4
   },
   maxLiftRow: {
     flexDirection: 'row'
