@@ -2,14 +2,23 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button, List } from 'react-native-paper';
 import SnackBar from '../../components/SnackBar';
+import useDeleteRoutine from '../../hooks/useDeleteRoutine';
 import { HomeNavProps } from './HomeParamList';
 
 const Routine: React.FC<HomeNavProps<'Routine'>> = ({ navigation, route }) => {
-  const handleDeleteRoutine = () => {
+  const { deleteRoutine } = useDeleteRoutine();
+
+  const handleDeleteRoutine = async () => {
     try {
-      console.log(route.params.routine._id);
+      await deleteRoutine(route.params.routine._id);
+      navigation.navigate('Home', {
+        snackBarMessage: 'Routine deleted successfully'
+      });
     } catch (error) {
-      console.log(error);
+      navigation.navigate('Home', {
+        snackBarError:
+          'Something went wrong while trying to delete your routine'
+      });
     }
   };
 
@@ -58,7 +67,15 @@ const Routine: React.FC<HomeNavProps<'Routine'>> = ({ navigation, route }) => {
       })}
       <View style={styles.buttonContainer}>
         <View style={styles.button}>
-          <Button mode='contained' uppercase={false} color='#2A9D8F'>
+          <Button
+            onPress={() =>
+              navigation.navigate('EditRoutine', {
+                initialData: route.params.routine
+              })
+            }
+            mode='contained'
+            uppercase={false}
+            color='#2A9D8F'>
             Edit
           </Button>
         </View>
