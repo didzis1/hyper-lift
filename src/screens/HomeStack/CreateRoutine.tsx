@@ -11,7 +11,7 @@ import SearchModal from '../../components/SearchModal';
 import { ModalDataType } from '../../types/ModalType';
 import {
   RoutineInitialValuesType,
-  RoutineInputType
+  CreateRoutineInputType
 } from '../../types/RoutineType';
 import { routineValidation } from '../../utils/validationSchemas';
 import useCreateRoutine from '../../hooks/useCreateRoutine';
@@ -27,7 +27,7 @@ const CreateRoutine: React.FC<HomeNavProps<'CreateRoutine'>> = ({
 
   const { createRoutine } = useCreateRoutine();
 
-  const handleCreateRoutine = async (values: RoutineInputType) => {
+  const handleCreateRoutine = async (values: CreateRoutineInputType) => {
     console.log(values);
     try {
       const newRoutine = await createRoutine(values);
@@ -228,6 +228,7 @@ const CreateRoutine: React.FC<HomeNavProps<'CreateRoutine'>> = ({
                 <Button
                   uppercase={false}
                   mode='contained'
+                  color='#2A9D8F'
                   onPress={handleSubmit}>
                   Create routine
                 </Button>
@@ -281,7 +282,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 3
   },
   createContainer: {
-    flex: 1
+    flex: 1,
+    marginVertical: 5
   },
   modal: {
     flex: 1,
