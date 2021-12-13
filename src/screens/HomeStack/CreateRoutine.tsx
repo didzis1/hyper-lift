@@ -21,8 +21,8 @@ const CreateRoutine: React.FC<HomeNavProps<'CreateRoutine'>> = ({
 }) => {
   const [modalData, setModalData] = useState<ModalDataType>({
     visible: false,
-    workoutIndex: null,
-    workoutExercises: null
+    location: null,
+    fieldName: null
   });
 
   const { createRoutine } = useCreateRoutine();
@@ -135,8 +135,8 @@ const CreateRoutine: React.FC<HomeNavProps<'CreateRoutine'>> = ({
                               onDismiss={() =>
                                 setModalData({
                                   visible: false,
-                                  workoutIndex: null,
-                                  workoutExercises: null
+                                  location: null,
+                                  fieldName: null
                                 })
                               }
                               contentContainerStyle={styles.modal}>
@@ -182,8 +182,8 @@ const CreateRoutine: React.FC<HomeNavProps<'CreateRoutine'>> = ({
                               onPress={() =>
                                 setModalData({
                                   visible: true,
-                                  workoutIndex: workoutIndex,
-                                  workoutExercises: workout.exercises.length
+                                  location: `workouts[${workoutIndex}].exercises[${workout.exercises.length}]`,
+                                  fieldName: 'exerciseName'
                                 })
                               }
                               icon={() => (

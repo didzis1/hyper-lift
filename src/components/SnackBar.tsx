@@ -12,9 +12,6 @@ type SnackBarProps = {
 const SnackBar: React.FC<SnackBarProps> = ({ navigation, route }) => {
   const [snackBarVisible, setSnackBarVisible] = useState<boolean>(false);
 
-  console.log('NAVIGATION', navigation);
-  console.log('ROUTE', route);
-
   useEffect(() => {
     if (route.params?.snackBarMessage) {
       setSnackBarVisible(true);

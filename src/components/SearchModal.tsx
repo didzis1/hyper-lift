@@ -38,19 +38,20 @@ const SearchModal = ({
   }, []);
 
   const saveExercise = () => {
-    if (selectedExercise) {
-      setFieldValue(
-        `workouts[${
-          modalData.workoutIndex
-        }].exercises[${modalData.workoutExercises!}]`,
-        {
-          exerciseName: selectedExercise.name
-        }
-      );
+    if (selectedExercise && modalData.location) {
+      if (modalData.fieldName) {
+        // If fieldName is specified, setFieldValue saves an object with fieldName
+        setFieldValue(modalData.location, {
+          [modalData.fieldName]: selectedExercise.name
+        });
+      } else {
+        // fieldName is not specified, save as a string
+        setFieldValue(modalData.location, selectedExercise.name);
+      }
       setModalData({
         visible: false,
-        workoutIndex: null,
-        workoutExercises: null
+        location: null,
+        fieldName: null
       });
     } else {
       Alert.alert('Exercise missing', 'You must select an exercise to add it', [
@@ -85,8 +86,8 @@ const SearchModal = ({
             onPress={() =>
               setModalData({
                 visible: false,
-                workoutIndex: null,
-                workoutExercises: null
+                location: null,
+                fieldName: null
               })
             }>
             <Text style={styles.cancelText}>Cancel</Text>
