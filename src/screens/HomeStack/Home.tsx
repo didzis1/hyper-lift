@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Image, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Text, useTheme } from 'react-native-paper';
-import { AntDesign } from '@expo/vector-icons';
 import { HomeNavProps } from './HomeParamList';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -14,8 +13,9 @@ import useGetRoutines from '../../hooks/useGetRoutines';
 import Loading from '../../components/Loading';
 import MaxLiftCard from '../../components/MaxLiftCard';
 import RoutineCards from '../../components/RoutineCards';
+import SnackBar from '../../components/SnackBar';
 
-const Home: React.FC<HomeNavProps<'Home'>> = ({ navigation }) => {
+const Home: React.FC<HomeNavProps<'Home'>> = ({ navigation, route }) => {
   const { currentUser } = useCurrentUser();
   const { maxLifts } = useGetMaxLift();
   const { routines } = useGetRoutines();
@@ -105,7 +105,11 @@ const Home: React.FC<HomeNavProps<'Home'>> = ({ navigation }) => {
             <Text style={styles.header}>Routines</Text>
             <View style={styles.addButton}>
               <TouchableOpacity
-                onPress={() => navigation.navigate('CreateRoutine', {})}>
+                onPress={() =>
+                  navigation.navigate('CreateRoutine', {
+                    routeTitle: 'Create Routine'
+                  })
+                }>
                 <Ionicons name='add' size={24} color='grey' />
               </TouchableOpacity>
             </View>
@@ -117,6 +121,7 @@ const Home: React.FC<HomeNavProps<'Home'>> = ({ navigation }) => {
           />
         </View>
       </View>
+      <SnackBar navigation={navigation} route={route} />
     </SafeAreaView>
   );
 };
