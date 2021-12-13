@@ -2,7 +2,7 @@ import { RouteProp } from '@react-navigation/core';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type WorkoutParamList = {
-  WorkoutPreview: undefined;
+  SelectWorkout: undefined;
 };
 
 export type WorkoutNavProps<T extends keyof WorkoutParamList> = {
