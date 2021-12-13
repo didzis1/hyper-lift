@@ -30,7 +30,6 @@ export type HomeParamList = {
   CreateRoutine: {
     exercise?: ExerciseDataType | null;
     split?: number | null;
-    routeTitle: string;
   };
   EditRoutine: {
     initialData: RoutineType;
