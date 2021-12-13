@@ -6,7 +6,10 @@ import { MaxLiftType } from '../../types/MaxLiftType';
 import { ExerciseDataType } from '../../types/ExerciseDataType';
 
 export type HomeParamList = {
-  Home: undefined;
+  Home: {
+    snackBarMessage?: string | null;
+    snackBarError?: string | null;
+  };
   MaxLifts: {
     snackBarMessage?: string | null;
     snackBarError?: boolean | null;
@@ -27,6 +30,10 @@ export type HomeParamList = {
   CreateRoutine: {
     exercise?: ExerciseDataType | null;
     split?: number | null;
+    routeTitle: string;
+  };
+  EditRoutine: {
+    initialData: RoutineType;
   };
   ChangeTheme: undefined;
   Measurements: undefined;

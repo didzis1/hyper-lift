@@ -87,18 +87,27 @@ const RoutineCards: React.FC<RoutineCardsProps> = ({
             data={routines}
             renderItem={renderItem}
             horizontal
+            contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
             keyExtractor={(routine) => routine._id}
           />
-          <View style={styles.carouselLeftArrow}>
-            <Ionicons name='arrow-back' size={24} color='rgba(0, 0, 0, 0.3)' />
-          </View>
-          <View style={styles.carouselRightArrow}>
-            <Ionicons
-              name='arrow-forward'
-              size={24}
-              color='rgba(0, 0, 0, 0.3)'
-            />
-          </View>
+          {routines.length === 1 ? null : (
+            <>
+              <View style={styles.carouselLeftArrow}>
+                <Ionicons
+                  name='arrow-back'
+                  size={24}
+                  color='rgba(0, 0, 0, 0.3)'
+                />
+              </View>
+              <View style={styles.carouselRightArrow}>
+                <Ionicons
+                  name='arrow-forward'
+                  size={24}
+                  color='rgba(0, 0, 0, 0.3)'
+                />
+              </View>
+            </>
+          )}
         </View>
       ) : (
         <View style={styles.noRoutineContainer}>
@@ -132,6 +141,7 @@ const styles = StyleSheet.create({
   },
   routineCard: {
     backgroundColor: '#2C4E5B',
+    height: 150,
     width: 225,
     margin: 15,
     paddingVertical: 10,

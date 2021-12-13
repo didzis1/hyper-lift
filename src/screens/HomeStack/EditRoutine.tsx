@@ -10,14 +10,15 @@ import { HomeNavProps } from './HomeParamList';
 import SearchModal from '../../components/SearchModal';
 import { ModalDataType } from '../../types/ModalType';
 import {
-  RoutineInitialValuesType,
-  CreateRoutineInputType
+  EditRoutineInitialValuesType,
+  EditRoutineInputType
 } from '../../types/RoutineType';
 import { routineValidation } from '../../utils/validationSchemas';
-import useCreateRoutine from '../../hooks/useCreateRoutine';
+import useEditRoutine from '../../hooks/useEditRoutine';
 
-const CreateRoutine: React.FC<HomeNavProps<'CreateRoutine'>> = ({
-  navigation
+const EditRoutine: React.FC<HomeNavProps<'EditRoutine'>> = ({
+  navigation,
+  route
 }) => {
   const [modalData, setModalData] = useState<ModalDataType>({
     visible: false,
@@ -25,20 +26,22 @@ const CreateRoutine: React.FC<HomeNavProps<'CreateRoutine'>> = ({
     fieldName: null
   });
 
-  const { createRoutine } = useCreateRoutine();
+  const { editRoutine } = useEditRoutine();
 
-  const handleCreateRoutine = async (values: CreateRoutineInputType) => {
-    console.log(values);
+  console.log('Initial data', route.params.initialData);
+
+  const handleEditRoutine = async (values: EditRoutineInputType) => {
     try {
-      const newRoutine = await createRoutine(values);
+      const result = await editRoutine(values);
       navigation.navigate('Routine', {
-        routine: newRoutine.createRoutine,
-        snackBarMessage: 'Routine created successfully'
+        routine: result.editRoutine,
+        snackBarMessage: 'Routine updated successfully'
       });
     } catch (error) {
-      if (error instanceof Error) {
-        console.log(error.message);
-      }
+      navigation.navigate('Routine', {
+        routine: route.params.initialData,
+        snackBarError: 'An error occured while trying to update the routine'
+      });
     }
   };
 
@@ -63,14 +66,16 @@ const CreateRoutine: React.FC<HomeNavProps<'CreateRoutine'>> = ({
     );
   };
 
-  const initialValues: RoutineInitialValuesType = {
-    description: '',
-    workouts: [
-      {
-        name: '',
-        exercises: []
-      }
-    ]
+  const initialValues: EditRoutineInitialValuesType = {
+    description: route.params.initialData.description,
+    workouts: route.params.initialData.workouts.map((workout) => ({
+      name: workout.name,
+      exercises: workout.exercises.map((exercise) => ({
+        exerciseName: exercise.exerciseName,
+        reps: exercise.reps.toString(),
+        sets: exercise.sets.toString()
+      }))
+    }))
   };
 
   return (
@@ -83,7 +88,8 @@ const CreateRoutine: React.FC<HomeNavProps<'CreateRoutine'>> = ({
           validationSchema={routineValidation}
           onSubmit={(values) =>
             // Loop over values and parse sets/reps to number
-            handleCreateRoutine({
+            handleEditRoutine({
+              _id: route.params.initialData._id,
               description: values.description,
               workouts: values.workouts.map((workout) => ({
                 name: workout.name,
@@ -230,7 +236,7 @@ const CreateRoutine: React.FC<HomeNavProps<'CreateRoutine'>> = ({
                   mode='contained'
                   color='#2A9D8F'
                   onPress={handleSubmit}>
-                  Create routine
+                  Edit routine
                 </Button>
               </View>
             </View>
@@ -291,5 +297,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default CreateRoutine;
-// box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+export default EditRoutine;

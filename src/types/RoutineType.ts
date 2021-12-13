@@ -18,9 +18,14 @@ export type ExerciseType = {
   sets: number;
 };
 
-export type RoutineInputType = Omit<
+export type CreateRoutineInputType = Omit<
   RoutineType,
   '_id' | 'totalSplits' | 'totalReps' | 'totalSets'
+>;
+
+export type EditRoutineInputType = Omit<
+  RoutineType,
+  'totalSplits' | 'totalReps' | 'totalSets'
 >;
 
 export type RoutineInitialValuesType = {
@@ -29,4 +34,20 @@ export type RoutineInitialValuesType = {
     name: string;
     exercises: ExerciseType[] | [];
   }[];
+};
+
+export type EditRoutineInitialValuesType = {
+  description: string;
+  workouts: EditRoutineWorkoutSplitType[];
+};
+
+type EditRoutineWorkoutSplitType = {
+  name: string;
+  exercises: EditExerciseType[];
+};
+
+export type EditExerciseType = {
+  exerciseName: string;
+  reps: string;
+  sets: string;
 };

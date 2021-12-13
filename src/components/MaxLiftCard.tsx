@@ -29,17 +29,6 @@ const MaxLiftCard: React.FC<MaxLiftCardProps> = ({ maxLifts, navigation }) => {
                   </View>
                 </View>
               ))}
-              {maxLifts.length > 3 ? (
-                <View style={styles.maxLiftRow}>
-                  <View style={styles.textContainer}>
-                    <Text style={styles.weightText}>...</Text>
-                  </View>
-
-                  <View style={styles.textContainer}>
-                    <Text style={styles.weightText}>...</Text>
-                  </View>
-                </View>
-              ) : null}
             </View>
           </>
         ) : (

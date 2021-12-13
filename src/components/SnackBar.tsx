@@ -5,8 +5,11 @@ import { Snackbar } from 'react-native-paper';
 import { HomeParamList } from '../screens/HomeStack/HomeParamList';
 
 type SnackBarProps = {
-  navigation: NativeStackNavigationProp<HomeParamList, 'MaxLifts' | 'Routine'>;
-  route: RouteProp<HomeParamList, 'MaxLifts' | 'Routine'>;
+  navigation: NativeStackNavigationProp<
+    HomeParamList,
+    'MaxLifts' | 'Routine' | 'Home'
+  >;
+  route: RouteProp<HomeParamList, 'MaxLifts' | 'Routine' | 'Home'>;
 };
 
 const SnackBar: React.FC<SnackBarProps> = ({ navigation, route }) => {

@@ -10,11 +10,11 @@ import Profile from './Profile';
 import EditMaxLift from './EditMaxLift';
 import { HomeParamList } from './HomeParamList';
 import CreateMaxLift from './CreateMaxLift';
-import SearchExercise from './SearchExercise';
 import { Text } from 'react-native-paper';
 import { TouchableOpacity } from 'react-native';
 import globalStyles from '../../globalStyles';
 import Routine from './Routine';
+import EditRoutine from './EditRoutine';
 
 const Stack = createNativeStackNavigator<HomeParamList>();
 
@@ -23,117 +23,103 @@ type Props = {};
 const HomeStack: React.FC<Props> = ({}) => {
   return (
     <Stack.Navigator>
-      <Stack.Group>
-        <Stack.Screen
-          name='Home'
-          component={Home}
-          options={{
-            headerShown: false
-          }}
-        />
+      <Stack.Screen
+        name='Home'
+        component={Home}
+        options={{
+          headerShown: false
+        }}
+      />
 
-        <Stack.Screen
-          name='Settings'
-          component={Settings}
-          options={{ title: 'Settings', headerTitleAlign: 'center' }}
-        />
+      <Stack.Screen
+        name='Settings'
+        component={Settings}
+        options={{ title: 'Settings', headerTitleAlign: 'center' }}
+      />
 
-        <Stack.Screen
-          name='Profile'
-          component={Profile}
-          options={{ title: 'Profile', headerTitleAlign: 'center' }}
-        />
+      <Stack.Screen
+        name='Profile'
+        component={Profile}
+        options={{ title: 'Profile', headerTitleAlign: 'center' }}
+      />
 
-        <Stack.Screen
-          name='MaxLifts'
-          component={MaxLifts}
-          options={{
-            title: 'Max Lifts',
-            headerTitleAlign: 'center'
-          }}
-        />
+      <Stack.Screen
+        name='MaxLifts'
+        component={MaxLifts}
+        options={{
+          title: 'Max Lifts',
+          headerTitleAlign: 'center'
+        }}
+      />
 
-        <Stack.Screen
-          name='CreateMaxLift'
-          component={CreateMaxLift}
-          options={{
-            title: 'Add max lift',
-            headerTitleAlign: 'center'
-          }}
-        />
+      <Stack.Screen
+        name='CreateMaxLift'
+        component={CreateMaxLift}
+        options={{
+          title: 'Add max lift',
+          headerTitleAlign: 'center'
+        }}
+      />
 
-        <Stack.Screen
-          name='EditMaxLift'
-          component={EditMaxLift}
-          options={({ route }) => ({
-            headerTitleAlign: 'center',
-            title: route.params.maxLift.exercise
-          })}
-        />
+      <Stack.Screen
+        name='EditMaxLift'
+        component={EditMaxLift}
+        options={({ route }) => ({
+          headerTitleAlign: 'center',
+          title: route.params.maxLift.exercise
+        })}
+      />
 
-        <Stack.Screen
-          name='Routine'
-          component={Routine}
-          options={({ route }) => ({
-            title: route.params.routine.description,
-            headerTitleAlign: 'center'
-          })}
-        />
+      <Stack.Screen
+        name='Routine'
+        component={Routine}
+        options={({ route }) => ({
+          title: route.params.routine.description,
+          headerTitleAlign: 'center'
+        })}
+      />
 
-        <Stack.Screen
-          name='CreateRoutine'
-          component={CreateRoutine}
-          options={() => ({
-            title: 'Create Routine',
-            headerTitleAlign: 'center'
-            // Is info button necessary? How does the user benefit from it?
-            // headerRight: () => (
-            //   <TouchableOpacity
-            // 		onPress={() => }
-            // 	>
-            //     <Ionicons
-            //       name='ios-information-circle-outline'
-            //       size={28}
-            //       color='#2A9D8F'
-            //     />
-            //   </TouchableOpacity>
-            // )
-          })}
-        />
+      <Stack.Screen
+        name='CreateRoutine'
+        component={CreateRoutine}
+        options={() => ({
+          title: 'Create Routine',
+          headerTitleAlign: 'center'
+          // Is info button necessary? How does the user benefit from it?
+          // headerRight: () => (
+          //   <TouchableOpacity
+          // 		onPress={() => }
+          // 	>
+          //     <Ionicons
+          //       name='ios-information-circle-outline'
+          //       size={28}
+          //       color='#2A9D8F'
+          //     />
+          //   </TouchableOpacity>
+          // )
+        })}
+      />
 
-        <Stack.Screen
-          name='ChangeTheme'
-          component={ChangeTheme}
-          options={{ title: 'Preferences', headerTitleAlign: 'center' }}
-        />
+      <Stack.Screen
+        name='EditRoutine'
+        component={EditRoutine}
+        options={() => ({
+          title: 'Edit Routine',
+          headerTitleAlign: 'center'
+        })}
+      />
 
-        <Stack.Screen
-          name='Measurements'
-          component={Measurements}
-          options={{ title: 'Preferences', headerTitleAlign: 'center' }}
-        />
-      </Stack.Group>
+      <Stack.Screen
+        name='ChangeTheme'
+        component={ChangeTheme}
+        options={{ title: 'Preferences', headerTitleAlign: 'center' }}
+      />
 
-      <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen
-          name='SearchExercise'
-          component={SearchExercise}
-          options={({ navigation, route }) => ({
-            title: 'Select Exercise',
-            headerTitleAlign: 'center',
-            headerLeft: () => (
-              <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Text style={globalStyles.cancelText}>Cancel</Text>
-              </TouchableOpacity>
-            ),
-            headerRight: () => (
-              <TouchableOpacity onPress={() => route.params.submit?.current()}>
-                <Text style={globalStyles.saveText}>Save</Text>
-              </TouchableOpacity>
-            )
-          })}
-        />
-      </Stack.Group>
+      <Stack.Screen
+        name='Measurements'
+        component={Measurements}
+        options={{ title: 'Preferences', headerTitleAlign: 'center' }}
+      />
     </Stack.Navigator>
   );
 };
