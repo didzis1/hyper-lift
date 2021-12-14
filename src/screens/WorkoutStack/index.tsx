@@ -12,7 +12,7 @@ const WorkoutStack = () => {
         name='SelectWorkout'
         component={SelectWorkout}
         options={() => ({
-          title: 'Select Workout',
+          title: 'Workout',
           headerTitleAlign: 'center'
         })}
       />
