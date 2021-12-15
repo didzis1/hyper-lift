@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { Subheading, Title, useTheme } from 'react-native-paper';
+import {
+  ScrollView,
+  StyleSheet,
+  View,
+  Platform,
+  ActionSheetIOS
+} from 'react-native';
+import { Button, Subheading, Title, useTheme } from 'react-native-paper';
 import { Picker } from '@react-native-picker/picker';
 import useGetRoutines from '../../hooks/useGetRoutines';
 import Loading from '../../components/Loading';
@@ -30,23 +36,25 @@ const SelectWorkout: React.FC<WorkoutNavProps<'SelectWorkout'>> = ({}) => {
           <Subheading style={styles.noRoutineText}>
             Create a workout to start track your progress and massive gains!
           </Subheading>
-          {/* Need to figure out how to navigate to a different STACK */}
-          {/* <Button
-            icon={() => (
-              <Ionicons name='rocket-outline' size={24} color='black' />
-            )}
-            onPress={() =>
-              navigation.navigate('HomeStack', {
-                screen: 'CreateRoutine'
-              })
-            }
-            mode='contained'
-            uppercase={false}
-            color={colors.accent}>
-            Create a program
-          </Button> */}
         </View>
       </View>
+    );
+
+  const showiOSActionSheet = () =>
+    ActionSheetIOS.showActionSheetWithOptions(
+      {
+        options: ['Cancel', ...routines.map((routine) => routine.description)],
+        cancelButtonIndex: 0,
+        title: 'Select routine'
+      },
+      (buttonIndex) => {
+        if (buttonIndex === 0) {
+          // cancel action
+          return null;
+        }
+
+        return setSelectedSplit(routines[buttonIndex - 1]._id);
+      }
     );
 
   return (
@@ -54,19 +62,35 @@ const SelectWorkout: React.FC<WorkoutNavProps<'SelectWorkout'>> = ({}) => {
       <View style={[styles.container, { backgroundColor: colors.background }]}>
         <Title>Select your routine</Title>
         <View style={styles.pickerContainer}>
-          <Picker
-            style={styles.picker}
-            mode='dialog'
-            selectedValue={selectedSplit}
-            onValueChange={(split) => setSelectedSplit(split)}>
-            {routines.map((routine) => (
-              <Picker.Item
-                key={routine._id}
-                label={routine.description}
-                value={routine._id}
-              />
-            ))}
-          </Picker>
+          {Platform.OS === 'ios' ? (
+            <View>
+              <Button
+                onPress={showiOSActionSheet}
+                mode='contained'
+                uppercase={false}>
+                {selectedSplit
+                  ? `Selected: ${
+                      routines.find((routine) => routine._id === selectedSplit)
+                        ?.description
+                    }`
+                  : 'Select'}
+              </Button>
+            </View>
+          ) : (
+            <Picker
+              style={styles.picker}
+              mode='dialog'
+              selectedValue={selectedSplit}
+              onValueChange={(split) => setSelectedSplit(split)}>
+              {routines.map((routine) => (
+                <Picker.Item
+                  key={routine._id}
+                  label={routine.description}
+                  value={routine._id}
+                />
+              ))}
+            </Picker>
+          )}
         </View>
 
         <View>
@@ -112,7 +136,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   pickerContainer: {
-    borderWidth: 1,
     borderRadius: 4,
     borderColor: '#2C4E5B',
     marginTop: 8,
