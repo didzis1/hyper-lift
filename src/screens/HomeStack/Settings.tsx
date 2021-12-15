@@ -70,10 +70,19 @@ const styles = StyleSheet.create({
   },
   listSection: {
     backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.1)',
     marginHorizontal: 15,
     marginVertical: 3,
     borderRadius: 15,
     elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
     paddingVertical: 0
   }
 });
