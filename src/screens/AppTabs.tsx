@@ -6,7 +6,7 @@ import HistoryStack from './HistoryStack';
 import ProgressStack from './ProgressStack';
 import { AppParamList } from './AppParamList';
 
-import { Feather, AntDesign } from '@expo/vector-icons';
+import { Feather, AntDesign, Ionicons } from '@expo/vector-icons';
 import { useTheme } from 'react-native-paper';
 
 const Stack = createBottomTabNavigator<AppParamList>();
@@ -75,8 +75,8 @@ const AppTabs = () => {
           title: 'Progress',
           tabBarIcon: ({ focused }) => {
             return (
-              <AntDesign
-                name='barschart'
+              <Ionicons
+                name='stats-chart-outline'
                 size={24}
                 color={focused ? theme.colors.primary : 'grey'}
               />
