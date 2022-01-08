@@ -79,4 +79,5 @@ _Testing_
 |  13.12   | 9h              | Finished working on routine's CRUD. Started working on workout history. Created new screen where the user can view workout splits based on the routine selected from the drop-down menu. | Front-end |
 |  14.12   | 1h              | SelectWorkout screen selectedSplit state is now initialized on first render (first routine assigned if exists). If no routines are found display a message that tells the user to create one. | Front-end |
 |  15.12   | 0,5h              | Fixed broken features on iOS (text not visible, dropdown menu completely broken. Replaced with ActionSheetIOS) | Front-end |
-| In total | 157,5h           |                                                                                                                                                              |
+|  08.01   | 0,5h              | Added new screen to which user is redirected after selecting the workout, updated type parameters | Front-end |
+| In total | 158h           |                                                                                                                                                              |
