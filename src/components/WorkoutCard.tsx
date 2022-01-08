@@ -3,12 +3,15 @@ import { StyleSheet, View } from 'react-native';
 import { Text, Title, useTheme, Surface, Button } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
 import { WorkoutSplitType } from '../types/RoutineType';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { WorkoutParamList } from '../screens/WorkoutStack/WorkoutParamList';
 
 type WorkoutCardProps = {
   workout: WorkoutSplitType & { routineId: string };
+  navigation: NativeStackNavigationProp<WorkoutParamList, 'SelectWorkout'>;
 };
 
-const WorkoutCard: React.FC<WorkoutCardProps> = ({ workout }) => {
+const WorkoutCard: React.FC<WorkoutCardProps> = ({ workout, navigation }) => {
   const { colors } = useTheme();
   console.log(workout);
   return (
@@ -57,7 +60,11 @@ const WorkoutCard: React.FC<WorkoutCardProps> = ({ workout }) => {
         </View>
         <View style={styles.dataRow}>
           <Button
-            onPress={() => console.log('pressed')}
+            onPress={() =>
+              navigation.navigate('ActiveWorkout', {
+                workout
+              })
+            }
             mode='contained'
             uppercase={false}
             color={colors.accent}>
