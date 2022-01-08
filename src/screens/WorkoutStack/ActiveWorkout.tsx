@@ -3,10 +3,12 @@ import { Text, View } from 'react-native';
 
 import { WorkoutNavProps } from './WorkoutParamList';
 
-const ActiveWorkout: React.FC<WorkoutNavProps<'ActiveWorkout'>> = ({}) => {
+const ActiveWorkout: React.FC<WorkoutNavProps<'ActiveWorkout'>> = ({
+  route
+}) => {
   return (
     <View>
-      <Text>hello</Text>
+      <Text>{route.params.workout.name}</Text>
     </View>
   );
 };
