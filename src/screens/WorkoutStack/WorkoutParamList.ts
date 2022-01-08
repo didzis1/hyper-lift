@@ -1,9 +1,12 @@
 import { RouteProp } from '@react-navigation/core';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { WorkoutSplitType } from '../../types/RoutineType';
 
 export type WorkoutParamList = {
   SelectWorkout: undefined;
-  ActiveWorkout: undefined;
+  ActiveWorkout: {
+    workout: WorkoutSplitType & { routineId: string };
+  };
 };
 
 export type WorkoutNavProps<T extends keyof WorkoutParamList> = {
