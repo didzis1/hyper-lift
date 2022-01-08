@@ -14,7 +14,9 @@ import WorkoutCard from '../../components/WorkoutCard';
 // import { Ionicons } from '@expo/vector-icons';
 import { WorkoutNavProps } from './WorkoutParamList';
 
-const SelectWorkout: React.FC<WorkoutNavProps<'SelectWorkout'>> = ({}) => {
+const SelectWorkout: React.FC<WorkoutNavProps<'SelectWorkout'>> = ({
+  navigation
+}) => {
   const { routines, loading } = useGetRoutines();
   const [selectedSplit, setSelectedSplit] = useState<string>();
   const { colors } = useTheme();
@@ -103,6 +105,7 @@ const SelectWorkout: React.FC<WorkoutNavProps<'SelectWorkout'>> = ({}) => {
               return routine.workouts.map((workout) => (
                 <WorkoutCard
                   key={workout.name}
+                  navigation={navigation}
                   workout={{ ...workout, routineId: selectedSplit }}
                 />
               ));
