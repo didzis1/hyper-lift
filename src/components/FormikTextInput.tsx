@@ -28,6 +28,7 @@ const FormikTextInput = ({ label, name, ...props }: FormikTextInputProps) => {
         onBlur={() => helpers.setTouched(true)}
         value={field.value}
         dense={true}
+        placeholderTextColor='#bccbd1'
         underlineColor='transparent'
         theme={{ colors: { primary: '#FE5E41' } }}
         {...props}
