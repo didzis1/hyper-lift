@@ -80,4 +80,5 @@ _Testing_
 |  14.12   | 1h              | SelectWorkout screen selectedSplit state is now initialized on first render (first routine assigned if exists). If no routines are found display a message that tells the user to create one. | Front-end |
 |  15.12   | 0,5h              | Fixed broken features on iOS (text not visible, dropdown menu completely broken. Replaced with ActionSheetIOS) | Front-end |
 |  08.01   | 0,5h              | Added new screen to which user is redirected after selecting the workout, updated type parameters | Front-end |
-| In total | 158h           |                                                                                                                                                              |
+|  09.01   | 4h              | Workout can now be started and saved to the database (History workout). User can fill reps or weight used during the workout and save it for future reference. | Front-end |
+| In total | 162h           |                                                                                                                                                              |
