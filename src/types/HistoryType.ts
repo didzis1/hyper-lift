@@ -1,3 +1,11 @@
+export type HistoryType = {
+  id: string;
+  routineId: string;
+  splitName: string;
+  exercises: ExerciseInput[];
+  createdAt: Date;
+};
+
 export type AddHistoryInput = {
   routineId: string;
   notes?: string;
