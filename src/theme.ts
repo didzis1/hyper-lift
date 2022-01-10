@@ -14,7 +14,7 @@ export const CombinedDefaultTheme = {
   colors: {
     ...PaperDefaultTheme.colors,
     ...NavigationDefaultTheme.colors,
-    background: '#fffffc',
+    background: '#f2f2f2',
     primary: '#2C4E5B',
     accent: '#E9C46A',
     error: '#E76F51',
