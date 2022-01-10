@@ -81,4 +81,5 @@ _Testing_
 |  15.12   | 0,5h              | Fixed broken features on iOS (text not visible, dropdown menu completely broken. Replaced with ActionSheetIOS) | Front-end |
 |  08.01   | 0,5h              | Added new screen to which user is redirected after selecting the workout, updated type parameters | Front-end |
 |  09.01   | 4h              | Workout can now be started and saved to the database (History workout). User can fill reps or weight used during the workout and save it for future reference. | Front-end |
-| In total | 162h           |                                                                                                                                                              |
+|  10.01   | 2h              | Created a query that fetches workout history data. Added calendar functionality to display specific days workout history card. | Front-end & Back-end |
+| In total | 164h           |                                                                                                                                                              |
