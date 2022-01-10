@@ -72,7 +72,9 @@ const ActiveWorkout: React.FC<WorkoutNavProps<'ActiveWorkout'>> = ({
                     <>
                       {values.exercises.map((exercise, exerciseIndex) => {
                         return (
-                          <View style={{ marginVertical: 15 }}>
+                          <View
+                            key={exerciseIndex}
+                            style={{ marginVertical: 15 }}>
                             <View style={styles.exerciseContainer}>
                               <Subheading>{exercise.exerciseName}</Subheading>
                               <View style={styles.exerciseHeadings}>
@@ -95,7 +97,9 @@ const ActiveWorkout: React.FC<WorkoutNavProps<'ActiveWorkout'>> = ({
                             {exercise.volumeSets.map(
                               (volumeSet, volumeSetIndex) => {
                                 return (
-                                  <View style={styles.exerciseHeadings}>
+                                  <View
+                                    key={volumeSetIndex}
+                                    style={styles.exerciseHeadings}>
                                     <View style={styles.alignHeadingContent}>
                                       <Text>{volumeSet.set}</Text>
                                     </View>

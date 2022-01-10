@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { Button, List } from 'react-native-paper';
 import SnackBar from '../../components/SnackBar';
 import useDeleteRoutine from '../../hooks/useDeleteRoutine';
@@ -23,84 +23,86 @@ const Routine: React.FC<HomeNavProps<'Routine'>> = ({ navigation, route }) => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
-      {route.params.routine.workouts.map((workout, index) => {
-        return (
-          <List.Section key={`${workout.name}-${index}`}>
-            <List.Subheader style={{ paddingBottom: 0 }}>
-              {workout.name}
-            </List.Subheader>
-            <List.Section>
-              <View style={styles.headerContainer}>
-                <View style={{ flex: 2 }}>
-                  <List.Item titleStyle={styles.title} title='Exercise' />
+    <ScrollView>
+      <View style={{ flex: 1 }}>
+        {route.params.routine.workouts.map((workout, index) => {
+          return (
+            <List.Section key={`${workout.name}-${index}`}>
+              <List.Subheader style={{ paddingBottom: 0 }}>
+                {workout.name}
+              </List.Subheader>
+              <List.Section>
+                <View style={styles.headerContainer}>
+                  <View style={{ flex: 2 }}>
+                    <List.Item titleStyle={styles.title} title='Exercise' />
+                  </View>
+                  <View style={{ flex: 1 }}>
+                    <List.Item titleStyle={styles.title} title='Sets' />
+                  </View>
+                  <View style={{ flex: 1 }}>
+                    <List.Item titleStyle={styles.title} title='Reps' />
+                  </View>
                 </View>
-                <View style={{ flex: 1 }}>
-                  <List.Item titleStyle={styles.title} title='Sets' />
-                </View>
-                <View style={{ flex: 1 }}>
-                  <List.Item titleStyle={styles.title} title='Reps' />
-                </View>
-              </View>
+              </List.Section>
+              {workout.exercises.map((exercise, index) => {
+                return (
+                  <View key={`${exercise.exerciseName}-${index}`}>
+                    <List.Section>
+                      <View style={styles.exerciseContainer}>
+                        <View style={{ flex: 2 }}>
+                          <List.Item
+                            titleStyle={styles.text}
+                            title={exercise.exerciseName}
+                          />
+                        </View>
+                        <View style={{ flex: 1 }}>
+                          <List.Item
+                            titleStyle={styles.text}
+                            title={exercise.sets}
+                          />
+                        </View>
+                        <View style={{ flex: 1 }}>
+                          <List.Item
+                            titleStyle={styles.text}
+                            title={exercise.reps}
+                          />
+                        </View>
+                      </View>
+                    </List.Section>
+                  </View>
+                );
+              })}
             </List.Section>
-            {workout.exercises.map((exercise, index) => {
-              return (
-                <View key={`${exercise.exerciseName}-${index}`}>
-                  <List.Section>
-                    <View style={styles.exerciseContainer}>
-                      <View style={{ flex: 2 }}>
-                        <List.Item
-                          titleStyle={styles.text}
-                          title={exercise.exerciseName}
-                        />
-                      </View>
-                      <View style={{ flex: 1 }}>
-                        <List.Item
-                          titleStyle={styles.text}
-                          title={exercise.sets}
-                        />
-                      </View>
-                      <View style={{ flex: 1 }}>
-                        <List.Item
-                          titleStyle={styles.text}
-                          title={exercise.reps}
-                        />
-                      </View>
-                    </View>
-                  </List.Section>
-                </View>
-              );
-            })}
-          </List.Section>
-        );
-      })}
-      <View style={styles.buttonContainer}>
-        <View style={styles.button}>
-          <Button
-            onPress={() =>
-              navigation.navigate('EditRoutine', {
-                initialData: route.params.routine
-              })
-            }
-            mode='contained'
-            uppercase={false}
-            color='#2A9D8F'>
-            Edit
-          </Button>
+          );
+        })}
+        <View style={styles.buttonContainer}>
+          <View style={styles.button}>
+            <Button
+              onPress={() =>
+                navigation.navigate('EditRoutine', {
+                  initialData: route.params.routine
+                })
+              }
+              mode='contained'
+              uppercase={false}
+              color='#2A9D8F'>
+              Edit
+            </Button>
+          </View>
+          <View style={styles.button}>
+            <Button
+              onPress={() => handleDeleteRoutine()}
+              mode='contained'
+              uppercase={false}
+              color='#E76F51'
+              labelStyle={{ color: '#FFFFFF' }}>
+              Delete
+            </Button>
+          </View>
         </View>
-        <View style={styles.button}>
-          <Button
-            onPress={() => handleDeleteRoutine()}
-            mode='contained'
-            uppercase={false}
-            color='#E76F51'
-            labelStyle={{ color: '#FFFFFF' }}>
-            Delete
-          </Button>
-        </View>
+        <SnackBar navigation={navigation} route={route} />
       </View>
-      <SnackBar navigation={navigation} route={route} />
-    </View>
+    </ScrollView>
   );
 };
 
@@ -116,7 +118,8 @@ const styles = StyleSheet.create({
     height: 20
   },
   text: {
-    height: 20
+    height: 20,
+    flexWrap: 'wrap'
   },
   exerciseContainer: {
     flex: 1,

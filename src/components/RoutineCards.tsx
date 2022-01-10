@@ -87,6 +87,7 @@ const RoutineCards: React.FC<RoutineCardsProps> = ({
             data={routines}
             renderItem={renderItem}
             horizontal
+            showsHorizontalScrollIndicator={false}
             contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
             keyExtractor={(routine) => routine._id}
           />
