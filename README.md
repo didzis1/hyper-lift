@@ -82,4 +82,5 @@ _Testing_
 |  08.01   | 0,5h              | Added new screen to which user is redirected after selecting the workout, updated type parameters | Front-end |
 |  09.01   | 4h              | Workout can now be started and saved to the database (History workout). User can fill reps or weight used during the workout and save it for future reference. | Front-end |
 |  10.01   | 2h              | Created a query that fetches workout history data. Added calendar functionality to display specific days workout history card. | Front-end & Back-end |
-| In total | 164h           |                                                                                                                                                              |
+|  11.01   | 3,5h              | A workout selected from calendar can be clicked and viewed for more details. Fixed theme related issues (wrong text colors, background colors, etc.), fixed back-end not saving notes field in history workouts. | Front-end & Back-end |
+| In total | 167,5h           |                                                                                                                                                              |
