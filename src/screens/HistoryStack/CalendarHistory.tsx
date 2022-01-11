@@ -5,6 +5,7 @@ import { DateData } from 'react-native-calendars/src/types';
 import { Subheading, Text, Title, useTheme } from 'react-native-paper';
 import Loading from '../../components/Loading';
 
+import { HistoryNavProps } from './HistoryParamList';
 import { formatStringDate } from '../../utils/dateFormat';
 import useGetHistoryWorkouts from '../../hooks/useGetHistoryWorkouts';
 import { Fontisto, AntDesign, Feather } from '@expo/vector-icons';
@@ -17,7 +18,9 @@ type MarkedDateType = {
   };
 };
 
-const CalendarHistory = () => {
+const CalendarHistory: React.FC<HistoryNavProps<'CalendarHistory'>> = ({
+  navigation
+}) => {
   const [selectedDate, setSelectedDate] = useState<DateData | null>(null);
   const [markedWorkoutDates, setMarkedWorkoutDates] = useState<
     MarkedDateType | undefined
@@ -82,7 +85,12 @@ const CalendarHistory = () => {
                         <Title>{workout.splitName}</Title>
                       </View>
                       <View style={{ alignSelf: 'center' }}>
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                          onPress={() =>
+                            navigation.navigate('HistoryWorkout', {
+                              workout
+                            })
+                          }>
                           <Text>View</Text>
                         </TouchableOpacity>
                       </View>
@@ -144,8 +152,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#2C4E5B'
+    justifyContent: 'center'
   },
   workoutContainer: {
     flex: 1,

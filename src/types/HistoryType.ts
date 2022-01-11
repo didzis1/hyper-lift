@@ -2,6 +2,7 @@ export type HistoryType = {
   id: string;
   routineId: string;
   splitName: string;
+  notes: string | null;
   exercises: ExerciseInput[];
   createdAt: Date;
 };
