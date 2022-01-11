@@ -51,21 +51,15 @@ const Routine: React.FC<HomeNavProps<'Routine'>> = ({ navigation, route }) => {
                       <View style={styles.exerciseContainer}>
                         <View style={{ flex: 2 }}>
                           <List.Item
-                            titleStyle={styles.text}
+                            titleNumberOfLines={2}
                             title={exercise.exerciseName}
                           />
                         </View>
                         <View style={{ flex: 1 }}>
-                          <List.Item
-                            titleStyle={styles.text}
-                            title={exercise.sets}
-                          />
+                          <List.Item title={exercise.sets} />
                         </View>
                         <View style={{ flex: 1 }}>
-                          <List.Item
-                            titleStyle={styles.text}
-                            title={exercise.reps}
-                          />
+                          <List.Item title={exercise.reps} />
                         </View>
                       </View>
                     </List.Section>
@@ -118,13 +112,11 @@ const styles = StyleSheet.create({
     height: 20
   },
   text: {
-    height: 20,
-    flexWrap: 'wrap'
+    height: 20
   },
   exerciseContainer: {
     flex: 1,
-    flexDirection: 'row',
-    paddingVertical: 3
+    flexDirection: 'row'
   },
   buttonContainer: {
     flex: 1,
