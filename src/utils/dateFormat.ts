@@ -6,7 +6,7 @@ export const getCurrentDate = () => {
   return `${day}, ${date.getDate()} ${month}`;
 };
 
-export const formatStringDate = (date: string) => {
+export const formatStringDate = (date: string | Date) => {
   const toDateObj = new Date(date);
   const day = toDateObj.getDate();
   const month = toDateObj.toLocaleDateString('en-us', { month: 'short' });
