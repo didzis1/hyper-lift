@@ -1,12 +1,13 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { Button, List } from 'react-native-paper';
+import { Button, List, useTheme } from 'react-native-paper';
 import SnackBar from '../../components/SnackBar';
 import useDeleteRoutine from '../../hooks/useDeleteRoutine';
 import { HomeNavProps } from './HomeParamList';
 
 const Routine: React.FC<HomeNavProps<'Routine'>> = ({ navigation, route }) => {
   const { deleteRoutine } = useDeleteRoutine();
+  const { colors } = useTheme();
 
   const handleDeleteRoutine = async () => {
     try {
@@ -34,13 +35,22 @@ const Routine: React.FC<HomeNavProps<'Routine'>> = ({ navigation, route }) => {
               <List.Section>
                 <View style={styles.headerContainer}>
                   <View style={{ flex: 2 }}>
-                    <List.Item titleStyle={styles.title} title='Exercise' />
+                    <List.Item
+                      titleStyle={[styles.title, { color: colors.text }]}
+                      title='Exercise'
+                    />
                   </View>
                   <View style={{ flex: 1 }}>
-                    <List.Item titleStyle={styles.title} title='Sets' />
+                    <List.Item
+                      titleStyle={[styles.title, { color: colors.text }]}
+                      title='Sets'
+                    />
                   </View>
                   <View style={{ flex: 1 }}>
-                    <List.Item titleStyle={styles.title} title='Reps' />
+                    <List.Item
+                      titleStyle={[styles.title, { color: colors.text }]}
+                      title='Reps'
+                    />
                   </View>
                 </View>
               </List.Section>
@@ -51,21 +61,15 @@ const Routine: React.FC<HomeNavProps<'Routine'>> = ({ navigation, route }) => {
                       <View style={styles.exerciseContainer}>
                         <View style={{ flex: 2 }}>
                           <List.Item
-                            titleStyle={styles.text}
+                            titleNumberOfLines={2}
                             title={exercise.exerciseName}
                           />
                         </View>
                         <View style={{ flex: 1 }}>
-                          <List.Item
-                            titleStyle={styles.text}
-                            title={exercise.sets}
-                          />
+                          <List.Item title={exercise.sets} />
                         </View>
                         <View style={{ flex: 1 }}>
-                          <List.Item
-                            titleStyle={styles.text}
-                            title={exercise.reps}
-                          />
+                          <List.Item title={exercise.reps} />
                         </View>
                       </View>
                     </List.Section>
@@ -114,17 +118,14 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: 'bold',
-    color: 'black',
     height: 20
   },
   text: {
-    height: 20,
-    flexWrap: 'wrap'
+    height: 20
   },
   exerciseContainer: {
     flex: 1,
-    flexDirection: 'row',
-    paddingVertical: 3
+    flexDirection: 'row'
   },
   buttonContainer: {
     flex: 1,

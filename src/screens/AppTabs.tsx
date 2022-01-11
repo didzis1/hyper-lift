@@ -6,7 +6,7 @@ import HistoryStack from './HistoryStack';
 import ProgressStack from './ProgressStack';
 import { AppParamList } from './AppParamList';
 
-import { Feather, AntDesign, Ionicons } from '@expo/vector-icons';
+import { Feather, AntDesign, Entypo } from '@expo/vector-icons';
 import { useTheme } from 'react-native-paper';
 
 const Stack = createBottomTabNavigator<AppParamList>();
@@ -41,8 +41,8 @@ const AppTabs = () => {
           title: 'Workout',
           tabBarIcon: ({ focused }) => {
             return (
-              <Feather
-                name='zap'
+              <AntDesign
+                name='profile'
                 size={24}
                 color={focused ? theme.colors.primary : 'grey'}
               />
@@ -58,8 +58,8 @@ const AppTabs = () => {
           title: 'History',
           tabBarIcon: ({ focused }) => {
             return (
-              <AntDesign
-                name='clockcircleo'
+              <Feather
+                name='calendar'
                 size={24}
                 color={focused ? theme.colors.primary : 'grey'}
               />
@@ -75,8 +75,8 @@ const AppTabs = () => {
           title: 'Progress',
           tabBarIcon: ({ focused }) => {
             return (
-              <Ionicons
-                name='stats-chart-outline'
+              <Entypo
+                name='bar-graph'
                 size={24}
                 color={focused ? theme.colors.primary : 'grey'}
               />

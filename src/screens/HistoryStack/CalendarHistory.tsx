@@ -84,7 +84,10 @@ const CalendarHistory: React.FC<HistoryNavProps<'CalendarHistory'>> = ({
                       <View>
                         <Title>{workout.splitName}</Title>
                       </View>
-                      <View style={{ alignSelf: 'center' }}>
+                      <View
+                        style={{
+                          alignSelf: 'center'
+                        }}>
                         <TouchableOpacity
                           onPress={() =>
                             navigation.navigate('HistoryWorkout', {

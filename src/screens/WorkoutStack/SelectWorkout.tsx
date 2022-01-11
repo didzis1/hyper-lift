@@ -84,7 +84,7 @@ const SelectWorkout: React.FC<WorkoutNavProps<'SelectWorkout'>> = ({
                 borderWidth: 1,
                 backgroundColor: '#FFFFFF',
                 borderColor: colors.primary,
-                borderRadius: 4
+                borderRadius: 5
               }}>
               <Picker
                 style={styles.picker}
