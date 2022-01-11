@@ -10,9 +10,6 @@ import Profile from './Profile';
 import EditMaxLift from './EditMaxLift';
 import { HomeParamList } from './HomeParamList';
 import CreateMaxLift from './CreateMaxLift';
-import { Text } from 'react-native-paper';
-import { TouchableOpacity } from 'react-native';
-import globalStyles from '../../globalStyles';
 import Routine from './Routine';
 import EditRoutine from './EditRoutine';
 
