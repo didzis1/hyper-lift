@@ -1,12 +1,13 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { Button, List } from 'react-native-paper';
+import { Button, List, useTheme } from 'react-native-paper';
 import SnackBar from '../../components/SnackBar';
 import useDeleteRoutine from '../../hooks/useDeleteRoutine';
 import { HomeNavProps } from './HomeParamList';
 
 const Routine: React.FC<HomeNavProps<'Routine'>> = ({ navigation, route }) => {
   const { deleteRoutine } = useDeleteRoutine();
+  const { colors } = useTheme();
 
   const handleDeleteRoutine = async () => {
     try {
@@ -34,13 +35,22 @@ const Routine: React.FC<HomeNavProps<'Routine'>> = ({ navigation, route }) => {
               <List.Section>
                 <View style={styles.headerContainer}>
                   <View style={{ flex: 2 }}>
-                    <List.Item titleStyle={styles.title} title='Exercise' />
+                    <List.Item
+                      titleStyle={[styles.title, { color: colors.text }]}
+                      title='Exercise'
+                    />
                   </View>
                   <View style={{ flex: 1 }}>
-                    <List.Item titleStyle={styles.title} title='Sets' />
+                    <List.Item
+                      titleStyle={[styles.title, { color: colors.text }]}
+                      title='Sets'
+                    />
                   </View>
                   <View style={{ flex: 1 }}>
-                    <List.Item titleStyle={styles.title} title='Reps' />
+                    <List.Item
+                      titleStyle={[styles.title, { color: colors.text }]}
+                      title='Reps'
+                    />
                   </View>
                 </View>
               </List.Section>
@@ -108,7 +118,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: 'bold',
-    color: 'black',
     height: 20
   },
   text: {
