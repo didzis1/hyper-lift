@@ -79,19 +79,27 @@ const SelectWorkout: React.FC<WorkoutNavProps<'SelectWorkout'>> = ({
               </Button>
             </View>
           ) : (
-            <Picker
-              style={styles.picker}
-              mode='dialog'
-              selectedValue={selectedSplit}
-              onValueChange={(split) => setSelectedSplit(split)}>
-              {routines.map((routine) => (
-                <Picker.Item
-                  key={routine._id}
-                  label={routine.description}
-                  value={routine._id}
-                />
-              ))}
-            </Picker>
+            <View
+              style={{
+                borderWidth: 1,
+                backgroundColor: '#FFFFFF',
+                borderColor: colors.primary,
+                borderRadius: 4
+              }}>
+              <Picker
+                style={styles.picker}
+                mode='dialog'
+                selectedValue={selectedSplit}
+                onValueChange={(split) => setSelectedSplit(split)}>
+                {routines.map((routine) => (
+                  <Picker.Item
+                    key={routine._id}
+                    label={routine.description}
+                    value={routine._id}
+                  />
+                ))}
+              </Picker>
+            </View>
           )}
         </View>
 
