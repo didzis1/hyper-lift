@@ -32,7 +32,7 @@ const WorkoutCard: React.FC<WorkoutCardProps> = ({ workout, navigation }) => {
             <Ionicons name='sync-outline' size={24} color={colors.accent} />
           </View>
           <View style={styles.textRow}>
-            <Text style={styles.dataText}>
+            <Text style={[styles.dataText, { color: colors.background }]}>
               {workout.exercises.length} exercises
             </Text>
           </View>
@@ -43,7 +43,7 @@ const WorkoutCard: React.FC<WorkoutCardProps> = ({ workout, navigation }) => {
             <Ionicons name='layers' size={24} color={colors.accent} />
           </View>
           <View style={styles.textRow}>
-            <Text style={styles.dataText}>
+            <Text style={[styles.dataText, { color: colors.background }]}>
               {workout.exercises.reduce((acc, exercise) => {
                 return acc + exercise.sets;
               }, 0)}{' '}
@@ -57,7 +57,7 @@ const WorkoutCard: React.FC<WorkoutCardProps> = ({ workout, navigation }) => {
             <Ionicons name='flame-sharp' size={24} color={colors.accent} />
           </View>
           <View style={styles.textRow}>
-            <Text style={styles.dataText}>
+            <Text style={[styles.dataText, { color: colors.background }]}>
               {workout.exercises.reduce((acc, exercise) => {
                 return acc + exercise.reps;
               }, 0)}{' '}
@@ -114,7 +114,6 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   dataText: {
-    color: '#FFFFFF',
     fontSize: 17
   },
   routineIcon: {

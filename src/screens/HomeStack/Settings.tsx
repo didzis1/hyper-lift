@@ -10,38 +10,42 @@ const Settings: React.FC<HomeNavProps<'Settings'>> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <List.Section>
-        <List.Subheader style={styles.listSubheader}>
+        <List.Subheader style={{ color: colors.text }}>
           Account settings
         </List.Subheader>
         <List.Item
           style={styles.listSection}
           title='Profile'
+          titleStyle={{ color: 'black' }}
           onPress={() => navigation.navigate('Profile')}
-          left={() => <List.Icon icon='account' color={colors.primary} />}
+          left={() => <List.Icon icon='account' color='#2C4E5B' />}
         />
         <List.Item
           style={styles.listSection}
           title='Account'
+          titleStyle={{ color: 'black' }}
           onPress={() => console.log('Account')}
-          left={() => <List.Icon icon='lock' color={colors.primary} />}
+          left={() => <List.Icon icon='lock' color='#2C4E5B' />}
         />
       </List.Section>
 
       <List.Section>
-        <List.Subheader style={styles.listSubheader}>
+        <List.Subheader style={{ color: colors.text }}>
           Preferences
         </List.Subheader>
         <List.Item
           style={styles.listSection}
           title='Measurements'
+          titleStyle={{ color: 'black' }}
           onPress={() => navigation.navigate('Measurements')}
-          left={() => <List.Icon icon='weight' color={colors.primary} />}
+          left={() => <List.Icon icon='weight' color='#2C4E5B' />}
         />
         <List.Item
           style={styles.listSection}
           title='Theme'
+          titleStyle={{ color: 'black' }}
           onPress={() => navigation.navigate('ChangeTheme')}
-          left={() => <List.Icon icon='brightness-4' color={colors.primary} />}
+          left={() => <List.Icon icon='brightness-4' color='#2C4E5B' />}
         />
       </List.Section>
     </View>
@@ -64,9 +68,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     paddingHorizontal: 8
-  },
-  listSubheader: {
-    color: '#2C4E5B'
   },
   listSection: {
     backgroundColor: '#FFFFFF',

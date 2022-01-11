@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, FlatList, TouchableOpacity } from 'react-native';
-import { Button, Text, Title, Surface, useTheme } from 'react-native-paper';
+import { Button, Text, Title, Surface } from 'react-native-paper';
 import { HomeParamList } from '../screens/HomeStack/HomeParamList';
 import { RoutineType } from '../types/RoutineType';
 import { AntDesign } from '@expo/vector-icons';
@@ -19,8 +19,6 @@ type RoutineCardProps = {
 };
 
 const RoutineCard: React.FC<RoutineCardProps> = ({ routine, navigation }) => {
-  const { colors } = useTheme();
-
   return (
     <Surface key={routine._id} style={styles.routineCard}>
       <TouchableOpacity
@@ -35,7 +33,7 @@ const RoutineCard: React.FC<RoutineCardProps> = ({ routine, navigation }) => {
         <View style={styles.routineDataContainer}>
           <View style={styles.dataRow}>
             <View>
-              <Ionicons name='sync-outline' size={24} color={colors.accent} />
+              <Ionicons name='sync-outline' size={24} color='#E9C46A' />
             </View>
             <View style={styles.textRow}>
               <Text style={styles.dataText}>
@@ -46,7 +44,7 @@ const RoutineCard: React.FC<RoutineCardProps> = ({ routine, navigation }) => {
 
           <View style={styles.dataRow}>
             <View>
-              <Ionicons name='layers' size={24} color={colors.accent} />
+              <Ionicons name='layers' size={24} color='#E9C46A' />
             </View>
             <View style={styles.textRow}>
               <Text style={styles.dataText}>
@@ -57,7 +55,7 @@ const RoutineCard: React.FC<RoutineCardProps> = ({ routine, navigation }) => {
 
           <View style={styles.dataRow}>
             <View>
-              <Ionicons name='flame-sharp' size={24} color={colors.accent} />
+              <Ionicons name='flame-sharp' size={24} color='#E9C46A' />
             </View>
             <View style={styles.textRow}>
               <Text style={styles.dataText}>

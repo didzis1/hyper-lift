@@ -46,13 +46,17 @@ const Home: React.FC<HomeNavProps<'Home'>> = ({ navigation, route }) => {
         <View style={styles.topContainer}>
           <View style={styles.topUpperRow}>
             <View style={styles.dateContainer}>
-              <Text style={styles.currentDate}>{currentDay}</Text>
+              <Text style={[styles.currentDate, { color: colors.background }]}>
+                {currentDay}
+              </Text>
               <View style={{ flexDirection: 'row' }}>
                 <View style={{ alignSelf: 'center' }}>
                   <Ionicons name='today' size={20} color={colors.accent} />
                 </View>
                 <View style={{ paddingLeft: 5 }}>
-                  <Text style={styles.today}>Today</Text>
+                  <Text style={[styles.today, { color: colors.accent }]}>
+                    Today
+                  </Text>
                 </View>
               </View>
             </View>
@@ -81,8 +85,10 @@ const Home: React.FC<HomeNavProps<'Home'>> = ({ navigation, route }) => {
           </View>
 
           <View style={styles.topBottomRow}>
-            <Text style={styles.welcomeText}>Welcome back to Hyperlift</Text>
-            <Text style={styles.fullName}>
+            <Text style={[styles.welcomeText, { color: colors.background }]}>
+              Welcome back to Hyperlift
+            </Text>
+            <Text style={[styles.fullName, { color: colors.background }]}>
               {currentUser.firstName} {currentUser.lastName}
             </Text>
           </View>
@@ -143,20 +149,16 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   welcomeText: {
-    fontSize: 14,
-    color: '#FFFFFF'
+    fontSize: 14
   },
   fullName: {
-    fontSize: 18,
-    color: '#FFFFFF'
+    fontSize: 18
   },
   dateContainer: { flex: 1, marginLeft: 10 },
   currentDate: {
-    color: '#FFFFFF',
     fontSize: 16
   },
   today: {
-    color: '#E9C46A',
     fontSize: 18
   },
   avatarContainer: { flex: 1, alignItems: 'center' },
