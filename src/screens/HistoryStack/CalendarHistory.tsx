@@ -152,8 +152,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#2C4E5B'
+    justifyContent: 'center'
   },
   workoutContainer: {
     flex: 1,

@@ -13,11 +13,18 @@ type WorkoutCardProps = {
 
 const WorkoutCard: React.FC<WorkoutCardProps> = ({ workout, navigation }) => {
   const { colors } = useTheme();
-  console.log(workout);
   return (
-    <Surface style={styles.routineCard}>
+    <Surface
+      style={[
+        styles.routineCard,
+        {
+          backgroundColor: colors.primary
+        }
+      ]}>
       <View style={{ flex: 1 }}>
-        <Title style={styles.routineTitle}>{workout.name}</Title>
+        <Title style={[styles.routineTitle, { color: colors.accent }]}>
+          {workout.name}
+        </Title>
       </View>
       <View style={styles.routineDataContainer}>
         <View style={styles.dataRow}>
@@ -83,7 +90,6 @@ const styles = StyleSheet.create({
     marginVertical: 10
   },
   routineCard: {
-    backgroundColor: '#2C4E5B',
     margin: 15,
     width: 280,
     paddingVertical: 10,
@@ -105,7 +111,6 @@ const styles = StyleSheet.create({
     marginLeft: 8
   },
   routineTitle: {
-    color: '#E9C46A',
     textAlign: 'center'
   },
   dataText: {
