@@ -37,7 +37,7 @@ _Back end_
 - TypeGraphQL
 - MongoDB / Typegoose
 
-_Testing_
+_Testing_ (in progress)
 
 - Cypress
 - Jest
