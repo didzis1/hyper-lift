@@ -4,7 +4,8 @@ import {
   StyleSheet,
   View,
   Platform,
-  ActionSheetIOS
+  ActionSheetIOS,
+  Text
 } from 'react-native';
 import { Button, Subheading, Title, useTheme } from 'react-native-paper';
 import { Picker } from '@react-native-picker/picker';
@@ -62,65 +63,76 @@ const SelectWorkout: React.FC<WorkoutNavProps<'SelectWorkout'>> = ({
   return (
     <ScrollView>
       <View style={[styles.container, { backgroundColor: colors.background }]}>
-        <Title>Select your routine</Title>
-        <View style={styles.pickerContainer}>
-          {Platform.OS === 'ios' ? (
+        {routines.length > 0 ? (
+          <>
+            <Title>Select your routine</Title>
+            <View style={styles.pickerContainer}>
+              {Platform.OS === 'ios' ? (
+                <View>
+                  <Button
+                    onPress={showiOSActionSheet}
+                    mode='contained'
+                    uppercase={false}>
+                    {selectedSplit
+                      ? `Selected: ${
+                          routines.find(
+                            (routine) => routine._id === selectedSplit
+                          )?.description
+                        }`
+                      : 'Select'}
+                  </Button>
+                </View>
+              ) : (
+                <View
+                  style={{
+                    borderWidth: 1,
+                    backgroundColor: '#FFFFFF',
+                    borderColor: colors.primary,
+                    borderRadius: 5
+                  }}>
+                  <Picker
+                    style={styles.picker}
+                    mode='dialog'
+                    selectedValue={selectedSplit}
+                    onValueChange={(split) => setSelectedSplit(split)}>
+                    {routines.map((routine) => (
+                      <Picker.Item
+                        key={routine._id}
+                        label={routine.description}
+                        value={routine._id}
+                      />
+                    ))}
+                  </Picker>
+                </View>
+              )}
+            </View>
+
             <View>
-              <Button
-                onPress={showiOSActionSheet}
-                mode='contained'
-                uppercase={false}>
-                {selectedSplit
-                  ? `Selected: ${
-                      routines.find((routine) => routine._id === selectedSplit)
-                        ?.description
-                    }`
-                  : 'Select'}
-              </Button>
+              <Title>Select your workout</Title>
             </View>
-          ) : (
-            <View
-              style={{
-                borderWidth: 1,
-                backgroundColor: '#FFFFFF',
-                borderColor: colors.primary,
-                borderRadius: 5
-              }}>
-              <Picker
-                style={styles.picker}
-                mode='dialog'
-                selectedValue={selectedSplit}
-                onValueChange={(split) => setSelectedSplit(split)}>
-                {routines.map((routine) => (
-                  <Picker.Item
-                    key={routine._id}
-                    label={routine.description}
-                    value={routine._id}
-                  />
-                ))}
-              </Picker>
+
+            <View style={styles.workoutsContainer}>
+              {routines.map((routine) => {
+                if (routine._id === selectedSplit) {
+                  return routine.workouts.map((workout) => (
+                    <WorkoutCard
+                      key={workout.name}
+                      navigation={navigation}
+                      workout={{ ...workout, routineId: selectedSplit }}
+                    />
+                  ));
+                }
+                return null;
+              })}
             </View>
-          )}
-        </View>
-
-        <View>
-          <Title>Select your workout</Title>
-        </View>
-
-        <View style={styles.workoutsContainer}>
-          {routines.map((routine) => {
-            if (routine._id === selectedSplit) {
-              return routine.workouts.map((workout) => (
-                <WorkoutCard
-                  key={workout.name}
-                  navigation={navigation}
-                  workout={{ ...workout, routineId: selectedSplit }}
-                />
-              ));
-            }
-            return null;
-          })}
-        </View>
+          </>
+        ) : (
+          <View style={styles.noRoutineContainer}>
+            <Text style={styles.noRoutineText}>
+              You need to create a routine to start tracking your workouts!
+            </Text>
+          </View>
+        )}
       </View>
     </ScrollView>
   );

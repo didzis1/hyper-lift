@@ -7,7 +7,7 @@ import {
   View,
   StyleSheet
 } from 'react-native';
-import { Button, Modal, Portal, Subheading, Text } from 'react-native-paper';
+import { Button, Modal, Portal, Subheading } from 'react-native-paper';
 import globalStyles from '../../globalStyles';
 
 import FormikTextInput from '../../components/FormikTextInput';
@@ -69,8 +69,8 @@ const CreateMaxLift: React.FC<HomeNavProps<'CreateMaxLift'>> = ({
                   return (
                     <View>
                       <View>
-                        <Subheading>Exercise</Subheading>
-
+                        <Subheading>Selected exercise: </Subheading>
+                        <Subheading>{values.exercise}</Subheading>
                         <FormikTextInput
                           name='weight'
                           label='Max weight (RM)'
