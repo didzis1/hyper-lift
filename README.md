@@ -84,4 +84,5 @@ _Testing_ (in progress)
 |  10.01   | 2h              | Created a query that fetches workout history data. Added calendar functionality to display specific days workout history card. | Front-end & Back-end |
 |  11.01   | 3,5h              | A workout selected from calendar can be clicked and viewed for more details. Fixed theme related issues (wrong text colors, background colors, etc.), fixed back-end not saving notes field in history workouts. | Front-end & Back-end |
 |  17.01   | 2h              | Started working on the Progression tab. Installed react-native-chart-kit and did some research on it. Fixed some bugs (registration throwing an error, exercise name not visible on max lifts, empty select box if no routines under Workout, etc.). | Front-end |
-| In total | 169,5h           |                                                                                                                                                              |
+|  17.01   | 1,5h              | Created a feature where the user can toggle between their prefered weight measurement type. Current options are kgs and lbs. Toggle updates both context's state and local storage | Front-end |
+| In total | 171h           |                                                                                                                                                              |
