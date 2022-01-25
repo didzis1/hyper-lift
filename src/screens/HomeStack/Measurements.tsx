@@ -1,24 +1,52 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { List, Switch, Text } from 'react-native-paper';
 import { HomeNavProps } from './HomeParamList';
+import { PreferenceContext } from '../../contexts/PreferenceContext';
 
-const WeightSwitch = () => {
+type WeightSwitchProps = {
+  switchValue: boolean;
+  setSwitchValue: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const WeightSwitch = ({ switchValue, setSwitchValue }: WeightSwitchProps) => {
+  console.log(switchValue);
   return (
     <View style={styles.switchContainer}>
       <Text>kgs</Text>
-      <Switch value={false} />
+      <Switch
+        onValueChange={() => setSwitchValue(!switchValue)}
+        value={switchValue}
+      />
       <Text>lbs</Text>
     </View>
   );
 };
 
-const Measurements: React.FC<HomeNavProps<'Measurements'>> = () => {
+const Measurements: React.FC<HomeNavProps<'Measurements'>> = ({}) => {
+  const { toggleWeightMeasurement, weightMeasurement } =
+    useContext(PreferenceContext);
+  const [switchValue, setSwitchValue] = useState<boolean>(
+    weightMeasurement === 'lbs' ? true : false
+  );
+
+  useEffect(() => {
+    toggleWeightMeasurement(switchValue);
+  }, [switchValue]);
+
   return (
     <View>
       <List.Section>
         <List.Subheader>Change weight</List.Subheader>
-        <List.Item title='Weight unit' right={() => <WeightSwitch />} />
+        <List.Item
+          title='Weight unit'
+          right={() => (
+            <WeightSwitch
+              switchValue={switchValue}
+              setSwitchValue={setSwitchValue}
+            />
+          )}
+        />
       </List.Section>
     </View>
   );
