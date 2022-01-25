@@ -1,20 +1,22 @@
+import React, { useContext } from 'react';
 import { Formik, FieldArray } from 'formik';
-import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Button, Subheading, Title } from 'react-native-paper';
-import FormikTextInput from '../../components/FormikTextInput';
+import { AddHistoryInput } from '../../types/HistoryType';
+import { WorkoutNavProps } from './WorkoutParamList';
+import { PreferenceContext } from '../../contexts/PreferenceContext';
 
 import useCreateHistory from '../../hooks/useCreateHistory';
-import { WorkoutNavProps } from './WorkoutParamList';
 
 import { FontAwesome } from '@expo/vector-icons';
-import { AddHistoryInput } from '../../types/HistoryType';
+import FormikTextInput from '../../components/FormikTextInput';
 
 const ActiveWorkout: React.FC<WorkoutNavProps<'ActiveWorkout'>> = ({
   route,
   navigation
 }) => {
   const { createNewHistoryLift } = useCreateHistory();
+  const { weightMeasurement } = useContext(PreferenceContext);
 
   const initialValues = {
     routineId: route.params.workout.routineId,
@@ -113,7 +115,7 @@ const ActiveWorkout: React.FC<WorkoutNavProps<'ActiveWorkout'>> = ({
                                     <View style={styles.alignHeadingContent}>
                                       <FormikTextInput
                                         name={`exercises[${exerciseIndex}].volumeSets[${volumeSetIndex}].weight`}
-                                        placeholder='90 kg'
+                                        placeholder={`90 ${weightMeasurement}`}
                                         keyboardType='number-pad'
                                       />
                                     </View>

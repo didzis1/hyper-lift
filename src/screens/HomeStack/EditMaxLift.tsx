@@ -1,5 +1,4 @@
-import { Formik } from 'formik';
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   View,
   StyleSheet,
@@ -8,18 +7,23 @@ import {
   TouchableWithoutFeedback,
   ScrollView
 } from 'react-native';
+import { Formik } from 'formik';
 import { Button, Headline, Subheading, Text } from 'react-native-paper';
-import FormikTextInput from '../../components/FormikTextInput';
 import { HomeNavProps } from './HomeParamList';
+import { PreferenceContext } from '../../contexts/PreferenceContext';
 import { EditMaxLiftInput } from '../../types/MaxLiftType';
+import { formatStringDate } from '../../utils/dateFormat';
+
 import useEditMaxLift from '../../hooks/useEditMaxLift';
 import useDeleteMaxLift from '../../hooks/useDeleteMaxLift';
-import { formatStringDate } from '../../utils/dateFormat';
+
+import FormikTextInput from '../../components/FormikTextInput';
 
 const EditMaxLift: React.FC<HomeNavProps<'EditMaxLift'>> = ({
   route,
   navigation
 }) => {
+  const { weightMeasurement } = useContext(PreferenceContext);
   const { editMaxLift } = useEditMaxLift();
   const { deleteMaxLift } = useDeleteMaxLift();
 
@@ -117,7 +121,7 @@ const EditMaxLift: React.FC<HomeNavProps<'EditMaxLift'>> = ({
                     <View key={index} style={styles.historyDataContainer}>
                       <View style={styles.historyTextContainer}>
                         <Text style={styles.historyDataText}>
-                          {weightHistory.weight} kg
+                          {weightHistory.weight} {weightMeasurement}
                         </Text>
                       </View>
                       <View style={styles.historyTextContainer}>

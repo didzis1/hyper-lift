@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Image, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Text, useTheme } from 'react-native-paper';
 import { HomeNavProps } from './HomeParamList';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { getCurrentDate } from '../../utils/dateFormat';
+import { PreferenceContext } from '../../contexts/PreferenceContext';
 
 import useCurrentUser from '../../hooks/useCurrentUser';
 import useGetMaxLift from '../../hooks/useGetMaxLift';
@@ -20,6 +21,7 @@ const Home: React.FC<HomeNavProps<'Home'>> = ({ navigation, route }) => {
   const { maxLifts } = useGetMaxLift();
   const { routines } = useGetRoutines();
 
+  const { weightMeasurement } = useContext(PreferenceContext);
   const [currentDay, setCurrentDay] = React.useState<string>('');
 
   const { colors } = useTheme();
@@ -105,17 +107,17 @@ const Home: React.FC<HomeNavProps<'Home'>> = ({ navigation, route }) => {
             <Text style={styles.header}>Maximum lifts</Text>
           </View>
 
-          <MaxLiftCard maxLifts={maxLifts} navigation={navigation} />
+          <MaxLiftCard
+            maxLifts={maxLifts}
+            navigation={navigation}
+            weightMeasurement={weightMeasurement}
+          />
 
           <View style={styles.headerContainer}>
             <Text style={styles.header}>Routines</Text>
             <View style={styles.addButton}>
               <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('CreateRoutine', {
-                    routeTitle: 'Create Routine'
-                  })
-                }>
+                onPress={() => navigation.navigate('CreateRoutine', {})}>
                 <Ionicons name='add' size={24} color='grey' />
               </TouchableOpacity>
             </View>

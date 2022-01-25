@@ -5,13 +5,20 @@ import { MaxLiftType } from '../types/MaxLiftType';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { HomeParamList } from '../screens/HomeStack/HomeParamList';
 import { AntDesign } from '@expo/vector-icons';
+import { WeightMeasurement } from '../types/WeightMeasurement';
 
 type MaxLiftCardProps = {
   maxLifts: MaxLiftType[];
   navigation: NativeStackNavigationProp<HomeParamList, 'Home'>;
+  weightMeasurement: WeightMeasurement;
 };
 
-const MaxLiftCard: React.FC<MaxLiftCardProps> = ({ maxLifts, navigation }) => {
+const MaxLiftCard: React.FC<MaxLiftCardProps> = ({
+  maxLifts,
+  navigation,
+  weightMeasurement
+}) => {
+  console.log(weightMeasurement);
   return (
     <Surface style={styles.container}>
       <TouchableOpacity onPress={() => navigation.navigate('MaxLifts', {})}>
@@ -25,7 +32,9 @@ const MaxLiftCard: React.FC<MaxLiftCardProps> = ({ maxLifts, navigation }) => {
                   </View>
 
                   <View style={styles.textContainer}>
-                    <Text style={styles.weightText}>{maxLift.weight} kg</Text>
+                    <Text style={styles.weightText}>
+                      {maxLift.weight} {weightMeasurement}
+                    </Text>
                   </View>
                 </View>
               ))}
