@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   View,
   StyleSheet,
@@ -9,14 +9,18 @@ import {
   Keyboard,
   TouchableOpacity
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { Button, Text } from 'react-native-paper';
 import { HomeNavProps } from './HomeParamList';
+import { PreferenceContext } from '../../contexts/PreferenceContext';
+
 import useGetMaxLift from '../../hooks/useGetMaxLift';
+
 import Loading from '../../components/Loading';
-import { Ionicons } from '@expo/vector-icons';
 import SnackBar from '../../components/SnackBar';
 
 const MaxLifts = ({ navigation, route }: HomeNavProps<'MaxLifts'>) => {
+  const { weightMeasurement } = useContext(PreferenceContext);
   const { maxLifts, ...rest } = useGetMaxLift();
 
   if (rest.loading) return <Loading />;
@@ -58,7 +62,9 @@ const MaxLifts = ({ navigation, route }: HomeNavProps<'MaxLifts'>) => {
                   </View>
 
                   <View style={{ flex: 1 }}>
-                    <Text style={styles.text}>{maxLift.weight} kg</Text>
+                    <Text style={styles.text}>
+                      {maxLift.weight} {weightMeasurement}
+                    </Text>
                   </View>
                 </TouchableOpacity>
               ))}

@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { HistoryNavProps } from './HistoryParamList';
 import { formatStringDate } from '../../utils/dateFormat';
 import { List, Subheading, Title, useTheme } from 'react-native-paper';
 import { Fontisto } from '@expo/vector-icons';
+import PreferenceContext from '../../contexts/PreferenceContext';
 
 const HistoryWorkout: React.FC<HistoryNavProps<'HistoryWorkout'>> = ({
   route
 }) => {
   const { colors } = useTheme();
-  console.log(route.params.workout);
+  const { weightMeasurement } = useContext(PreferenceContext);
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -57,7 +59,9 @@ const HistoryWorkout: React.FC<HistoryNavProps<'HistoryWorkout'>> = ({
                             <Text>{volumeSet.reps}</Text>
                           </View>
                           <View style={styles.centerColumns}>
-                            <Text>{volumeSet.weight} kg</Text>
+                            <Text>
+                              {volumeSet.weight} {weightMeasurement}
+                            </Text>
                           </View>
                         </View>
                       );
