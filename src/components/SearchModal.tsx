@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Alert
 } from 'react-native';
-import { Divider, Searchbar, Text } from 'react-native-paper';
+import { Divider, Searchbar, Text, useTheme } from 'react-native-paper';
 import { ExerciseDataType } from '../types/ExerciseDataType';
 import ExerciseCard from './ExerciseCard';
 import { ModalDataType } from '../types/ModalType';
@@ -28,6 +28,7 @@ const SearchModal = ({
   setModalData,
   setFieldValue
 }: SearchModalProps) => {
+  const { colors } = useTheme();
   const [exercises, setExercises] = useState<[] | ExerciseDataType[]>([]);
   const [searchValue, setSearchValue] = useState<string>('');
   const [selectedExercise, setSelectedExercise] =
@@ -79,7 +80,13 @@ const SearchModal = ({
   };
 
   return (
-    <View style={styles.mainContainer}>
+    <View
+      style={[
+        styles.mainContainer,
+        {
+          backgroundColor: colors.background
+        }
+      ]}>
       <View style={styles.navigation}>
         <View>
           <TouchableOpacity
@@ -90,13 +97,23 @@ const SearchModal = ({
                 fieldName: null
               })
             }>
-            <Text style={styles.cancelText}>Cancel</Text>
+            <Text
+              style={{
+                color: colors.error
+              }}>
+              Cancel
+            </Text>
           </TouchableOpacity>
         </View>
 
         <View>
           <TouchableOpacity onPress={() => saveExercise()}>
-            <Text style={styles.saveText}>Save</Text>
+            <Text
+              style={{
+                color: '#33A7FF'
+              }}>
+              Save
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -108,6 +125,7 @@ const SearchModal = ({
             placeholder='Search'
             onChangeText={(value) => setSearchValue(value)}
             value={searchValue}
+            placeholderTextColor='#bccbd1'
           />
         </View>
         <FlatList
@@ -139,12 +157,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     marginBottom: 15
-  },
-  saveText: {
-    color: 'blue'
-  },
-  cancelText: {
-    color: 'red'
   },
   container: {
     flex: 1

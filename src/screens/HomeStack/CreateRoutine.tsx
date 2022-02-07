@@ -1,7 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import { FieldArray, Formik } from 'formik';
 import { Alert, ScrollView, StyleSheet, View } from 'react-native';
-import { Button, Modal, Portal, Text, Title } from 'react-native-paper';
+import {
+  Button,
+  Modal,
+  Portal,
+  Text,
+  Title,
+  useTheme
+} from 'react-native-paper';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import globalStyles from '../../globalStyles';
 
@@ -15,6 +22,7 @@ import {
 } from '../../types/RoutineType';
 import { routineValidation } from '../../utils/validationSchemas';
 import useCreateRoutine from '../../hooks/useCreateRoutine';
+import PreferenceContext from '../../contexts/PreferenceContext';
 
 const CreateRoutine: React.FC<HomeNavProps<'CreateRoutine'>> = ({
   navigation
@@ -24,7 +32,8 @@ const CreateRoutine: React.FC<HomeNavProps<'CreateRoutine'>> = ({
     location: null,
     fieldName: null
   });
-
+  const { isDarkTheme } = useContext(PreferenceContext);
+  const { colors } = useTheme();
   const { createRoutine } = useCreateRoutine();
 
   const handleCreateRoutine = async (values: CreateRoutineInputType) => {
@@ -108,7 +117,16 @@ const CreateRoutine: React.FC<HomeNavProps<'CreateRoutine'>> = ({
                     {values.workouts.map((workout, workoutIndex) => {
                       console.log('Errors', errors);
                       return (
-                        <View key={workoutIndex} style={styles.splitBox}>
+                        <View
+                          key={workoutIndex}
+                          style={[
+                            styles.splitBox,
+                            {
+                              backgroundColor: isDarkTheme
+                                ? colors.accent
+                                : 'white'
+                            }
+                          ]}>
                           <Title>{`Day ${workoutIndex + 1}`}</Title>
                           <FormikTextInput
                             label='Name your split'
@@ -208,7 +226,7 @@ const CreateRoutine: React.FC<HomeNavProps<'CreateRoutine'>> = ({
                                   color='white'
                                 />
                               )}>
-                              Delete
+                              Remove
                             </Button>
                           </View>
                         </View>
@@ -250,9 +268,6 @@ const styles = StyleSheet.create({
     flex: 1
   },
   splitBox: {
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderColor: '#EAEAEA',
     padding: 15,
     marginVertical: 15,
     borderRadius: 8,
