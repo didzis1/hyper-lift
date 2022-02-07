@@ -1,7 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import { FieldArray, Formik } from 'formik';
 import { Alert, ScrollView, StyleSheet, View } from 'react-native';
-import { Button, Modal, Portal, Text, Title } from 'react-native-paper';
+import {
+  Button,
+  Modal,
+  Portal,
+  Text,
+  Title,
+  useTheme
+} from 'react-native-paper';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import globalStyles from '../../globalStyles';
 
@@ -15,11 +22,14 @@ import {
 } from '../../types/RoutineType';
 import { routineValidation } from '../../utils/validationSchemas';
 import useEditRoutine from '../../hooks/useEditRoutine';
+import PreferenceContext from '../../contexts/PreferenceContext';
 
 const EditRoutine: React.FC<HomeNavProps<'EditRoutine'>> = ({
   navigation,
   route
 }) => {
+  const { colors } = useTheme();
+  const { isDarkTheme } = useContext(PreferenceContext);
   const [modalData, setModalData] = useState<ModalDataType>({
     visible: false,
     location: null,
@@ -27,8 +37,6 @@ const EditRoutine: React.FC<HomeNavProps<'EditRoutine'>> = ({
   });
 
   const { editRoutine } = useEditRoutine();
-
-  console.log('Initial data', route.params.initialData);
 
   const handleEditRoutine = async (values: EditRoutineInputType) => {
     try {
@@ -114,7 +122,16 @@ const EditRoutine: React.FC<HomeNavProps<'EditRoutine'>> = ({
                     {values.workouts.map((workout, workoutIndex) => {
                       console.log('Errors', errors);
                       return (
-                        <View key={workoutIndex} style={styles.splitBox}>
+                        <View
+                          key={workoutIndex}
+                          style={[
+                            styles.splitBox,
+                            {
+                              backgroundColor: isDarkTheme
+                                ? colors.accent
+                                : 'white'
+                            }
+                          ]}>
                           <Title>{`Day ${workoutIndex + 1}`}</Title>
                           <FormikTextInput
                             label='Name your split'
@@ -214,7 +231,7 @@ const EditRoutine: React.FC<HomeNavProps<'EditRoutine'>> = ({
                                   color='white'
                                 />
                               )}>
-                              Delete
+                              Remove
                             </Button>
                           </View>
                         </View>
@@ -236,7 +253,7 @@ const EditRoutine: React.FC<HomeNavProps<'EditRoutine'>> = ({
                   mode='contained'
                   color='#2A9D8F'
                   onPress={handleSubmit}>
-                  Edit routine
+                  Create routine
                 </Button>
               </View>
             </View>

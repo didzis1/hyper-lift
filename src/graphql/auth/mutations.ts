@@ -24,3 +24,14 @@ export const DELETE_ACCOUNT = gql`
     deleteAccount
   }
 `;
+
+export const UPDATE_PROFILE = gql`
+  mutation Mutation($profileInput: ProfileInput!) {
+    updateUser(profileInput: $profileInput) {
+      firstName
+      lastName
+      liftingType
+      age
+    }
+  }
+`;

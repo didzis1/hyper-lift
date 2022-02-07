@@ -10,5 +10,19 @@ export type UserType = {
   routines: RoutineType[];
   history: [];
   age?: number;
-  liftingType?: string;
+  liftingType?: LiftingType | null;
 };
+
+export type UpdateUserType = {
+  firstName: string;
+  lastName: string;
+  age: number | null;
+  liftingType: LiftingType | null;
+};
+
+export type LiftingType =
+  | 'Powerlifting'
+  | 'Bodybuilding'
+  | 'Crossfit'
+  | 'Olympic Weightlifting'
+  | 'Aerobics';

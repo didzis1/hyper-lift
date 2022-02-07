@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { List, useTheme } from 'react-native-paper';
+import PreferenceContext from '../../contexts/PreferenceContext';
 
 import { HomeNavProps } from './HomeParamList';
 
 const Settings: React.FC<HomeNavProps<'Settings'>> = ({ navigation }) => {
+  const { isDarkTheme } = useContext(PreferenceContext);
   const { colors } = useTheme();
 
   return (
@@ -14,18 +16,28 @@ const Settings: React.FC<HomeNavProps<'Settings'>> = ({ navigation }) => {
           Account settings
         </List.Subheader>
         <List.Item
-          style={styles.listSection}
+          style={[
+            styles.listSection,
+            {
+              backgroundColor: isDarkTheme ? colors.accent : '#FFFFFF'
+            }
+          ]}
           title='Profile'
-          titleStyle={{ color: 'black' }}
+          titleStyle={{ color: colors.text }}
           onPress={() => navigation.navigate('Profile')}
-          left={() => <List.Icon icon='account' color='#2C4E5B' />}
+          left={() => <List.Icon icon='account' color={colors.primary} />}
         />
         <List.Item
-          style={styles.listSection}
+          style={[
+            styles.listSection,
+            {
+              backgroundColor: isDarkTheme ? colors.accent : '#FFFFFF'
+            }
+          ]}
           title='Account'
-          titleStyle={{ color: 'black' }}
+          titleStyle={{ color: colors.text }}
           onPress={() => console.log('Account')}
-          left={() => <List.Icon icon='lock' color='#2C4E5B' />}
+          left={() => <List.Icon icon='lock' color={colors.primary} />}
         />
       </List.Section>
 
@@ -34,18 +46,28 @@ const Settings: React.FC<HomeNavProps<'Settings'>> = ({ navigation }) => {
           Preferences
         </List.Subheader>
         <List.Item
-          style={styles.listSection}
+          style={[
+            styles.listSection,
+            {
+              backgroundColor: isDarkTheme ? colors.accent : '#FFFFFF'
+            }
+          ]}
           title='Measurements'
-          titleStyle={{ color: 'black' }}
+          titleStyle={{ color: colors.text }}
           onPress={() => navigation.navigate('Measurements')}
-          left={() => <List.Icon icon='weight' color='#2C4E5B' />}
+          left={() => <List.Icon icon='weight' color={colors.primary} />}
         />
         <List.Item
-          style={styles.listSection}
+          style={[
+            styles.listSection,
+            {
+              backgroundColor: isDarkTheme ? colors.accent : '#FFFFFF'
+            }
+          ]}
           title='Theme'
-          titleStyle={{ color: 'black' }}
+          titleStyle={{ color: colors.text }}
           onPress={() => navigation.navigate('ChangeTheme')}
-          left={() => <List.Icon icon='brightness-4' color='#2C4E5B' />}
+          left={() => <List.Icon icon='brightness-4' color={colors.primary} />}
         />
       </List.Section>
     </View>
@@ -70,7 +92,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8
   },
   listSection: {
-    backgroundColor: '#FFFFFF',
     borderWidth: 1,
     borderColor: 'rgba(0,0,0,0.1)',
     marginHorizontal: 15,

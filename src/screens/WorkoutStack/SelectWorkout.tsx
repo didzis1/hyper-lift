@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -12,8 +12,8 @@ import { Picker } from '@react-native-picker/picker';
 import useGetRoutines from '../../hooks/useGetRoutines';
 import Loading from '../../components/Loading';
 import WorkoutCard from '../../components/WorkoutCard';
-// import { Ionicons } from '@expo/vector-icons';
 import { WorkoutNavProps } from './WorkoutParamList';
+import PreferenceContext from '../../contexts/PreferenceContext';
 
 const SelectWorkout: React.FC<WorkoutNavProps<'SelectWorkout'>> = ({
   navigation
@@ -21,6 +21,7 @@ const SelectWorkout: React.FC<WorkoutNavProps<'SelectWorkout'>> = ({
   const { routines, loading } = useGetRoutines();
   const [selectedSplit, setSelectedSplit] = useState<string>();
   const { colors } = useTheme();
+  const { isDarkTheme } = useContext(PreferenceContext);
 
   useEffect(() => {
     // Set first routine as the selected one
@@ -86,12 +87,17 @@ const SelectWorkout: React.FC<WorkoutNavProps<'SelectWorkout'>> = ({
                 <View
                   style={{
                     borderWidth: 1,
-                    backgroundColor: '#FFFFFF',
-                    borderColor: colors.primary,
+                    backgroundColor: isDarkTheme ? colors.accent : '#FFFFFF',
+                    borderColor: 'rgba(0, 0, 0, 0.3)',
                     borderRadius: 5
                   }}>
                   <Picker
-                    style={styles.picker}
+                    style={[
+                      styles.picker,
+                      {
+                        color: colors.text
+                      }
+                    ]}
                     mode='dialog'
                     selectedValue={selectedSplit}
                     onValueChange={(split) => setSelectedSplit(split)}>

@@ -45,11 +45,9 @@ const globalStyles = StyleSheet.create({
   },
   input: {
     width: '100%',
-    borderColor: '#00D8BE',
     borderWidth: 1,
     borderRadius: 4,
-    marginVertical: 5,
-    backgroundColor: '#FFFFFF'
+    marginVertical: 5
   }
 });
 

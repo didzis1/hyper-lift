@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Picker } from '@react-native-picker/picker';
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
 
@@ -8,11 +8,13 @@ import Loading from '../../components/Loading';
 
 import useGetMaxLift from '../../hooks/useGetMaxLift';
 import { MaxLiftType } from '../../types/MaxLiftType';
+import { PreferenceContext } from '../../contexts/PreferenceContext';
 
 const Progress = () => {
   const [selectedMaxLift, setSelectedMaxLift] = useState<MaxLiftType | null>(
     null
   );
+  const { weightMeasurement, isDarkTheme } = useContext(PreferenceContext);
   const { colors } = useTheme();
   const { maxLifts } = useGetMaxLift();
 
@@ -34,12 +36,17 @@ const Progress = () => {
           <View
             style={{
               borderWidth: 1,
-              backgroundColor: '#FFFFFF',
-              borderColor: colors.primary,
+              backgroundColor: isDarkTheme ? colors.accent : '#FFFFFF',
+              borderColor: 'rgba(0, 0, 0, 0.3)',
               borderRadius: 5
             }}>
             <Picker
-              style={styles.picker}
+              style={[
+                styles.picker,
+                {
+                  color: colors.text
+                }
+              ]}
               mode='dialog'
               selectedValue={selectedMaxLift}
               onValueChange={(maxLift) => setSelectedMaxLift(maxLift)}>
@@ -56,7 +63,7 @@ const Progress = () => {
         {selectedMaxLift ? (
           <LineChart
             data={{
-              labels: ['kg'],
+              labels: [weightMeasurement],
               datasets: [
                 {
                   data: selectedMaxLift?.weightHistory.map(

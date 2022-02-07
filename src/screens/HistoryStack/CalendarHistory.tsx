@@ -63,7 +63,7 @@ const CalendarHistory: React.FC<HistoryNavProps<'CalendarHistory'>> = ({
           padding: 10
         }}
         theme={{
-          calendarBackground: '#FFFFFF'
+          calendarBackground: '#EAEAEA'
         }}
         onDayPress={(day) => {
           setSelectedDate(day);
@@ -82,7 +82,9 @@ const CalendarHistory: React.FC<HistoryNavProps<'CalendarHistory'>> = ({
                   <View key={workout.id} style={styles.workoutContainer}>
                     <View style={styles.cardTop}>
                       <View>
-                        <Title>{workout.splitName}</Title>
+                        <Title style={styles.fixedTextColor}>
+                          {workout.splitName}
+                        </Title>
                       </View>
                       <View
                         style={{
@@ -94,7 +96,7 @@ const CalendarHistory: React.FC<HistoryNavProps<'CalendarHistory'>> = ({
                               workout
                             })
                           }>
-                          <Text>View</Text>
+                          <Text style={styles.fixedTextColor}>View</Text>
                         </TouchableOpacity>
                       </View>
                     </View>
@@ -106,7 +108,9 @@ const CalendarHistory: React.FC<HistoryNavProps<'CalendarHistory'>> = ({
                           color='black'
                           style={styles.cardRowGap}
                         />
-                        <Subheading>25 sets done</Subheading>
+                        <Subheading style={styles.fixedTextColor}>
+                          25 sets done
+                        </Subheading>
                       </View>
 
                       <View style={styles.cardRow}>
@@ -116,7 +120,9 @@ const CalendarHistory: React.FC<HistoryNavProps<'CalendarHistory'>> = ({
                           color='black'
                           style={styles.cardRowGap}
                         />
-                        <Subheading>55 reps done</Subheading>
+                        <Subheading style={styles.fixedTextColor}>
+                          55 reps done
+                        </Subheading>
                       </View>
 
                       <View style={styles.cardRow}>
@@ -126,7 +132,7 @@ const CalendarHistory: React.FC<HistoryNavProps<'CalendarHistory'>> = ({
                           color='black'
                           style={styles.cardRowGap}
                         />
-                        <Subheading>
+                        <Subheading style={styles.fixedTextColor}>
                           {formatStringDate(
                             new Date(
                               selectedDate?.dateString
@@ -182,6 +188,9 @@ const styles = StyleSheet.create({
   },
   cardRowGap: {
     paddingRight: 10
+  },
+  fixedTextColor: {
+    color: 'black'
   }
 });
 

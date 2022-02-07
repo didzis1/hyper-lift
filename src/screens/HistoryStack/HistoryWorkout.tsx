@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import { HistoryNavProps } from './HistoryParamList';
 import { formatStringDate } from '../../utils/dateFormat';
-import { List, Subheading, Title, useTheme } from 'react-native-paper';
+import { List, Subheading, Title, useTheme, Text } from 'react-native-paper';
 import { Fontisto } from '@expo/vector-icons';
 import PreferenceContext from '../../contexts/PreferenceContext';
 
@@ -16,7 +16,7 @@ const HistoryWorkout: React.FC<HistoryNavProps<'HistoryWorkout'>> = ({
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.calendarText}>
-          <Fontisto name='date' size={24} color='black' />
+          <Fontisto name='date' size={24} color={colors.primary} />
           <Text style={{ alignSelf: 'flex-end', paddingLeft: 5 }}>
             {formatStringDate(route.params.workout.createdAt)}
           </Text>
