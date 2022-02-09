@@ -3,8 +3,6 @@ import { WeightHistory } from '../types/MaxLiftType';
 export const calculateGrowth = (
   weightHistory: WeightHistory[]
 ): number | string => {
-  console.log('weighthistory', weightHistory);
-
   if (weightHistory && weightHistory.length >= 2) {
     return (
       (weightHistory[weightHistory.length - 1].weight /
