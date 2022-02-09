@@ -5,7 +5,7 @@ export type MaxLiftType = {
   weightHistory: WeightHistory[];
 };
 
-type WeightHistory = {
+export type WeightHistory = {
   weight: number;
   date: string;
 };

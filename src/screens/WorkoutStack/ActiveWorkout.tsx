@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Formik, FieldArray } from 'formik';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { Button, Subheading, Title } from 'react-native-paper';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import { Button, Subheading, Title, Text } from 'react-native-paper';
 import { AddHistoryInput } from '../../types/HistoryType';
 import { WorkoutNavProps } from './WorkoutParamList';
 import { PreferenceContext } from '../../contexts/PreferenceContext';

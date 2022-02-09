@@ -3,12 +3,13 @@ import { Picker } from '@react-native-picker/picker';
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
 
 import { LineChart } from 'react-native-chart-kit';
-import { Title, useTheme } from 'react-native-paper';
+import { Title, useTheme, Text } from 'react-native-paper';
 import Loading from '../../components/Loading';
 
 import useGetMaxLift from '../../hooks/useGetMaxLift';
 import { MaxLiftType } from '../../types/MaxLiftType';
 import { PreferenceContext } from '../../contexts/PreferenceContext';
+import { calculateGrowth } from '../../utils/calculateGrowth';
 
 const Progress = () => {
   const [selectedMaxLift, setSelectedMaxLift] = useState<MaxLiftType | null>(
@@ -61,36 +62,45 @@ const Progress = () => {
           </View>
         </View>
         {selectedMaxLift ? (
-          <LineChart
-            data={{
-              labels: [weightMeasurement],
-              datasets: [
-                {
-                  data: selectedMaxLift?.weightHistory.map(
-                    (weightHistory) => weightHistory.weight
-                  ),
-                  strokeWidth: 2 // optional
+          <>
+            <LineChart
+              data={{
+                labels: [weightMeasurement],
+                datasets: [
+                  {
+                    data: selectedMaxLift?.weightHistory.map(
+                      (weightHistory) => weightHistory.weight
+                    ),
+                    strokeWidth: 2 // optional
+                  }
+                ]
+              }}
+              width={Dimensions.get('window').width - 40} // from react-native
+              height={220}
+              chartConfig={{
+                backgroundColor: '#2C4E5B',
+                backgroundGradientFrom: '#2C4E5B',
+                backgroundGradientTo: '#2C4E5B',
+                decimalPlaces: 0, // optional, defaults to 2dp
+                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                style: {
+                  borderRadius: 16
                 }
-              ]
-            }}
-            width={Dimensions.get('window').width - 40} // from react-native
-            height={220}
-            chartConfig={{
-              backgroundColor: '#2C4E5B',
-              backgroundGradientFrom: '#2C4E5B',
-              backgroundGradientTo: '#2C4E5B',
-              decimalPlaces: 0, // optional, defaults to 2dp
-              color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-              style: {
+              }}
+              bezier
+              style={{
+                marginVertical: 8,
                 borderRadius: 16
-              }
-            }}
-            bezier
-            style={{
-              marginVertical: 8,
-              borderRadius: 16
-            }}
-          />
+              }}
+            />
+            <View>
+              <Text>
+                {selectedMaxLift.exercise} has increased by{' '}
+                {calculateGrowth(selectedMaxLift.weightHistory)}% since your
+                first marked date.
+              </Text>
+            </View>
+          </>
         ) : null}
       </View>
     </ScrollView>
