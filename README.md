@@ -86,4 +86,5 @@ _Testing_ (in progress)
 |  17.01   | 2h              | Started working on the Progression tab. Installed react-native-chart-kit and did some research on it. Fixed some bugs (registration throwing an error, exercise name not visible on max lifts, empty select box if no routines under Workout, etc.). | Front-end |
 |  17.01   | 1,5h              | Created a feature where the user can toggle between their prefered weight measurement type. Current options are kgs and lbs. Toggle updates both context's state and local storage | Front-end |
 |  07.02   | 3,5h              | Theme related changes (wrong font, background, icon colors on dark theme). Created a profile screen where the user can update the profile data (full name, age, what type of lifting they do). | Front-end & Back-end |
-| In total | 174,5h           |                                                                                                                                                              |
+|  07.02   | 1h              | Added text under progress chart that displays percentage growth of that specific max lift. Updated some dependencies. | Front-end  |
+| In total | 175,5h           |                                                                                                                                                              |
