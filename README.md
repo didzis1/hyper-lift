@@ -45,6 +45,9 @@ _Testing_ (in progress)
 ## More about this project
 This project was made as an exercise work for Fullstackopen 2021 MOOC course. Requirements for passing the course is 175 hours of work, which results into 10 ECTS points. The development time took me by surprise. The application is nowhere near as complete as I would wish it to be. There are a lot of room for updates and new implementations that I will most likely continue to develop in the near future. The application is however complex enough for the exercise work and I will use the application for my personal use whenever I'll hit the gym. I learned a lot from doing this project. I learned new technologies such as Typegoose, TypeGraphQL and I gathered a good amount of hours practicing the arts of TypeScript.
 
+## Accessing the application
+You can access the application through Expo with the QR code or by using the link provided from [here](https://expo.dev/@didzis1/hyperlift).
+
 # A couple of screenshots of the app
 <div align="center">
     <img src="/screenshots/1.jpg" width="250px"</img>
