@@ -33,7 +33,6 @@ const ActiveWorkout: React.FC<WorkoutNavProps<'ActiveWorkout'>> = ({
   };
 
   const handleCreateNewHistory = async (values: AddHistoryInput) => {
-    console.log(values);
     try {
       const newHistory = await createNewHistoryLift(values);
       console.log(newHistory);

@@ -51,8 +51,6 @@ const CalendarHistory: React.FC<HistoryNavProps<'CalendarHistory'>> = ({
     return <Loading />;
   }
 
-  console.log('HISTORY', history);
-
   return (
     <ScrollView
       style={[styles.container, { backgroundColor: colors.background }]}>

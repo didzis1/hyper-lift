@@ -33,7 +33,6 @@ const SearchModal = ({
   const [searchValue, setSearchValue] = useState<string>('');
   const [selectedExercise, setSelectedExercise] =
     useState<ExerciseDataType | null>(null);
-
   useEffect(() => {
     setExercises(exerciseList.exercises);
   }, []);
@@ -58,7 +57,6 @@ const SearchModal = ({
       Alert.alert('Exercise missing', 'You must select an exercise to add it', [
         {
           text: 'Okay',
-          onPress: () => console.log('Cancel pressed'),
           style: 'cancel'
         }
       ]);
