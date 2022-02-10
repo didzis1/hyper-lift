@@ -110,5 +110,5 @@ You can access the application through Expo with the QR code or by using the lin
 |  17.01   | 1,5h              | Created a feature where the user can toggle between their prefered weight measurement type. Current options are kgs and lbs. Toggle updates both context's state and local storage | Front-end |
 |  07.02   | 3,5h              | Theme related changes (wrong font, background, icon colors on dark theme). Created a profile screen where the user can update the profile data (full name, age, what type of lifting they do). | Front-end & Back-end |
 |  09.02   | 1h              | Added text under progress chart that displays percentage growth of that specific max lift. Updated some dependencies. | Front-end  |
-|  10.02   | 2h              | Deployed back-end to heroku, fixed some bugs on front-end. On iOS it is now possible to select max lift progress on Progress screen. Built the front-end with Expo. | Front-end & Back-end  |
-| In total | 178,5h           |                                                                                                                                                              |
+|  10.02   | 2,5h              | Deployed back-end to heroku, fixed some bugs on front-end. On iOS it is now possible to select max lift progress on Progress screen. Built the front-end with Expo. | Front-end & Back-end  |
+| In total | 175h           |                                                                                                                                                              |
