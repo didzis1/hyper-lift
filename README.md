@@ -42,6 +42,26 @@ _Testing_ (in progress)
 - Cypress
 - Jest
 
+## More about this project
+This project was made as an exercise work for Fullstackopen 2021 MOOC course. Requirements for passing the course is 175 hours of work, which results into 10 ECTS points. The development time took me by surprise. The application is nowhere near as complete as I would wish it to be. There are a lot of room for updates and new implementations that I will most likely continue to develop in the near future. The application is however complex enough for the exercise work and I will use the application for my personal use whenever I'll hit the gym.
+
+# A couple of screenshots of the app
+<div align="center">
+    <img src="/screenshots/1.jpg" width="250px"</img>
+    <img src="/screenshots/2.jpg" width="250px"</img> 
+    <img src="/screenshots/3.jpg" width="250px"</img> 
+    <img src="/screenshots/4.jpg" width="250px"</img> 
+    <img src="/screenshots/5.jpg" width="250px"</img> 
+    <img src="/screenshots/6.jpg" width="250px"</img>
+    <img src="/screenshots/7.jpg" width="250px"</img>
+    <img src="/screenshots/8.jpg" width="250px"</img> 
+    <img src="/screenshots/9.jpg" width="250px"</img> 
+    <img src="/screenshots/10.jpg" width="250px"</img> 
+    <img src="/screenshots/11.jpg" width="250px"</img> 
+    <img src="/screenshots/12.jpg" width="250px"</img>
+</div>
+
+
 # Time spent developing
 
 |   Day    | Time (in hours) | Work done                                                                                                                                                    | Stack     |
@@ -86,5 +106,6 @@ _Testing_ (in progress)
 |  17.01   | 2h              | Started working on the Progression tab. Installed react-native-chart-kit and did some research on it. Fixed some bugs (registration throwing an error, exercise name not visible on max lifts, empty select box if no routines under Workout, etc.). | Front-end |
 |  17.01   | 1,5h              | Created a feature where the user can toggle between their prefered weight measurement type. Current options are kgs and lbs. Toggle updates both context's state and local storage | Front-end |
 |  07.02   | 3,5h              | Theme related changes (wrong font, background, icon colors on dark theme). Created a profile screen where the user can update the profile data (full name, age, what type of lifting they do). | Front-end & Back-end |
-|  07.02   | 1h              | Added text under progress chart that displays percentage growth of that specific max lift. Updated some dependencies. | Front-end  |
-| In total | 175,5h           |                                                                                                                                                              |
+|  09.02   | 1h              | Added text under progress chart that displays percentage growth of that specific max lift. Updated some dependencies. | Front-end  |
+|  10.02   | 2h              | Deployed back-end to heroku, fixed some bugs on front-end. On iOS it is now possible to select max lift progress on Progress screen. Built the front-end with Expo. | Front-end & Back-end  |
+| In total | 178,5h           |                                                                                                                                                              |
