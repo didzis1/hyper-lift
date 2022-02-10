@@ -120,7 +120,6 @@ const EditRoutine: React.FC<HomeNavProps<'EditRoutine'>> = ({
                 {({ push, remove }) => (
                   <>
                     {values.workouts.map((workout, workoutIndex) => {
-                      console.log('Errors', errors);
                       return (
                         <View
                           key={workoutIndex}

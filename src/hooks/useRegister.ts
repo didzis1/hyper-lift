@@ -9,8 +9,6 @@ const useRegister = () => {
   const register = async (
     credentials: Omit<RegisterType, 'passwordConfirmation'>
   ) => {
-    console.log('Register gets called');
-    console.log(credentials);
     const { data } = await mutate({
       variables: {
         registerInput: {

@@ -67,7 +67,7 @@ const Home: React.FC<HomeNavProps<'Home'>> = ({ navigation, route }) => {
               <TouchableOpacity>
                 <View>
                   <Image
-                    source={require('../../../assets/avatarImage.png')}
+                    source={require('../../../assets/hyperlift.png')}
                     style={styles.avatar}
                   />
                 </View>
@@ -88,7 +88,7 @@ const Home: React.FC<HomeNavProps<'Home'>> = ({ navigation, route }) => {
 
           <View style={styles.topBottomRow}>
             <Text style={[styles.welcomeText, { color: colors.background }]}>
-              Welcome back to Hyperlift
+              Welcome back,
             </Text>
             <Text style={[styles.fullName, { color: colors.background }]}>
               {currentUser.firstName} {currentUser.lastName}
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
   },
   avatarContainer: { flex: 1, alignItems: 'center' },
   avatar: {
-    width: 75,
+    width: 125,
     height: 75
   },
   settingsContainer: {

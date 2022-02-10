@@ -18,7 +18,6 @@ const MaxLiftCard: React.FC<MaxLiftCardProps> = ({
   navigation,
   weightMeasurement
 }) => {
-  console.log(weightMeasurement);
   return (
     <Surface style={styles.container}>
       <TouchableOpacity onPress={() => navigation.navigate('MaxLifts', {})}>
