@@ -26,7 +26,6 @@ const LoginScreen: React.FC<AuthNavProps<'LoginScreen'>> = ({ navigation }) => {
   const handleFormSubmit = async (credentials: LoginType) => {
     try {
       const result = await login(credentials);
-      console.log(result);
       return result;
     } catch (error) {
       if (error instanceof Error) {

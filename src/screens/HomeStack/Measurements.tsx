@@ -10,7 +10,6 @@ type WeightSwitchProps = {
 };
 
 const WeightSwitch = ({ switchValue, setSwitchValue }: WeightSwitchProps) => {
-  console.log(switchValue);
   return (
     <View style={styles.switchContainer}>
       <Text>kgs</Text>

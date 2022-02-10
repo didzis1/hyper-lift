@@ -9,7 +9,6 @@ const useLogout = () => {
   const logout = async () => {
     await authStorage.removeToken();
     apolloClient.resetStore();
-    console.log('logout finished');
   };
 
   return { logout };

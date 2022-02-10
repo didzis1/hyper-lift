@@ -19,6 +19,7 @@ export default {
     supportsTablet: true
   },
   android: {
+    package: 'com.didzis1.hyperlift',
     adaptiveIcon: {
       foregroundImage: './assets/adaptive-icon.png',
       backgroundColor: '#FFFFFF'
@@ -29,7 +30,6 @@ export default {
     favicon: './assets/favicon.png'
   },
   extra: {
-    env: process.env.ENV,
-    local_ip: process.env.LOCAL_IP
+    env: process.env.ENV
   }
 };

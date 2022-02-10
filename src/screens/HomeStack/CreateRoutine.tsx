@@ -37,7 +37,6 @@ const CreateRoutine: React.FC<HomeNavProps<'CreateRoutine'>> = ({
   const { createRoutine } = useCreateRoutine();
 
   const handleCreateRoutine = async (values: CreateRoutineInputType) => {
-    console.log(values);
     try {
       const newRoutine = await createRoutine(values);
       navigation.navigate('Routine', {
@@ -115,7 +114,6 @@ const CreateRoutine: React.FC<HomeNavProps<'CreateRoutine'>> = ({
                 {({ push, remove }) => (
                   <>
                     {values.workouts.map((workout, workoutIndex) => {
-                      console.log('Errors', errors);
                       return (
                         <View
                           key={workoutIndex}
