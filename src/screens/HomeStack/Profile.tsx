@@ -85,7 +85,7 @@ const Profile: React.FC<HomeNavProps<'Profile'>> = ({}) => {
             initialValues={{
               firstName: currentUser.firstName,
               lastName: currentUser.lastName,
-              age: String(currentUser.age) ?? '',
+              age: currentUser.age === null ? '' : currentUser.age,
               liftingType: currentUser.liftingType ?? ''
             }}
             validateOnChange={false}
@@ -113,7 +113,9 @@ const Profile: React.FC<HomeNavProps<'Profile'>> = ({}) => {
                   name='age'
                   keyboardType='number-pad'
                   placeholder={
-                    currentUser.age ? String(currentUser.age) : 'Enter your age'
+                    currentUser.age !== null
+                      ? String(currentUser.age)
+                      : 'Enter your age'
                   }
                   label='Age'
                 />
