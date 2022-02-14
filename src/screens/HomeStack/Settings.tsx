@@ -27,7 +27,7 @@ const Settings: React.FC<HomeNavProps<'Settings'>> = ({ navigation }) => {
           onPress={() => navigation.navigate('Profile')}
           left={() => <List.Icon icon='account' color={colors.primary} />}
         />
-        <List.Item
+        {/* <List.Item
           style={[
             styles.listSection,
             {
@@ -38,7 +38,7 @@ const Settings: React.FC<HomeNavProps<'Settings'>> = ({ navigation }) => {
           titleStyle={{ color: colors.text }}
           onPress={() => console.log('Account')}
           left={() => <List.Icon icon='lock' color={colors.primary} />}
-        />
+        /> */}
       </List.Section>
 
       <List.Section>
